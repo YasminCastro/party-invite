@@ -1,12 +1,12 @@
 import AfterConfirm from "@/components/Confirm/AfterConfirm";
 import BeforeConfirm from "@/components/Confirm/BeforeConfirm";
+import { useUser } from "@/providers/user";
 import { useState } from "react";
 
 export default function Home() {
   const [didConfirm, setDidConfirm] = useState(false);
   const [confirm, setConfirm] = useState(false);
-
-  const [name, setName] = useState("yasmin");
+  const { user } = useUser();
 
   return (
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
@@ -16,8 +16,7 @@ export default function Home() {
         <BeforeConfirm
           setDidConfirm={setDidConfirm}
           setConfirm={setConfirm}
-          confirm={confirm}
-          name={name}
+          confirm={user.status}
         />
       )}
     </div>

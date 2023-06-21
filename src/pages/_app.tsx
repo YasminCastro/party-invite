@@ -1,3 +1,4 @@
+import { UserProvider } from "@/providers/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
@@ -24,7 +25,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <main
       className={`${roboto.variable} ${montserrat.variable} ${bebas.variable} ${bungee.variable}`}
     >
-      <Component {...pageProps} />
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
     </main>
   );
 }

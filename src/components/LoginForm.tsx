@@ -1,7 +1,9 @@
+import { useUser } from "@/providers/user";
 import axios from "axios";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
+
 import "xp.css/dist/98.css";
 
 export default function LoginForm() {
@@ -10,12 +12,12 @@ export default function LoginForm() {
   const [error, setError] = useState("");
   const [guests, setGuests] = useState<any[]>([]);
   const router = useRouter();
+  const { setUser } = useUser();
 
   useEffect(() => {
     const getGests = async () => {
       try {
         const { data } = await axios.get("/api/get-guest");
-        console.log(data);
         setGuests(data);
       } catch (error: any) {
         console.log(error.message);
@@ -40,6 +42,7 @@ export default function LoginForm() {
         setError(data.message);
       } else {
         setCookie("token", data.token);
+        setUser(data.user);
         router.push("/");
       }
     } catch (error: any) {

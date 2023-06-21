@@ -8,6 +8,7 @@ interface IProps {
 }
 
 export default function GuestForm({ setConfirm, name, confirm }: IProps) {
+
   return (
     <div>
       <div className="flex w-full flex-col ">

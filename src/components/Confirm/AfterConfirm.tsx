@@ -3,6 +3,7 @@ import "xp.css/dist/98.css";
 import Going from "./AfterConfirm/Going";
 import NotGoing from "./AfterConfirm/NotGoing";
 
+
 interface IProps {
   confirm: Boolean;
 }
