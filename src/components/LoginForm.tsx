@@ -15,6 +15,7 @@ export default function LoginForm() {
     const getGests = async () => {
       try {
         const { data } = await axios.get("/api/get-guest");
+        console.log(data);
         setGuests(data);
       } catch (error: any) {
         console.log(error.message);
@@ -31,7 +32,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axios.post("/api/login", {
-        name,
+        name: name.trim().toLocaleLowerCase(),
         secret,
       });
 
@@ -58,8 +59,9 @@ export default function LoginForm() {
           required
           className="h-6 p-2 text-base"
           onChange={(event) => setName(event.target.value)}
+          list="guests"
         />
-        <datalist id="guests">
+        <datalist id="guests" className="display">
           {guests.map((guest) => (
             <option key={guest._id} value={guest.name} />
           ))}
