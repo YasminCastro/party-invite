@@ -4,11 +4,10 @@ import Going from "./AfterConfirm/Going";
 import NotGoing from "./AfterConfirm/NotGoing";
 
 interface IProps {
-  didConfirm: Boolean;
   confirm: Boolean;
 }
 
-export default function AfterConfirm({ didConfirm, confirm }: IProps) {
+export default function AfterConfirm({ confirm }: IProps) {
   const router = useRouter();
 
   return (

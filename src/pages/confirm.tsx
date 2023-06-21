@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
       {didConfirm ? (
-        <AfterConfirm didConfirm={didConfirm} confirm={confirm} />
+        <AfterConfirm confirm={confirm} />
       ) : (
         <BeforeConfirm
           setDidConfirm={setDidConfirm}

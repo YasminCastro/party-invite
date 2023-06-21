@@ -12,7 +12,7 @@ export default function NotGoing() {
         </h2>
       </div>
 
-      <p className="font-bebas text-xl text-black">
+      <p className="font-bebas text-xl text-white">
         ps. caso mude de ideia pode confirmar se vai até o dia 20/07 :)
       </p>
     </div>

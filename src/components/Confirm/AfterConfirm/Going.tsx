@@ -3,9 +3,8 @@ import Image from "next/image";
 import "xp.css/dist/98.css";
 import gif from "../../../../public/confirm/graphic-design-is-my-passion-designer.gif";
 
-interface IProps {}
 
-export default function Going({}: IProps) {
+export default function Going() {
   return (
     <div className="m-2 flex flex-row gap-4 ">
       <div className="flex flex-col justify-around">
