@@ -27,6 +27,7 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState({} as IUser);
   const cookie = getCookie("token") as string;
+  const [render, setRender] = useState(false);
 
   const getUser = useCallback(async () => {
     const token = jwt.decode(cookie) as JwtPayload;
@@ -41,6 +42,8 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setRender(true);
       }
     }
   }, [cookie]);
@@ -56,7 +59,11 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
     }),
     [user, setUser]
   );
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={value}>
+      {render ? children : null}
+    </UserContext.Provider>
+  );
 };
 
 export const useUser = (): IValue => useContext(UserContext);
