@@ -40,7 +40,10 @@ export default function LoginForm() {
     }
   }
   return (
-    <form className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-500 bg-opacity-20 bg-clip-padding p-4 max-sm:w-3/4">
+    <form
+      onSubmit={handleLogin}
+      className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-500 bg-opacity-20 bg-clip-padding p-4 max-sm:w-3/4"
+    >
       <div className="flex w-full flex-col">
         <label className="text-base">Nome</label>
         <input className="h-6" />
