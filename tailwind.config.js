@@ -18,7 +18,9 @@ module.exports = {
       },
       backgroundImage: {
         login: "url('/login/login-backround.svg')",
+        home: "url('/home/home-background.svg')",
         popup: "url('/login/popup.svg')",
+        popupDate: "url('/home/popup-date.svg')",
       },
     },
   },
