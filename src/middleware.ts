@@ -8,8 +8,11 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  const teste = await authMiddleware(token);
-  console.log(teste);
+  const isAuth = await authMiddleware(token.value);
+
+  if (!isAuth) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
 }
 
 // See "Matching Paths" below to learn more

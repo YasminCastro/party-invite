@@ -4,12 +4,22 @@ import { useRouter } from "next/router";
 import popup from "../../public/home/popup-date.svg";
 
 import Title404 from "@/components/Title404";
+import { setCookie } from "cookies-next";
 import "xp.css/dist/98.css";
 
 export default function Home() {
   const router = useRouter();
   return (
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
+      <button
+        onClick={() => {
+          router.push("/login");
+          setCookie("token", null);
+        }}
+        className="absolute right-6 top-6 h-8 w-5 text-base"
+      >
+        Sair
+      </button>
       <Title404 />
 
       <div className="center flex flex-col">
