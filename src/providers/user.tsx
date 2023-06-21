@@ -1,4 +1,15 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import axios from "axios";
+import { getCookie } from "cookies-next";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
 interface IUser {
   name: string;
   status: boolean;
@@ -15,6 +26,28 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState({} as IUser);
+  const cookie = getCookie("token") as string;
+
+  const getUser = useCallback(async () => {
+    const token = jwt.decode(cookie) as JwtPayload;
+
+    if (token) {
+      try {
+        if (token.result._id) {
+          const { data } = await axios.get(
+            `/api/find-user?id=${token.result._id}`
+          );
+          setUser(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [cookie]);
+
+  useEffect(() => {
+    getUser();
+  }, [getUser]);
 
   const value = useMemo(
     () => ({

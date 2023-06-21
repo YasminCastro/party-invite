@@ -2,13 +2,12 @@ import { Dispatch, SetStateAction } from "react";
 import "xp.css/dist/98.css";
 
 interface IProps {
-  setConfirm: Dispatch<SetStateAction<boolean>>;
+  setConfirmValue: Dispatch<SetStateAction<boolean>>;
   name: string;
   confirm: boolean;
 }
 
-export default function GuestForm({ setConfirm, name, confirm }: IProps) {
-
+export default function GuestForm({ setConfirmValue, name, confirm }: IProps) {
   return (
     <div>
       <div className="flex w-full flex-col ">
@@ -20,7 +19,7 @@ export default function GuestForm({ setConfirm, name, confirm }: IProps) {
           id="yes"
           type="radio"
           name="confirm"
-          onClick={() => setConfirm(true)}
+          onClick={() => setConfirmValue(true)}
           defaultChecked={confirm}
         />
         <label htmlFor="yes" className="text-lg">
@@ -31,7 +30,7 @@ export default function GuestForm({ setConfirm, name, confirm }: IProps) {
           id="no"
           type="radio"
           name="confirm"
-          onClick={() => setConfirm(false)}
+          onClick={() => setConfirmValue(false)}
           defaultChecked={!confirm}
         />
         <label htmlFor="no" className="text-lg">
