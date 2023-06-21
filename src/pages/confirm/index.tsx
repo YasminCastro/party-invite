@@ -7,11 +7,14 @@ import { FormEvent, useState } from "react";
 export default function Home() {
   const router = useRouter();
   const { user, setUser } = useUser();
+  const [loading, setLoading] = useState(false);
 
   const [confirmValue, setConfirmValue] = useState(false);
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    setLoading(true);
 
     try {
       const { data } = await axios.post("/api/update-status", {
@@ -22,6 +25,8 @@ export default function Home() {
       router.push("/confirm/result");
     } catch (error: any) {
       console.log(error.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -36,7 +41,10 @@ export default function Home() {
           name={user.name}
           confirm={user.status}
         />
-        <button className="h-8 w-full text-base ">Confirmar</button>
+        <button className="h-8 w-full text-base " disabled={loading}>
+          {" "}
+          {loading ? "Carregando..." : "Confirmar"}
+        </button>
       </form>
     </div>
   );

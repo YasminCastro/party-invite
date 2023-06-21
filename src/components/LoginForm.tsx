@@ -8,6 +8,7 @@ import "xp.css/dist/98.css";
 
 export default function LoginForm() {
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
   const [secret, setSecret] = useState("");
   const [error, setError] = useState("");
   const [guests, setGuests] = useState<any[]>([]);
@@ -31,6 +32,7 @@ export default function LoginForm() {
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setLoading(true);
 
     try {
       const { data } = await axios.post("/api/login", {
@@ -47,6 +49,8 @@ export default function LoginForm() {
       }
     } catch (error: any) {
       console.log(error.message);
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -82,7 +86,9 @@ export default function LoginForm() {
       </div>
 
       {error && <p className=" text-red-300">{error}</p>}
-      <button className="mt-2 h-8 w-full">Entrar</button>
+      <button className="mt-2 h-8 w-full" disabled={loading}>
+        {loading ? "Carregando..." : "Entrar"}
+      </button>
     </form>
   );
 }
