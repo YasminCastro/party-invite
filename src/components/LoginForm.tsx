@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
 import "xp.css/dist/98.css";
 
@@ -8,6 +9,8 @@ export default function LoginForm() {
   const [secret, setSecret] = useState("");
   const [error, setError] = useState("");
   const [guests, setGuests] = useState<any[]>([]);
+  const router = useRouter();
+
   useEffect(() => {
     const getGests = async () => {
       try {
@@ -21,6 +24,8 @@ export default function LoginForm() {
     getGests();
   }, []);
 
+  useEffect(() => {}, [guests]);
+
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -33,7 +38,8 @@ export default function LoginForm() {
       if (data.message) {
         setError(data.message);
       } else {
-        setCookie("token", data);
+        setCookie("token", data.token);
+        router.push("/");
       }
     } catch (error: any) {
       console.log(error.message);
@@ -46,7 +52,13 @@ export default function LoginForm() {
     >
       <div className="flex w-full flex-col">
         <label className="text-base">Nome</label>
-        <input className="h-6" />
+        <input
+          type="text"
+          id="name"
+          required
+          className="h-6 p-2 text-base"
+          onChange={(event) => setName(event.target.value)}
+        />
         <datalist id="guests">
           {guests.map((guest) => (
             <option key={guest._id} value={guest.name} />
@@ -55,7 +67,13 @@ export default function LoginForm() {
       </div>
       <div className="flex w-full flex-col">
         <label className="text-base">Senha</label>
-        <input className="h-6" />
+        <input
+          className="p h-6 text-base"
+          onChange={(event) => setSecret(event.target.value)}
+          type="password"
+          id="password"
+          required
+        />
       </div>
 
       {error && <p className=" text-red-300">{error}</p>}
