@@ -59,11 +59,7 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
     }),
     [user, setUser]
   );
-  return (
-    <UserContext.Provider value={value}>
-      {render ? children : null}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export const useUser = (): IValue => useContext(UserContext);
