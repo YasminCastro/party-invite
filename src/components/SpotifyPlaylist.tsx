@@ -3,7 +3,7 @@ import "xp.css/dist/98.css";
 
 export default function SpotifyPlaylist() {
   return (
-    <div className="flex flex-col items-center justify-around">
+    <div className="flex flex-col items-center justify-around ">
       <button
         className="mb-2 h-8 text-base"
         onClick={() =>
@@ -13,7 +13,10 @@ export default function SpotifyPlaylist() {
       >
         Colaborar na playlist da festa
       </button>
-      <Spotify link="https://open.spotify.com/playlist/0Fyoivhuile8c1RSOEGdYd?si=91fa4819a3ee4eb6" />
+      <Spotify
+        link="https://open.spotify.com/playlist/0Fyoivhuile8c1RSOEGdYd?si=91fa4819a3ee4eb6"
+        className=" w-full"
+      />
     </div>
   );
 }

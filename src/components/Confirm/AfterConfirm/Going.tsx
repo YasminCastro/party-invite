@@ -6,16 +6,30 @@ import gif from "../../../../public/confirm/graphic-design-is-my-passion-designe
 
 export default function Going() {
   return (
-    <div className="m-2 flex flex-row gap-4 ">
-      <div className="flex flex-col justify-around">
+    <div className=" m-2 flex flex-row gap-4 max-md:flex-col">
+      <div className="mt-10 flex flex-col  justify-around">
         <div>
           <h2 className="font-bebas text-4xl text-yellow-400">
             Aiiii mt bão você vai!!
           </h2>
-          <ul className="ml-4 list-disc font-bebas  text-white">
+          <ul className="ml-4 w-[90%] list-disc font-bebas text-white max-md:w-full">
             <li className="text-xl">
               Não se esqueça de levar sua bebida e caixa/bolsa térmica.
             </li>
+            <li className="text-xl">
+              Caso você tenha conjuge não esqueça de confimar a presença delu
+              também!!
+            </li>
+            <div className="p-4">
+              <Image
+                src={gif}
+                alt="Graphic design is my passion"
+                sizes="(min-width: 60em) 24vw,
+          (min-width: 28em) 45vw,
+          100vw"
+              />
+            </div>
+
             <li className="text-lg">
               Quer me dar um presente e não sabe o que? pode fazer um pix para{" "}
               <a className="text-yellow-400">yasminsdcastro@gmail.com</a>
@@ -33,14 +47,6 @@ export default function Going() {
             </li>
           </ul>
         </div>
-
-        <Image
-          src={gif}
-          alt="Graphic design is my passion"
-          sizes="(min-width: 60em) 24vw,
-          (min-width: 28em) 45vw,
-          100vw"
-        />
       </div>
       <SpotifyPlaylist />
     </div>
