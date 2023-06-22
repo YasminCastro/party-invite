@@ -34,7 +34,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
       <form
         onSubmit={handleLogin}
-        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-sm:w-3/4"
+        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-3/4 max-phone:w-full"
       >
         <GuestForm
           setConfirmValue={setConfirmValue}
@@ -42,7 +42,6 @@ export default function Home() {
           confirm={user.status}
         />
         <button className="h-8 w-full text-base " disabled={loading}>
-          {" "}
           {loading ? "Carregando..." : "Confirmar"}
         </button>
       </form>
