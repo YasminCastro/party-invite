@@ -1,12 +1,17 @@
+import { IStepActive } from "@/pages/confirm";
 import { useUser } from "@/providers/user";
 import axios from "axios";
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import "xp.css/dist/98.css";
 
-export default function Home() {
-  const router = useRouter();
+interface IProps {
+  setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
+  setUser: React.Dispatch<React.SetStateAction<IStepActive>>;
+  user: any;
+}
+
+export default function ConfirmCard({ setCardActive }: IProps) {
   const { user, setUser } = useUser();
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +30,13 @@ export default function Home() {
       });
 
       setUser(data.user);
-      router.push(`/result?confirm=${confirmValue}`);
+
+      console.log(confirmValue);
+      if (confirmValue) {
+        setCardActive("going");
+      } else {
+        setCardActive("notGoing");
+      }
     } catch (error: any) {
       console.log(error.message);
     } finally {

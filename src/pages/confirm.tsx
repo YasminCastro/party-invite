@@ -1,6 +1,7 @@
 import ConfirmCard from "@/components/Cards/ConfirmCard";
 import GoingCard from "@/components/Cards/GoingCard";
 import NotGoingCard from "@/components/Cards/NotGoing";
+import { useUser } from "@/providers/user";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 
@@ -8,7 +9,9 @@ export type IStepActive = "confirm" | "going" | "notGoing";
 
 export default function Confirm() {
   const { query } = useRouter();
-  const [cardActive, setCardActive] = useState<IStepActive>("notGoing");
+  const { user, setUser } = useUser();
+
+  const [cardActive, setCardActive] = useState<IStepActive>("confirm");
   const [confirmValue, setConfirmValue] = useState(false);
 
   useEffect(() => {
@@ -23,11 +26,17 @@ export default function Confirm() {
 
   const Cards = useMemo(
     () => ({
-      confirm: () => <ConfirmCard />,
+      confirm: () => (
+        <ConfirmCard
+          setCardActive={setCardActive}
+          user={user}
+          setUser={setUser}
+        />
+      ),
       going: () => <GoingCard />,
       notGoing: () => <NotGoingCard />,
     }),
-    []
+    [user, setUser]
   );
 
   return <>{Cards[cardActive]()}</>;
