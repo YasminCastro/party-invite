@@ -1,88 +1,34 @@
-import { useUser } from "@/providers/user";
-import axios from "axios";
-import { NextSeo } from "next-seo";
+import ConfirmCard from "@/components/Cards/ConfirmCard";
+import GoingCard from "@/components/Cards/GoingCard";
+import NotGoingCard from "@/components/Cards/NotGoing";
 import { useRouter } from "next/router";
-import { FormEvent, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export default function Home() {
-  const router = useRouter();
-  const { user, setUser } = useUser();
-  const [loading, setLoading] = useState(false);
+export type IStepActive = "confirm" | "going" | "notGoing";
 
+export default function Confirm() {
+  const { query } = useRouter();
+  const [cardActive, setCardActive] = useState<IStepActive>("notGoing");
   const [confirmValue, setConfirmValue] = useState(false);
 
-  async function handleLogin(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  useEffect(() => {
+    if (query?.cardActive) setCardActive(query?.cardActive as IStepActive);
+  }, [query]);
 
-    setLoading(true);
-
-    try {
-      console.log({ name: user.name, status: confirmValue });
-      const { data } = await axios.post("/api/update-status", {
-        name: user.name,
-        status: confirmValue,
-      });
-
-      setUser(data.user);
-      router.push(`/result?confirm=${confirmValue}`);
-    } catch (error: any) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (confirmValue) {
+      setConfirmValue(confirmValue);
     }
-  }
+  }, [confirmValue, setConfirmValue]);
 
-  return (
-    <>
-      <NextSeo
-        title="404 • Confirmar presença"
-        description="Confirme sua presença na festa da Yas"
-      />
-
-      <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
-        <form
-          onSubmit={handleLogin}
-          className="max-md:w-2/3 max-sm:w-3/4 flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-phone:w-full"
-        >
-          <div>
-            <div className="flex w-full flex-col ">
-              <label className="text-base text-white">Nome</label>
-              <input
-                className="h-6 p-2 text-base"
-                disabled
-                defaultValue={user.name}
-              />
-            </div>
-            <div className="m-4 flex gap-8 text-white">
-              <input
-                id="yes"
-                type="radio"
-                name="confirm"
-                onClick={() => setConfirmValue(true)}
-                defaultChecked={user.status}
-              />
-              <label htmlFor="yes" className="text-lg">
-                Vou :D
-              </label>
-
-              <input
-                id="no"
-                type="radio"
-                name="confirm"
-                onClick={() => setConfirmValue(false)}
-                defaultChecked={!user.status}
-              />
-              <label htmlFor="no" className="text-lg">
-                Não Vou :(
-              </label>
-            </div>
-          </div>
-
-          <button className="h-8 w-full text-base " disabled={loading}>
-            {loading ? "Carregando..." : "Confirmar"}
-          </button>
-        </form>
-      </div>
-    </>
+  const Cards = useMemo(
+    () => ({
+      confirm: () => <ConfirmCard />,
+      going: () => <GoingCard />,
+      notGoing: () => <NotGoingCard />,
+    }),
+    []
   );
+
+  return <>{Cards[cardActive]()}</>;
 }
