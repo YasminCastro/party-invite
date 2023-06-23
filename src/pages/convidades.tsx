@@ -50,6 +50,7 @@ export default function Convidades() {
             <thead className="">
               <tr>
                 <th className="px-6 py-3">Nome</th>
+                <th className="px-6 py-3">Recebu convite?</th>
                 <th className="px-6 py-3">Status</th>
               </tr>
             </thead>
@@ -64,6 +65,13 @@ export default function Convidades() {
                     >
                       <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                         {guest.name}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                        {guest.receivedInvitation ? (
+                          <AiFillCheckCircle color="green" />
+                        ) : (
+                          <AiFillCloseCircle color="red" />
+                        )}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                         {guest.status ? (
