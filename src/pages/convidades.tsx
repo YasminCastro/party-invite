@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextSeo } from "next-seo";
 import { useEffect, useState } from "react";
 
-import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/Ai";
+import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 
 export default function Convidades() {
   const [guests, setGuests] = useState<any[]>([]);
