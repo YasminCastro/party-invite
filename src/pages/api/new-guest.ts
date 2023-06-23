@@ -16,6 +16,10 @@ export default async function NewGuest(
 
     const collection = db.collection("guests");
 
+    const foundUser = await collection.findOne({ name });
+
+    if (foundUser) throw new Error("User alredy exists");
+
     const result = await collection.insertOne({ name, status: false });
     res.status(200).json(result);
   } catch (error: any) {
