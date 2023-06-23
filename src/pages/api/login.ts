@@ -1,4 +1,4 @@
-import { SECRET_PASS, SECRET_TOKEN } from "@/config";
+import { SECRET_TOKEN, SENHA_SECRETA } from "@/config";
 import db from "@/lib/client";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -7,7 +7,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { name, secret } = req.body;
 
-    if (SECRET_PASS !== secret.toLowerCase()) {
+    if (SENHA_SECRETA !== secret.toLowerCase()) {
       res
         .status(201)
         .json({ message: "iiih errou a senha secreta, tenta novamente ae!" });
@@ -34,13 +34,11 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     const cookieExpiresInSeconds = 60 * 60 * 24 * 30;
 
-    res
-      .status(201)
-      .json({
-        token,
-        cookieExpiresInSeconds,
-        user: { name, status: result.status, _id: result._id },
-      });
+    res.status(201).json({
+      token,
+      cookieExpiresInSeconds,
+      user: { name, status: result.status, _id: result._id },
+    });
   } catch (err: any) {
     console.error(err.message);
     res.status(500).json({ message: err.message });
