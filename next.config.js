@@ -4,7 +4,7 @@ const nextConfig = {
   env: {
     MONGO_URL: process.env.MONGO_URL,
     SECRET_TOKEN: process.env.SECRET_TOKEN,
-    SECRET_TOKEN: process.env.SENHA_SECRETA,
+    SENHA_SECRETA: process.env.SENHA_SECRETA,
   },
 };
 
