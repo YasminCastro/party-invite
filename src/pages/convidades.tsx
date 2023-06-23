@@ -26,6 +26,8 @@ export default function Convidades() {
     getGuests();
   }, []);
 
+  guests.sort(compareGuests);
+
   return (
     <>
       <NextSeo
@@ -72,3 +74,14 @@ export default function Convidades() {
     </>
   );
 }
+
+const compareGuests = (guestA: any, guestB: any) => {
+  if (guestA.status && !guestB.status) {
+    return -1; // guestA confirmado, guestB não confirmado
+  } else if (!guestA.status && guestB.status) {
+    return 1; // guestA não confirmado, guestB confirmado
+  } else {
+    // Mesmo status, ordem alfabética
+    return guestA.name.localeCompare(guestB.name);
+  }
+};
