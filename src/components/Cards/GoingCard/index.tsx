@@ -30,11 +30,21 @@ export default function GoingCard() {
             </h2>
             <ul className="ml-4 w-[90%] list-disc font-bebas text-white max-md:w-full">
               <li className="text-xl">
-                Não se esqueça de levar sua bebida e caixa/bolsa térmica.
+                Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
               </li>
               <li className="text-xl">
                 Caso você tenha conjuge não esqueça de confimar a presença delu
                 também!!
+                <p className="mt-[-5px] font-mono text-xs">
+                  caso seu conjugue não esteja na lista me avisa no{" "}
+                  <a
+                    href="https://api.whatsapp.com/send?phone=5562981695581"
+                    target="_blank"
+                    className="font-mono text-yellow-300"
+                  >
+                    zap
+                  </a>{" "}
+                </p>
               </li>
               <div className="p-4 max-md:w-full">
                 <Image
@@ -48,18 +58,23 @@ export default function GoingCard() {
 
               <li className="text-lg">
                 Quer me dar um presente e não sabe o que? pode fazer um pix para{" "}
-                <a className="text-yellow-400">yasminsdcastro@gmail.com</a>
+                <a className="font-mono text-yellow-300">
+                  yasminsdcastro@gmail.com
+                </a>
               </li>
               <li className="text-lg">
                 Quer levar alguem? clica{" "}
                 <a
                   href="https://api.whatsapp.com/send?phone=5562981695581&text=Oiee%2C%20quero%20convidar%20uma%20pessoa%20para%20seu%20niver..."
                   target="_blank"
-                  className="font-bebas text-yellow-300"
+                  className="font-mono text-yellow-300"
                 >
                   aqui
                 </a>{" "}
                 para mandar um zap pra Yas pra ver se pode.
+                <p className="mt-[-5px] font-mono text-xs">
+                  sujeito a lotação do local.
+                </p>
               </li>
             </ul>
           </div>
