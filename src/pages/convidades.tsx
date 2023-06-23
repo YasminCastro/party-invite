@@ -6,6 +6,7 @@ import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 
 export default function Convidades() {
   const [guests, setGuests] = useState<any[]>([]);
+  let [totalConfirmedGuests, setTotalConfirmedGuests] = useState(0);
   let [totalGuests, setTotalGuests] = useState(0);
 
   useEffect(() => {
@@ -17,7 +18,8 @@ export default function Convidades() {
           (count: number, guest: any) => count + (guest.status ? 1 : 0),
           0
         );
-        setTotalGuests(confirmedGuests);
+        setTotalConfirmedGuests(confirmedGuests);
+        setTotalGuests(data.length);
       } catch (error: any) {
         console.log(error.message);
       }
@@ -35,9 +37,14 @@ export default function Convidades() {
         description="Convidades para festa da yas"
       />
       <div className="relative flex min-h-screen flex-col items-center  overflow-x-auto bg-login bg-cover">
-        <label className="m-8 font-bungee text-3xl  text-purple-950  max-sm:text-xl max-phone:text-base">
-          Total de confirmados: {totalGuests}
-        </label>
+        <div className="m-8 text-center">
+          <p className="font-bungee text-xl  text-purple-950  max-sm:text-base ">
+            Total de confirmados: {totalConfirmedGuests}
+          </p>
+          <p className="font-bungee text-base  text-purple-950  max-sm:text-sm ">
+            Total de convidados: {totalGuests}
+          </p>
+        </div>
         <div className="h-[80vh] overflow-auto">
           <table className=" bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700  dark:text-gray-400">
             <thead className="">
