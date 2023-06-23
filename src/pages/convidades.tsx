@@ -38,38 +38,39 @@ export default function Convidades() {
         <label className="m-8 font-bungee text-3xl  text-purple-950  max-sm:text-xl max-phone:text-base">
           Total de confirmados: {totalGuests}
         </label>
+        <div className="h-[80vh] overflow-auto">
+          <table className=" bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700  dark:text-gray-400">
+            <thead className="">
+              <tr>
+                <th className="px-6 py-3">Nome</th>
+                <th className="px-6 py-3">Status</th>
+              </tr>
+            </thead>
 
-        <table className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-          <thead>
-            <tr>
-              <th className="px-6 py-3">Nome</th>
-              <th className="px-6 py-3">Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {guests &&
-              guests.map((guest) => {
-                return (
-                  <tr
-                    key={guest._id}
-                    className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                      {guest.name}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                      {guest.status ? (
-                        <AiFillCheckCircle color="green" />
-                      ) : (
-                        <AiFillCloseCircle color="red" />
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+            <tbody>
+              {guests &&
+                guests.map((guest) => {
+                  return (
+                    <tr
+                      key={guest._id}
+                      className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
+                    >
+                      <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                        {guest.name}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                        {guest.status ? (
+                          <AiFillCheckCircle color="green" />
+                        ) : (
+                          <AiFillCloseCircle color="red" />
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
