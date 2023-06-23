@@ -1,8 +1,6 @@
 import SpotifyPlaylist from "@/components/SpotifyPlaylist";
 import Image from "next/image";
 import "xp.css/dist/98.css";
-import gif from "../../../../public/confirm/graphic-design-is-my-passion-designer.gif";
-
 
 export default function Going() {
   return (
@@ -22,7 +20,7 @@ export default function Going() {
             </li>
             <div className="p-4">
               <Image
-                src={gif}
+                src="/public/confirm/graphic-design-is-my-passion-designer.gif"
                 alt="Graphic design is my passion"
                 sizes="(min-width: 60em) 24vw,
           (min-width: 28em) 45vw,

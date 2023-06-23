@@ -1,4 +1,5 @@
-import NotGoing from "@/components/Confirm/AfterConfirm/NotGoing";
+import Going from "@/components/AfterConfirm/Going";
+import NotGoing from "@/components/AfterConfirm/NotGoing";
 import { useUser } from "@/providers/user";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
@@ -23,9 +24,7 @@ export default function AfterConfirm() {
         </button>
 
         <div className="wt-10 max-lg:w-2/3  flex items-center  justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-80 bg-clip-padding p-4 max-sm:w-full">
-          {/* {user && user.status ? <Going /> : <NotGoing />} */}
-
-          <NotGoing />
+          {user && user.status ? <Going /> : <NotGoing />}
         </div>
       </div>
     </>
