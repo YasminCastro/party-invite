@@ -10,6 +10,7 @@ import "xp.css/dist/98.css";
 
 export default function Home() {
   const router = useRouter();
+
   return (
     <>
       <NextSeo

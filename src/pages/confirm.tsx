@@ -11,6 +11,8 @@ export default function Confirm() {
   const { query } = useRouter();
   const { user, setUser } = useUser();
 
+  useEffect(() => {}, [user]);
+
   const [cardActive, setCardActive] = useState<IStepActive>("confirm");
   const [confirmValue, setConfirmValue] = useState(false);
 
@@ -38,6 +40,8 @@ export default function Confirm() {
     }),
     [user, setUser]
   );
+
+
 
   return <>{Cards[cardActive]()}</>;
 }

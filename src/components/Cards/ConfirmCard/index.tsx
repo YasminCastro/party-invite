@@ -2,7 +2,7 @@ import { IStepActive } from "@/pages/confirm";
 import { useUser } from "@/providers/user";
 import axios from "axios";
 import { NextSeo } from "next-seo";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import "xp.css/dist/98.css";
 
 interface IProps {
@@ -17,6 +17,11 @@ export default function ConfirmCard({ setCardActive }: IProps) {
 
   const [confirmValue, setConfirmValue] = useState(false);
 
+  useEffect(() => {
+    setConfirmValue(user.status);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -30,8 +35,6 @@ export default function ConfirmCard({ setCardActive }: IProps) {
       });
 
       setUser(data.user);
-
-      console.log(confirmValue);
       if (confirmValue) {
         setCardActive("going");
       } else {
