@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { useRouter } from "next/router";
 import React, {
   createContext,
   useCallback,
@@ -25,9 +26,10 @@ const UserContext = createContext({} as IValue);
 export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
+  const router = useRouter();
+
   const [user, setUser] = useState({} as IUser);
   const cookie = getCookie("token") as string;
-  const [render, setRender] = useState(false);
 
   const getUser = useCallback(async () => {
     const token = jwt.decode(cookie) as JwtPayload;
@@ -42,15 +44,21 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
         }
       } catch (error) {
         console.log(error);
-      } finally {
-        setRender(true);
       }
     }
   }, [cookie]);
 
   useEffect(() => {
-    getUser();
-  }, [getUser]);
+    const handleRouteChange = () => {
+      getUser();
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router, getUser]);
 
   const value = useMemo(
     () => ({
