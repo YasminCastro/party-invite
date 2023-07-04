@@ -1,15 +1,14 @@
 import db from "@/lib/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function UpdateStatus(
+export default async function UpdateGuest(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const { name, receivedInvitation } = req.body;
+    const { name, receivedInvitation, isAdmin, secret } = req.body;
 
-    if (!name && !receivedInvitation)
-      throw new Error("Arguments name and status are missing");
+    if (!name) throw new Error("Argument name is missing");
 
     const database = await db;
 
@@ -17,9 +16,15 @@ export default async function UpdateStatus(
 
     const collection = db.collection("guests");
 
+    let update: any = {};
+
+    if (receivedInvitation) update.receivedInvitation = receivedInvitation;
+    if (isAdmin) update.isAdmin = isAdmin;
+    if (secret) update.secret = secret;
+
     const result = await collection.findOneAndUpdate(
       { name },
-      { $set: { receivedInvitation } }
+      { $set: update }
     );
 
     res.status(200).json(result.value);

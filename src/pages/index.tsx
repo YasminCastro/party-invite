@@ -7,9 +7,11 @@ import Title404 from "@/components/Title404";
 import { setCookie } from "cookies-next";
 import { NextSeo } from "next-seo";
 import "xp.css/dist/98.css";
+import { useUser } from "@/providers/user";
 
 export default function Home() {
   const router = useRouter();
+  const { isAdmin } = useUser();
 
   return (
     <>
@@ -18,6 +20,17 @@ export default function Home() {
         description="Confirme sua presença na festa da Yas"
       />
       <div className="flex min-h-screen flex-row items-center  justify-evenly gap-10 bg-home bg-cover  max-md:flex-col ">
+        {isAdmin && (
+          <button
+            onClick={() => {
+              router.push("/admin");
+            }}
+            className="absolute right-28 top-6 h-8 w-5 text-base"
+          >
+            Admin
+          </button>
+        )}
+
         <button
           onClick={() => {
             router.push("/login");
@@ -27,6 +40,7 @@ export default function Home() {
         >
           Sair
         </button>
+
         <Title404 />
 
         <div className="flex flex-col">

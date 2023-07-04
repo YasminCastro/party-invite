@@ -1,9 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 import authMiddleware from "./config/joseAuth";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 // This function can be marked `async` if using `await` inside
 export default async function middleware(req: NextRequest) {
   const token = req.cookies.get("token") as any;
+  const tokendecoded = jwt.decode(token) as JwtPayload;
+  console.log(tokendecoded);
   if (!token) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
@@ -18,6 +21,6 @@ export default async function middleware(req: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|login|convidades|admin).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|login|convidades).*)",
   ],
 };

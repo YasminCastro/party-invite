@@ -20,7 +20,11 @@ export default async function NewGuest(
 
     if (foundUser) throw new Error("User alredy exists");
 
-    const result = await collection.insertOne({ name, status: false });
+    const result = await collection.insertOne({
+      name,
+      status: false,
+      receivedInvitation: false,
+    });
     res.status(200).json(result);
   } catch (error: any) {
     console.error(error);

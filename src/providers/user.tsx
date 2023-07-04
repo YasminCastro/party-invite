@@ -14,10 +14,13 @@ import React, {
 interface IUser {
   name: string;
   status: boolean;
+  receivedInvitation: boolean;
+  isAdmin: boolean;
 }
 
 interface IValue {
   user: IUser;
+  isAdmin: boolean;
   setUser: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -29,7 +32,13 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
   const router = useRouter();
 
   const [user, setUser] = useState({} as IUser);
+  const [isAdmin, setIsAdmin] = useState(false);
   const cookie = getCookie("token") as string;
+
+  useEffect(() => {
+    const token = jwt.decode(cookie) as JwtPayload;
+    setIsAdmin(token?.result?.isAdmin);
+  }, [cookie]);
 
   const getUser = useCallback(async () => {
     const token = jwt.decode(cookie) as JwtPayload;
@@ -64,8 +73,9 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
     () => ({
       user,
       setUser,
+      isAdmin,
     }),
-    [user, setUser]
+    [user, setUser, isAdmin]
   );
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

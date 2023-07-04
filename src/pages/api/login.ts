@@ -7,13 +7,6 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { name, secret } = req.body;
 
-    if (SENHA_SECRETA !== secret.toLowerCase()) {
-      res
-        .status(201)
-        .json({ message: "iiih errou a senha secreta, tenta novamente ae!" });
-      return;
-    }
-
     const database = await db;
 
     if (!database) throw new Error("Database is not connected");
@@ -22,11 +15,26 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     const result = await collection.findOne({ name });
 
     if (!result) {
-      res.status(201).json({
+      res.status(200).json({
         message:
           "Você não está na lista de convidades ://, manda um zap para Yas pra ela te convidar!",
       });
 
+      return;
+    }
+
+    if (result.isAdmin && result.password !== secret) {
+      res.status(200).json({
+        message:
+          "Senha incorreta, você deve utilizar a senha de administrador.",
+      });
+      return;
+    }
+
+    if (!result.isAdmin && SENHA_SECRETA !== secret.toLowerCase()) {
+      res
+        .status(200)
+        .json({ message: "iiih errou a senha secreta, tenta novamente ae!" });
       return;
     }
 
@@ -37,7 +45,12 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     res.status(201).json({
       token,
       cookieExpiresInSeconds,
-      user: { name, status: result.status, _id: result._id },
+      user: {
+        name,
+        status: result.status,
+        _id: result._id,
+        receivedInvitation: result.receivedInvitation,
+      },
     });
   } catch (err: any) {
     console.error(err.message);

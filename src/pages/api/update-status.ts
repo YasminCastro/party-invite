@@ -22,7 +22,6 @@ export default async function UpdateStatus(
       { $set: { status } }
     );
 
-
     res.status(200).json(result.value);
   } catch (error: any) {
     console.error(error);
