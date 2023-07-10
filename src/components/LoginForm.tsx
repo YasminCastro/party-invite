@@ -18,7 +18,7 @@ export default function LoginForm() {
   useEffect(() => {
     const getGests = async () => {
       try {
-        const { data } = await axios.get("/api/get-guest");
+        const { data } = await axios.get("/api/get-guests");
         setGuests(data);
       } catch (error: any) {
         console.log(error.message);

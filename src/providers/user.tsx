@@ -47,7 +47,7 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
       try {
         if (token.result._id) {
           const { data } = await axios.get(
-            `/api/find-user?id=${token.result._id}`
+            `/api/find-guest?id=${token.result._id}`
           );
           setUser(data);
         }

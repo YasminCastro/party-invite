@@ -1,4 +1,5 @@
 import db from "@/lib/client";
+import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function UpdateGuest(
@@ -6,9 +7,9 @@ export default async function UpdateGuest(
   res: NextApiResponse
 ) {
   try {
-    const { name, receivedInvitation, isAdmin, secret } = req.body;
+    const { name, receivedInvitation, isAdmin, secret, id } = req.body;
 
-    if (!name) throw new Error("Argument name is missing");
+    if (!id) throw new Error("Argument id is missing");
 
     const database = await db;
 
@@ -18,18 +19,21 @@ export default async function UpdateGuest(
 
     let update: any = {};
 
-    if (receivedInvitation) update.receivedInvitation = receivedInvitation;
+    if (receivedInvitation !== null) {
+      update.receivedInvitation = receivedInvitation;
+    }
+    if (name) update.name = name;
     if (isAdmin) update.isAdmin = isAdmin;
     if (secret) update.secret = secret;
 
     const result = await collection.findOneAndUpdate(
-      { name },
+      { _id: new ObjectId(id) },
       { $set: update }
     );
 
     res.status(200).json(result.value);
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ message: error.message });
+    res.status(200).json({ message: error.message });
   }
 }

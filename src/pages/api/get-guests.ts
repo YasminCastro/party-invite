@@ -1,22 +1,18 @@
 import db from "@/lib/client";
-import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function GetGuest(
+export default async function GetGuests(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
     const database = await db;
 
-    const userId = req.query.id as string;
-
     if (!database) throw new Error("Database is not connected");
 
     const collection = db.collection("guests");
 
-    const result = await collection.findOne({ _id: new ObjectId(userId) });
-
+    const result = await collection.find().toArray();
     res.status(200).json(result);
   } catch (error: any) {
     console.error(error);
