@@ -1,4 +1,5 @@
-import AdminForm from "@/components/Admin/Form";
+import EditGuest from "@/components/Admin/EditGuest";
+import ListGuests from "@/components/Admin/ListGuests";
 import NewGuestForm from "@/components/Admin/NewGuestForm";
 import { useUser } from "@/providers/user";
 import { NextSeo } from "next-seo";
@@ -6,13 +7,13 @@ import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import "xp.css/dist/98.css";
 
-export type IStepActive = "novoConvidado" | "comeco" | "message";
+export type IStepActive = "novoConvidado" | "editarConvidado" | "verConvidados";
 
 export default function Admin() {
   const { isAdmin } = useUser();
   const { push, query } = useRouter();
 
-  const [cardActive, setCardActive] = useState<IStepActive>("comeco");
+  const [cardActive, setCardActive] = useState<IStepActive>("verConvidados");
 
   useEffect(() => {
     if (query?.cardActive) setCardActive(query?.cardActive as IStepActive);
@@ -20,9 +21,9 @@ export default function Admin() {
 
   const Cards = useMemo(
     () => ({
-      comeco: () => <></>,
-      message: () => <></>,
       novoConvidado: () => <NewGuestForm />,
+      verConvidados: () => <ListGuests setCardActive={setCardActive} />,
+      editarConvidado: () => <EditGuest />,
     }),
     []
   );
@@ -49,10 +50,10 @@ export default function Admin() {
           <button
             className="mb-2 h-8 text-base"
             onClick={() => {
-              setCardActive("comeco");
+              setCardActive("verConvidados");
             }}
           >
-            Editar Convidado
+            Ver Convidados
           </button>
         </div>
         <div>{Cards[cardActive]()}</div>

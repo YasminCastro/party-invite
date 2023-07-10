@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+th {
+  padding: 0.75rem 1.5rem;
+}
 
-body {
-  
+td {
+  white-space: nowrap;
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
