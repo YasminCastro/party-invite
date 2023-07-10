@@ -38,15 +38,15 @@ export default function Admin() {
     <>
       <NextSeo title="Admin" description="Área restrista" />
       <button
-        className="absolute right-6 top-6 h-8 w-5 text-base"
+        className="absolute right-6 top-6 h-8 w-5 text-base max-sm:text-sm"
         onClick={() => push("/")}
       >
         Voltar
       </button>
-      <div className="flex min-h-screen items-center justify-center bg-login bg-cover">
-        <div className="absolute top-6 flex gap-4 ">
+      <div className="flex min-h-screen items-center justify-center bg-login bg-cover ">
+        <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
           <button
-            className="mb-2 h-8 text-base"
+            className="h-8 text-base max-sm:text-sm"
             onClick={() => {
               setCardActive("newGuest");
             }}
@@ -54,7 +54,7 @@ export default function Admin() {
             Criar Convidado
           </button>
           <button
-            className="mb-2 h-8 text-base"
+            className="h-8 text-base max-sm:text-sm"
             onClick={() => {
               setCardActive("listGuests");
             }}

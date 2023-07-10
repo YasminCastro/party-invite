@@ -16,7 +16,7 @@ export default function GuestList({ guests, setCardActive }: IProps) {
   const { push } = useRouter();
 
   return (
-    <table className="table-auto bg-gray-700 text-xs uppercase text-gray-400">
+    <table className="bg-gray-700 text-xs uppercase text-gray-400 ">
       <thead>
         <tr>
           <th>Nome</th>

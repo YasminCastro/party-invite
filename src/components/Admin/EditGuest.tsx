@@ -58,16 +58,16 @@ const EditGuest: React.FC = () => {
   return (
     <div>
       {loadingScreen ? (
-        <h2 className="mb-2 font-bungee text-4xl text-white max-lg:text-3xl max-md:text-xl">
+        <h2 className="mb-2 font-bungee text-4xl text-white max-lg:text-2xl">
           Carregando...
         </h2>
       ) : (
-        <div className="rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-3/4 max-phone:w-full">
+        <div className="rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4  max-phone:w-full">
           <form
             onSubmit={handleEditGuest}
             className="flex flex-col justify-center gap-2"
           >
-            <h3 className="font-bungee text-3xl  text-white max-lg:text-3xl max-md:text-xl">
+            <h3 className="font-bungee text-3xl  text-white ">
               Editar Convidado
             </h3>
             <div className="flex w-full flex-col">
