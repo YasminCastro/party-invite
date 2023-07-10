@@ -53,7 +53,7 @@ export default function GuestList({ guests, setCardActive }: IProps) {
                     className="cursor-pointer"
                     onClick={() => {
                       push({ query: { id: guest._id } });
-                      setCardActive("editarConvidado");
+                      setCardActive("editGuest");
                     }}
                   />
                 </td>
@@ -62,7 +62,8 @@ export default function GuestList({ guests, setCardActive }: IProps) {
                     size={18}
                     className="cursor-pointer"
                     onClick={() => {
-                      console.log("delete");
+                      push({ query: { id: guest._id } });
+                      setCardActive("deleteGuest");
                     }}
                   />
                 </td>

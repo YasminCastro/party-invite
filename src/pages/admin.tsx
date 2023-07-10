@@ -1,3 +1,4 @@
+import DeleteGuest from "@/components/Admin/DeleteGuest";
 import EditGuest from "@/components/Admin/EditGuest";
 import ListGuests from "@/components/Admin/ListGuests";
 import NewGuestForm from "@/components/Admin/NewGuestForm";
@@ -7,13 +8,17 @@ import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import "xp.css/dist/98.css";
 
-export type IStepActive = "novoConvidado" | "editarConvidado" | "verConvidados";
+export type IStepActive =
+  | "newGuest"
+  | "editGuest"
+  | "listGuests"
+  | "deleteGuest";
 
 export default function Admin() {
   const { isAdmin } = useUser();
   const { push, query } = useRouter();
 
-  const [cardActive, setCardActive] = useState<IStepActive>("verConvidados");
+  const [cardActive, setCardActive] = useState<IStepActive>("listGuests");
 
   useEffect(() => {
     if (query?.cardActive) setCardActive(query?.cardActive as IStepActive);
@@ -21,9 +26,10 @@ export default function Admin() {
 
   const Cards = useMemo(
     () => ({
-      novoConvidado: () => <NewGuestForm />,
-      verConvidados: () => <ListGuests setCardActive={setCardActive} />,
-      editarConvidado: () => <EditGuest />,
+      newGuest: () => <NewGuestForm />,
+      listGuests: () => <ListGuests setCardActive={setCardActive} />,
+      editGuest: () => <EditGuest />,
+      deleteGuest: () => <DeleteGuest setCardActive={setCardActive} />,
     }),
     []
   );
@@ -42,7 +48,7 @@ export default function Admin() {
           <button
             className="mb-2 h-8 text-base"
             onClick={() => {
-              setCardActive("novoConvidado");
+              setCardActive("newGuest");
             }}
           >
             Criar Convidado
@@ -50,7 +56,7 @@ export default function Admin() {
           <button
             className="mb-2 h-8 text-base"
             onClick={() => {
-              setCardActive("verConvidados");
+              setCardActive("listGuests");
             }}
           >
             Ver Convidados

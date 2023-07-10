@@ -1,4 +1,5 @@
 import db from "@/lib/client";
+import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function NewGuest(
@@ -6,9 +7,9 @@ export default async function NewGuest(
   res: NextApiResponse
 ) {
   try {
-    const { name } = req.body;
+    const { id } = req.body;
 
-    if (!name) throw new Error("Name is missing");
+    if (!id) throw new Error("Id is missing");
 
     const database = await db;
 
@@ -16,7 +17,7 @@ export default async function NewGuest(
 
     const collection = db.collection("guests");
 
-    const result = await collection.deleteOne({ name });
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
     res.status(200).json(result);
   } catch (error: any) {
     console.error(error);
