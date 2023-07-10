@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import authMiddleware from "./config/joseAuth";
+import * as jose from "jose";
 
 export default async function middleware(req: NextRequest) {
   const token = req.cookies.get("token") as any;
@@ -11,6 +12,14 @@ export default async function middleware(req: NextRequest) {
 
   if (!isAuth) {
     return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  if (req.url.includes("/admin")) {
+    const { result } = (await jose.decodeJwt(token.value)) as any;
+
+    if (result && !result.isAdmin) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
   }
 }
 
