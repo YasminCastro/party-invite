@@ -5,6 +5,7 @@ import graphic from "/public/confirm/graphic-design-is-my-passion-designer.gif";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import "xp.css/dist/98.css";
+import projectConfig from "@/config/project";
 
 export default function GoingCard() {
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function GoingCard() {
                 <p className="mt-[-5px] font-mono text-xs">
                   caso seu conjugue não esteja na lista me avisa no{" "}
                   <a
-                    href="https://api.whatsapp.com/send?phone=5562981695581"
+                    href={`https://api.whatsapp.com/send?phone=${projectConfig.whatsappNumber}`}
                     target="_blank"
                     className="font-mono text-yellow-300"
                   >
@@ -65,7 +66,7 @@ export default function GoingCard() {
               <li className="text-lg">
                 Quer levar alguem? clica{" "}
                 <a
-                  href="https://api.whatsapp.com/send?phone=5562981695581&text=Oiee%2C%20quero%20convidar%20uma%20pessoa%20para%20seu%20niver..."
+                  href={`https://api.whatsapp.com/send?phone=${projectConfig.whatsappNumber}&text=Oiee%2C%20quero%20convidar%20uma%20pessoa%20para%20seu%20niver...`}
                   target="_blank"
                   className="font-mono text-yellow-300"
                 >
@@ -78,7 +79,7 @@ export default function GoingCard() {
               </li>
             </ul>
           </div>
-          <SpotifyPlaylist />
+          {projectConfig.spotifyUrl && <SpotifyPlaylist />}
         </div>
       </div>
     </>
