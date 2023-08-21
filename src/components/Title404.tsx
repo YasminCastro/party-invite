@@ -1,16 +1,6 @@
-import Image from "next/image";
-import popup from "../../public/home/circle.svg";
-
 export default function Title404() {
   return (
     <div className="relative max-md:mt-8 max-phone:mt-14">
-      <Image
-        src={popup}
-        width={600}
-        height={600}
-        alt="circle"
-        className="max-md:w-96 max-phone:w-80"
-      />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap  text-center">
         <h1 className="font-bungee text-6xl  text-purple-950 max-lg:text-5xl max-md:text-4xl max-phone:text-3xl">
           404 NOT FOUND

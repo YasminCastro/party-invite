@@ -17,10 +17,8 @@ module.exports = {
         bungee: "var(--font-bungee)",
       },
       backgroundImage: {
-        login: "url('/login/login-backround.svg')",
+        login: "url('/login/login-backround.png')",
         home: "url('/home/home-background.svg')",
-        popup: "url('/login/popup.svg')",
-        popupDate: "url('/home/popup-date.svg')",
       },
     },
   },
