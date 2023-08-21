@@ -1,4 +1,4 @@
-import { CONFIG } from "@/config";
+import { DB_NAME, MONGO_URL } from "@/config";
 import { Db, MongoClient } from "mongodb";
 
 class MongoSingleton {
@@ -7,14 +7,11 @@ class MongoSingleton {
   public db: Db;
 
   private constructor() {
-    const url = CONFIG.MONGO_URL;
-    const dbName = CONFIG.DB_NAME;
-
-    this.client = new MongoClient(url);
-    this.db = this.client.db(dbName);
+    this.client = new MongoClient(MONGO_URL);
+    this.db = this.client.db(DB_NAME);
 
     // Conectar ao MongoDB
-    this.connect(dbName);
+    this.connect(DB_NAME);
   }
 
   private async connect(dbName: string): Promise<void> {

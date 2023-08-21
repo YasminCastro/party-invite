@@ -1,4 +1,4 @@
-import { SECRET_TOKEN, SENHA_SECRETA } from "@/config";
+import { GUESTS_PASSWORD, SECRET_TOKEN } from "@/config";
 import db from "@/lib/client";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -31,7 +31,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       return;
     }
 
-    if (!result.isAdmin && SENHA_SECRETA !== secret.toLowerCase()) {
+    if (!result.isAdmin && GUESTS_PASSWORD !== secret.toLowerCase()) {
       res
         .status(200)
         .json({ message: "iiih errou a senha secreta, tenta novamente ae!" });

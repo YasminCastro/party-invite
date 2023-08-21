@@ -10,20 +10,12 @@ if (!process.env.SECRET_TOKEN) {
   throw new Error("SECRET_TOKEN NOT DEFINED");
 }
 
-if (!process.env.SENHA_SECRETA) {
-  throw new Error("SENHA_SECRETA NOT DEFINED");
-}
-
-if (!process.env.ADMIN_SECRET_TOKEN) {
-  throw new Error("ADMIN_SECRET_TOKEN NOT DEFINED");
+if (!process.env.GUESTS_PASSWORD) {
+  throw new Error("GUESTS_PASSWORD NOT DEFINED");
 }
 
 export const MONGO_URL = process.env.MONGO_URL;
+export const DB_NAME = process.env.DB_NAME;
+export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 export const SECRET_TOKEN = process.env.SECRET_TOKEN;
-export const SENHA_SECRETA = process.env.SENHA_SECRETA;
-
-export const CONFIG = {
-  MONGO_URL: process.env.MONGO_URL,
-  ADMIN_SECRET_TOKEN: process.env.ADMIN_SECRET_TOKEN,
-  DB_NAME: process.env.DB_NAME,
-};
+export const GUESTS_PASSWORD = process.env.GUESTS_PASSWORD;

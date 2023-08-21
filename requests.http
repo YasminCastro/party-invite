@@ -1,0 +1,8 @@
+#ADMIN
+
+GET http://localhost:3000/api/admin/create-admin
+
+###
+#GUESTS
+
+GET http://localhost:3000/api/guests/get

@@ -2,7 +2,7 @@ import db from "@/lib/client";
 import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function NewGuest(
+export default async function DeleteGuest(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

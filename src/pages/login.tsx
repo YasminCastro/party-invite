@@ -2,6 +2,8 @@ import LoginForm from "@/components/LoginForm";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import popup from "../../public/login/popup.svg";
+import { GetServerSideProps } from "next";
+import axios from "axios";
 
 export default function Login() {
   return (
