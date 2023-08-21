@@ -12,8 +12,10 @@ export default function EditGuest({ setCardActive }: IProps) {
   const [guests, setGuests] = useState<any[]>([]);
   let [totalConfirmedGuests, setTotalConfirmedGuests] = useState(0);
   let [totalGuests, setTotalGuests] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const getGuests = async () => {
       try {
         const { data } = await axios.get("/api/guests/get");
@@ -26,6 +28,8 @@ export default function EditGuest({ setCardActive }: IProps) {
         setTotalGuests(data.length);
       } catch (error: any) {
         console.log(error.message);
+      } finally {
+        setLoading(true);
       }
     };
 
@@ -45,7 +49,7 @@ export default function EditGuest({ setCardActive }: IProps) {
         </p>
       </div>
       <div className="h-[75vh] overflow-auto">
-        <GuestList guests={guests} setCardActive={setCardActive} />
+        {loading && <GuestList guests={guests} setCardActive={setCardActive} />}
       </div>
     </div>
   );

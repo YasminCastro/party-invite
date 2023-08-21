@@ -2,7 +2,6 @@ import DeleteGuest from "@/components/Admin/DeleteGuest";
 import EditGuest from "@/components/Admin/EditGuest";
 import ListGuests from "@/components/Admin/ListGuests";
 import NewGuestForm from "@/components/Admin/NewGuestForm";
-import { useUser } from "@/providers/user";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
@@ -15,7 +14,6 @@ export type IStepActive =
   | "deleteGuest";
 
 export default function Admin() {
-  const { isAdmin } = useUser();
   const { push, query } = useRouter();
 
   const [cardActive, setCardActive] = useState<IStepActive>("listGuests");
