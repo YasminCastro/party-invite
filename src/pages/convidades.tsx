@@ -12,7 +12,7 @@ export default function Convidades() {
   useEffect(() => {
     const getGuests = async () => {
       try {
-        const { data } = await axios.get("/api/get-guests");
+        const { data } = await axios.get("/api/guests/get");
         setGuests(data);
         const confirmedGuests = data.reduce(
           (count: number, guest: any) => count + (guest.status ? 1 : 0),

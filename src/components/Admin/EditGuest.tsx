@@ -16,7 +16,7 @@ const EditGuest: React.FC = () => {
     const getGests = async () => {
       try {
         if (query.id) {
-          const { data } = await axios.get("/api/find-guest", {
+          const { data } = await axios.get("/api/guests/get-one", {
             params: { id: query.id },
           });
           setName(data.name);

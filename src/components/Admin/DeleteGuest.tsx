@@ -21,7 +21,7 @@ const DeleteGuest: React.FC<IProps> = ({ setCardActive }) => {
     const getGests = async () => {
       try {
         if (query.id) {
-          const { data } = await axios.get("/api/find-guest", {
+          const { data } = await axios.get("/api/guests/get-one", {
             params: { id: query.id },
           });
           setName(data.name);
@@ -42,7 +42,7 @@ const DeleteGuest: React.FC<IProps> = ({ setCardActive }) => {
     setMessage("");
 
     try {
-      const { data } = await axios.post("/api/delete-guest", {
+      const { data } = await axios.post("/api/guests/delete", {
         id: query.id,
       });
 
