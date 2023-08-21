@@ -13,7 +13,7 @@ const NewGuestForm: React.FC = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("/api/new-guest", {
+      const { data } = await axios.post("/api/guests/new", {
         name: name.trim().toLocaleLowerCase(),
       });
 

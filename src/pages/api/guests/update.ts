@@ -1,3 +1,4 @@
+import { ADMIN_PASSWORD } from "@/config";
 import db from "@/lib/client";
 import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -7,7 +8,7 @@ export default async function UpdateGuest(
   res: NextApiResponse
 ) {
   try {
-    const { name, receivedInvitation, isAdmin, secret, id } = req.body;
+    const { name, receivedInvitation, isAdmin, id, status } = req.body;
 
     if (!id) throw new Error("Argument id is missing");
 
@@ -22,9 +23,17 @@ export default async function UpdateGuest(
     if (receivedInvitation !== null) {
       update.receivedInvitation = receivedInvitation;
     }
+
+    if (status !== null) {
+      update.status = status;
+    }
+
+    if (isAdmin !== null) {
+      update.isAdmin = isAdmin;
+      update.secret = ADMIN_PASSWORD;
+    }
+
     if (name) update.name = name;
-    if (isAdmin) update.isAdmin = isAdmin;
-    if (secret) update.secret = secret;
 
     const result = await collection.findOneAndUpdate(
       { _id: new ObjectId(id) },

@@ -29,7 +29,7 @@ export default function ConfirmCard({ setCardActive }: IProps) {
 
     try {
       console.log({ name: user.name, status: confirmValue });
-      const { data } = await axios.post("/api/update-status", {
+      const { data } = await axios.post("/api/guests/update", {
         name: user.name,
         status: confirmValue,
       });
@@ -57,7 +57,7 @@ export default function ConfirmCard({ setCardActive }: IProps) {
       <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
         <form
           onSubmit={handleLogin}
-          className="max-md:w-2/3 max-sm:w-3/4 flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-phone:w-full"
+          className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-3/4 max-phone:w-full"
         >
           <div>
             <div className="flex w-full flex-col ">

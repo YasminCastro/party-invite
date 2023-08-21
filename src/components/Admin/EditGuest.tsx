@@ -38,7 +38,7 @@ const EditGuest: React.FC = () => {
     setMessage("");
 
     try {
-      const { data } = await axios.post("/api/update-guest", {
+      const { data } = await axios.post("/api/guests/update", {
         name: name.trim().toLocaleLowerCase(),
         receivedInvitation: receivedInvitation,
         id: query.id,
