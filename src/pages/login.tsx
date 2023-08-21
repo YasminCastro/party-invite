@@ -2,11 +2,15 @@ import LoginForm from "@/components/LoginForm";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import popup from "../../public/login/popup.svg";
+import projectConfig from "@/config/project";
 
 export default function Login() {
   return (
     <>
-      <NextSeo title="404 • Login" description="Login para a festa 404" />
+      <NextSeo
+        title={`${projectConfig.seoName} • Login`}
+        description="Login da festa!"
+      />
       <div className="flex min-h-screen flex-col items-center justify-center bg-login bg-cover">
         <div className="relative m-10">
           <Image
