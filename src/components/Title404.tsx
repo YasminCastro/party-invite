@@ -25,4 +25,3 @@ export default function Title404() {
     </div>
   );
 }
-

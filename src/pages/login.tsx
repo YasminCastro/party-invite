@@ -21,7 +21,7 @@ export default function Login() {
           100vw"
           />
           <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-bungee text-6xl text-purple-950 max-lg:text-5xl  max-md:text-4xl max-sm:text-2xl max-phone:text-lg">
-            404 PARTY NOT FOUND
+            {projectConfig.partyName.toUpperCase()}
           </h1>
         </div>
 
