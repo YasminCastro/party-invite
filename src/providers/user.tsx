@@ -12,10 +12,12 @@ import React, {
 } from "react";
 
 interface IUser {
+  _id: string;
   name: string;
   status: boolean;
   receivedInvitation: boolean;
-  isAdmin: boolean;
+  isAdmin?: boolean;
+  password?: string;
 }
 
 interface IValue {

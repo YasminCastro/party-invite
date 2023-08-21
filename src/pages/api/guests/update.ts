@@ -10,6 +10,8 @@ export default async function UpdateGuest(
   try {
     const { name, receivedInvitation, isAdmin, id, status } = req.body;
 
+    console.log(name, receivedInvitation, isAdmin, id, status);
+
     if (!id) throw new Error("Argument id is missing");
 
     const database = await db;
@@ -20,17 +22,17 @@ export default async function UpdateGuest(
 
     let update: any = {};
 
-    if (receivedInvitation !== null) {
+    if (receivedInvitation !== undefined) {
       update.receivedInvitation = receivedInvitation;
     }
 
-    if (status !== null) {
+    if (status !== undefined) {
       update.status = status;
     }
 
-    if (isAdmin !== null) {
+    if (isAdmin !== undefined) {
       update.isAdmin = isAdmin;
-      update.secret = ADMIN_PASSWORD;
+      update.password = ADMIN_PASSWORD;
     }
 
     if (name) update.name = name;

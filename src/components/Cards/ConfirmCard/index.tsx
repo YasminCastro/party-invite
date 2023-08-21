@@ -30,7 +30,7 @@ export default function ConfirmCard({ setCardActive }: IProps) {
     try {
       console.log({ name: user.name, status: confirmValue });
       const { data } = await axios.post("/api/guests/update", {
-        name: user.name,
+        id: user._id,
         status: confirmValue,
       });
 
