@@ -1,3 +1,4 @@
+import { CONFIG } from "@/config";
 import { Db, MongoClient } from "mongodb";
 
 class MongoSingleton {
@@ -6,13 +7,8 @@ class MongoSingleton {
   public db: Db;
 
   private constructor() {
-    // Configuração da conexão com o MongoDB
-    if (!process.env.MONGO_URL) {
-      throw new Error("MONGO URL NOT DEFINED");
-    }
-
-    const url = process.env.MONGO_URL;
-    const dbName = "party404";
+    const url = CONFIG.MONGO_URL;
+    const dbName = CONFIG.DB_NAME;
 
     this.client = new MongoClient(url);
     this.db = this.client.db(dbName);
