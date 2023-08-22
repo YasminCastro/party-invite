@@ -1,4 +1,15 @@
-const projectConfig = {
+interface IProject {
+  partyName: string;
+  seoName: string;
+  data: string;
+  lastDateToConfirm: string;
+
+  spotifyUrl: string | null;
+  whatsappNumber: string;
+  address: string;
+}
+
+const projectConfig: IProject = {
   partyName: "Rharynice",
   seoName: "Rharynice",
   data: "18/11/2023 às 12h",
