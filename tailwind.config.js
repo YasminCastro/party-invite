@@ -19,7 +19,7 @@ module.exports = {
       },
       backgroundImage: {
         login: "url('/login/login-backround.png')",
-        home: "url('/home/home-background.svg')",
+        home: "url('/home/home-background.png')",
       },
     },
   },

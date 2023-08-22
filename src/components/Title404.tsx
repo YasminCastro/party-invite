@@ -1,16 +1,13 @@
-export default function Title404() {
+import logo from "../../public/login/rharynice.svg";
+import Image from "next/image";
+
+export default function Title() {
   return (
     <div className="relative max-md:mt-8 max-phone:mt-14">
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap  text-center">
-        <h1 className="font-bungee text-6xl  text-purple-950 max-lg:text-5xl max-md:text-4xl max-phone:text-3xl">
-          404 NOT FOUND
-        </h1>
-        <h2 className="font-bungee text-4xl text-white max-lg:text-3xl max-md:text-2xl max-phone:text-xl">
-          ERRO INTERNO:
-        </h2>
-        <h2 className="font-bungee text-4xl  text-white max-lg:text-3xl max-md:text-2xl max-phone:text-xl">
-          YAS NÃO FOI ENCONTRADA
-        </h2>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="h-[400px] w-[700px] max-2xl:h-[300px] max-2xl:w-[600px] max-xl:w-[500px] max-lg:h-[200px] max-lg:w-[400px] max-phone:h-[200px] max-phone:w-[300px] ">
+          <Image src={logo} alt="Logo" fill sizes="100vw" />
+        </div>
       </div>
     </div>
   );
