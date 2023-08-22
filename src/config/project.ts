@@ -2,6 +2,7 @@ const projectConfig = {
   partyName: "Rharynice",
   seoName: "Rharynice",
   data: "18/11/2023 às 12h",
+  lastDateToConfirm: "15/11",
   // spotifyUrl:
   //   "https://open.spotify.com/playlist/0Fyoivhuile8c1RSOEGdYd?si=91fa4819a3ee4eb6",
   spotifyUrl: null,

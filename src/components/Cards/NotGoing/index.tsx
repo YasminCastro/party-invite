@@ -1,34 +1,38 @@
+import projectConfig from "@/config/project";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import { Button } from "flowbite-react";
 
 export default function NotGoingCard() {
   const router = useRouter();
   return (
     <>
       <NextSeo
-        title="404 • Niver da Yas"
+        title={`${projectConfig.seoName}`}
         description="Presença confirmada ou não..."
       />
 
       <div className="flex min-h-screen items-center justify-evenly bg-home bg-cover">
-        <button
-          className="absolute right-6 top-6 h-8 w-5 text-base"
+        <Button
+          className="absolute right-6 top-6"
+          gradientDuoTone="purpleToBlue"
           onClick={() => router.push("/")}
         >
           Voltar
-        </button>
+        </Button>
         <div className="flex flex-col gap-4 rounded-lg bg-gray-950 bg-opacity-80 p-8 text-center  max-md:w-full">
           <div className="mb-4">
-            <h2 className="font-bebas text-2xl text-yellow-400">
+            <h2 className="font-bebas text-2xl text-blue-400">
               Muito triste que você não vai :/
             </h2>
-            <h2 className="font-bebas text-2xl text-yellow-400">
+            <h2 className="font-bebas text-2xl text-blue-400">
               talvez na próxima você consiga
             </h2>
           </div>
 
           <p className="font-bebas text-xl text-white">
-            ps. caso mude de ideia pode confirmar se vai até o dia 20/07 :)
+            ps. caso mude de ideia pode confirmar se vai até o dia{" "}
+            {projectConfig.lastDateToConfirm} :)
           </p>
         </div>
       </div>
