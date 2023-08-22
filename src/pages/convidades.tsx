@@ -1,5 +1,8 @@
+import projectConfig from "@/config/project";
 import axios from "axios";
+import { Button } from "flowbite-react";
 import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
@@ -29,24 +32,34 @@ export default function Convidades() {
   }, []);
 
   guests.sort(compareGuests);
+  const router = useRouter();
 
   return (
     <>
       <NextSeo
-        title="404 • Convidades"
-        description="Convidades para festa da yas"
+        title={`${projectConfig.seoName} • Convidades`}
+        description="Convidades para festa."
       />
-      <div className="relative flex min-h-screen flex-col items-center  overflow-x-auto bg-login bg-cover">
+      <div className="relative flex min-h-screen flex-col items-center  overflow-x-auto bg-gradient-to-br from-cyan-400  via-cyan-800 to-red-500">
+        <Button
+          className="absolute right-6 top-6"
+          size="sm"
+          gradientDuoTone="pinkToOrange"
+          outline
+          onClick={() => router.push("/")}
+        >
+          Início
+        </Button>
         <div className="m-8 text-center">
-          <p className="font-bungee text-xl  text-purple-950  max-sm:text-base ">
+          <p className="font-bungee text-xl  text-white  max-sm:text-base ">
             Total de confirmados: {totalConfirmedGuests}
           </p>
-          <p className="font-bungee text-base  text-purple-950  max-sm:text-sm ">
+          <p className="font-bungee text-base  text-white  max-sm:text-sm ">
             Total de convidados: {totalGuests}
           </p>
         </div>
         <div className="h-[80vh] overflow-auto">
-          <table className=" bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700  dark:text-gray-400">
+          <table className="bg-gray-700 text-xs uppercase text-gray-400">
             <thead className="">
               <tr>
                 <th className="px-6 py-3">Nome</th>
@@ -59,21 +72,16 @@ export default function Convidades() {
               {guests &&
                 guests.map((guest) => {
                   return (
-                    <tr
-                      key={guest._id}
-                      className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-                    >
-                      <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                        {guest.name}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                    <tr key={guest._id} className="border-gray-700 bg-gray-800">
+                      <td>{guest.name}</td>
+                      <td>
                         {guest.receivedInvitation ? (
                           <AiFillCheckCircle color="green" />
                         ) : (
                           <AiFillCloseCircle color="red" />
                         )}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                      <td>
                         {guest.status ? (
                           <AiFillCheckCircle color="green" />
                         ) : (
