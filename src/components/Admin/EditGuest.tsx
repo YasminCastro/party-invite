@@ -1,6 +1,7 @@
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { Button, Label, Radio, TextInput } from "flowbite-react";
 
 const EditGuest: React.FC = () => {
   const [name, setName] = useState("");
@@ -66,51 +67,66 @@ const EditGuest: React.FC = () => {
             onSubmit={handleEditGuest}
             className="flex flex-col justify-center gap-2"
           >
-            <h3 className="font-bungee text-3xl  text-white ">
+            <h3 className="font-bebas text-3xl  text-white ">
               Editar Convidado
             </h3>
-            <div className="flex w-full flex-col">
-              <label className="text-base">Nome</label>
-              <input
-                type="text"
+
+            <div className="w-full">
+              <div className="mb-2 block">
+                <Label htmlFor="name" value="Nome" className="text-white" />
+              </div>
+              <TextInput
                 id="name"
                 required
-                className="h-6 p-2 text-base"
+                type="text"
                 defaultValue={name}
                 onChange={(event) => setName(event.target.value)}
               />
             </div>
-            <div className="flex flex-col gap-4">
-              <label className="text-base">Recebeu o convite?</label>
-              <input
-                id="yes"
-                type="radio"
-                name="confirm"
-                onClick={() => setReceivedInvitation(true)}
-                defaultChecked={receivedInvitation}
-              />
-              <label htmlFor="yes" className="text-base">
-                Sim
-              </label>
 
-              <input
-                id="no"
-                type="radio"
-                name="confirm"
-                onClick={() => setReceivedInvitation(false)}
-                defaultChecked={!receivedInvitation}
+            <fieldset
+              className="m-4 flex justify-center gap-8 text-white"
+              id="radio"
+            >
+              <Label
+                htmlFor="radio"
+                value="Recebeu o convite?"
+                className="text-lg text-white"
               />
-              <label htmlFor="no" className="text-base">
-                Não
-              </label>
-            </div>
+              <div className="flex items-center gap-2">
+                <Radio
+                  defaultChecked={receivedInvitation}
+                  id="yes"
+                  name="confirm"
+                  value="yes"
+                  onClick={() => setReceivedInvitation(true)}
+                />
+                <Label htmlFor="yes" className="text-lg text-white">
+                  Sim
+                </Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <Radio
+                  id="no"
+                  name="confirm"
+                  value="no"
+                  defaultChecked={!receivedInvitation}
+                  onClick={() => setReceivedInvitation(false)}
+                />
+                <Label htmlFor="no" className="text-lg text-white">
+                  Não
+                </Label>
+              </div>
+            </fieldset>
 
-            <button
-              className="mb-2 mt-2 h-8 w-full text-base"
+            <Button
+              className="mb-2 mt-2 w-full text-base"
               disabled={savingLoading}
+              type="submit"
+              color="gray"
             >
               {savingLoading ? "Carregando..." : "Salvar"}
-            </button>
+            </Button>
             {error && <p className=" text-base text-red-300">{error}</p>}
             {message && <p className=" text-base text-green-400">{message}</p>}
           </form>

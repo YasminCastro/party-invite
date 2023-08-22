@@ -2,7 +2,7 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IStepActive } from "@/pages/admin";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button } from "flowbite-react";
 
 interface IProps {
   setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
@@ -10,7 +10,6 @@ interface IProps {
 
 const DeleteGuest: React.FC<IProps> = ({ setCardActive }) => {
   const [name, setName] = useState("");
-  const [receivedInvitation, setReceivedInvitation] = useState(false);
   const [loadingScreen, setLoadingScreen] = useState(true);
   const [savingLoading, setSavingLoading] = useState(false);
   const [error, setError] = useState("");
