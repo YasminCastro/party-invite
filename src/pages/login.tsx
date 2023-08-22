@@ -1,6 +1,8 @@
 import LoginForm from "@/components/LoginForm";
 import { NextSeo } from "next-seo";
 import projectConfig from "@/config/project";
+import Image from "next/image";
+import logo from "../../public/login/rharynice.svg";
 
 export default function Login() {
   return (
@@ -10,10 +12,15 @@ export default function Login() {
         description="Login da festa!"
       />
       <div className="flex min-h-screen flex-col items-center justify-center bg-login bg-cover">
-        <div className="relative m-10">
-          <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-bungee text-6xl text-purple-950 max-lg:text-5xl  max-md:text-4xl max-sm:text-2xl max-phone:text-lg">
-            {projectConfig.partyName.toUpperCase()}
-          </h1>
+        <div className="relative">
+          <Image
+            src={logo}
+            alt="popup background"
+            sizes="(min-width: 60em) 24vw,
+          (min-width: 28em) 45vw,
+          100vw"
+            className="rotate-90"
+          />
         </div>
 
         <LoginForm />
