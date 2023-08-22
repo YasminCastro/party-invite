@@ -12,7 +12,7 @@ export default function Login() {
         description="Login da festa!"
       />
       <div className="flex min-h-screen flex-col items-center bg-login bg-cover">
-        <div className="relative h-[400px] w-[700px] max-2xl:h-[300px] max-2xl:w-[600px] max-xl:w-[500px] max-lg:h-[200px] max-lg:w-[400px] ">
+        <div className="relative h-[400px] w-[700px] max-2xl:h-[300px] max-2xl:w-[600px] max-xl:w-[500px] max-lg:h-[200px] max-lg:w-[400px] max-phone:h-[150px] max-phone:w-[300px] ">
           <Image src={logo} alt="Logo" fill sizes="100vw" />
         </div>
         <LoginForm />
