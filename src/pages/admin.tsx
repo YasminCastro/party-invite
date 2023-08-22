@@ -2,7 +2,6 @@ import DeleteGuest from "@/components/Admin/DeleteGuest";
 import EditGuest from "@/components/Admin/EditGuest";
 import ListGuests from "@/components/Admin/ListGuests";
 import NewGuestForm from "@/components/Admin/NewGuestForm";
-import PurpleToBlueButton from "@/components/PurpleToBlueButton";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";

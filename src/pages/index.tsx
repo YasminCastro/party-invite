@@ -25,7 +25,7 @@ export default function Home() {
             onClick={() => {
               router.push("/admin");
             }}
-            className="absolute right-24 top-6 "
+            className="absolute right-24 top-6 z-50"
             gradientDuoTone="purpleToBlue"
           >
             Admin
@@ -37,7 +37,7 @@ export default function Home() {
             router.push("/login");
             setCookie("token", null);
           }}
-          className="absolute right-6 top-6"
+          className="absolute right-6 top-6 z-50"
           gradientDuoTone="purpleToBlue"
         >
           Sair

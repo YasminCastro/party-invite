@@ -1,11 +1,8 @@
 import projectConfig from "@/config/project";
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { Button } from "flowbite-react";
 import PurpleToBlueButton from "@/components/PurpleToBlueButton";
 
 export default function NotGoingCard() {
-  const router = useRouter();
   return (
     <>
       <NextSeo
