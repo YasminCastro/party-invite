@@ -38,7 +38,9 @@ export default function Admin() {
       <NextSeo title="Admin" description="Área restrista" />
       <Button
         className="absolute right-6 top-6"
-        color="gray"
+        size="sm"
+        gradientDuoTone="pinkToOrange"
+        outline
         onClick={() => router.push("/")}
       >
         Voltar
@@ -46,22 +48,25 @@ export default function Admin() {
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-cyan-400  via-cyan-800 to-red-500">
         <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
           <Button
-            className="text-base max-sm:text-sm"
+            className=""
             onClick={() => {
               setCardActive("newGuest");
             }}
-            color="gray"
+            gradientDuoTone="pinkToOrange"
+            outline
+            size="sm"
           >
-            Criar Convidado
+            Novo
           </Button>
           <Button
-            className="text-base max-sm:text-sm"
             onClick={() => {
               setCardActive("listGuests");
             }}
-            color="gray"
+            gradientDuoTone="pinkToOrange"
+            outline
+            size="sm"
           >
-            Ver Convidados
+            Lista
           </Button>
         </div>
         <div>{Cards[cardActive]()}</div>

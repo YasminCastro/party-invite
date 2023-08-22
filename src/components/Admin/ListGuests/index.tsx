@@ -39,7 +39,7 @@ export default function EditGuest({ setCardActive }: IProps) {
   guests.sort(compareGuests);
 
   return (
-    <div className="mt-10">
+    <div className="mt-14">
       <div className="text-center">
         <p className="font-bungee text-xl  text-white  max-sm:text-base ">
           Total de confirmados: {totalConfirmedGuests}
