@@ -11,15 +11,14 @@ export default function Login() {
         title={`${projectConfig.seoName} • Login`}
         description="Login da festa!"
       />
-      <div className="flex min-h-screen flex-col items-center justify-center bg-login bg-cover">
-        <div className="relative">
+      <div className="flex min-h-screen flex-col items-center bg-login bg-cover">
+        <div className="relative -m-20">
           <Image
             src={logo}
             alt="popup background"
             sizes="(min-width: 60em) 24vw,
           (min-width: 28em) 45vw,
           100vw"
-            className="rotate-90"
           />
         </div>
 
