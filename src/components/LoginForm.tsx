@@ -3,8 +3,7 @@ import axios from "axios";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
-
-import "xp.css/dist/98.css";
+import { Button, Label, TextInput } from "flowbite-react";
 
 export default function LoginForm() {
   const [name, setName] = useState("");
@@ -56,39 +55,43 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleLogin}
-      className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-500 bg-opacity-20 bg-clip-padding p-4 max-sm:w-3/4"
+      className="-m-20 flex w-1/2 flex-col items-center justify-center rounded-lg bg-gray-500 bg-opacity-20 bg-clip-padding p-4 max-sm:w-3/4"
     >
-      <div className="flex w-full flex-col">
-        <label className="text-base">Nome</label>
-        <input
-          type="text"
-          id="name"
-          required
-          className="h-6 p-2 text-base"
-          onChange={(event) => setName(event.target.value)}
-          list="guests"
-        />
-        <datalist id="guests" className="display">
-          {guests.map((guest) => (
-            <option key={guest._id} value={guest.name} />
-          ))}
-        </datalist>
-      </div>
-      <div className="flex w-full flex-col">
-        <label className="text-base">Senha</label>
-        <input
-          className="p h-6 text-base"
-          onChange={(event) => setSecret(event.target.value)}
-          type="password"
-          id="password"
-          required
-        />
-      </div>
+      <div className="flex w-full flex-col gap-4">
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="name" value="Nome" className="text-white" />
+          </div>
+          <TextInput
+            id="name"
+            required
+            type="text"
+            list="guests"
+            onChange={(event) => setName(event.target.value)}
+          />
+          <datalist id="guests" className="display">
+            {guests.map((guest) => (
+              <option key={guest._id} value={guest.name} />
+            ))}
+          </datalist>
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="password" value="Senha" className="text-white" />
+          </div>
+          <TextInput
+            id="password"
+            required
+            type="password"
+            onChange={(event) => setSecret(event.target.value)}
+          />
+        </div>
 
-      {error && <p className=" text-red-300">{error}</p>}
-      <button className="mt-2 h-8 w-full" disabled={loading}>
-        {loading ? "Carregando..." : "Entrar"}
-      </button>
+        {error && <p className=" text-red-300">{error}</p>}
+        <Button type="submit" disabled={loading} gradientDuoTone="purpleToBlue">
+          {loading ? "Carregando..." : "Entrar"}
+        </Button>
+      </div>
     </form>
   );
 }
