@@ -6,6 +6,7 @@ import PurpleToBlueButton from "@/components/PurpleToBlueButton";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
+import { Button } from "flowbite-react";
 
 export type IStepActive =
   | "newGuest"
@@ -14,7 +15,7 @@ export type IStepActive =
   | "deleteGuest";
 
 export default function Admin() {
-  const { push, query } = useRouter();
+  const { query } = useRouter();
 
   const [cardActive, setCardActive] = useState<IStepActive>("listGuests");
 
@@ -36,24 +37,26 @@ export default function Admin() {
     <>
       <NextSeo title="Admin" description="Área restrista" />
       <PurpleToBlueButton path="/" title="Voltar" />
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-cyan-400  via-cyan-800 to-red-500">
         <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
-          <button
-            className="h-8 text-base max-sm:text-sm"
+          <Button
+            className="text-base max-sm:text-sm"
             onClick={() => {
               setCardActive("newGuest");
             }}
+            color="gray"
           >
             Criar Convidado
-          </button>
-          <button
-            className="h-8 text-base max-sm:text-sm"
+          </Button>
+          <Button
+            className="text-base max-sm:text-sm"
             onClick={() => {
               setCardActive("listGuests");
             }}
+            color="gray"
           >
             Ver Convidados
-          </button>
+          </Button>
         </div>
         <div>{Cards[cardActive]()}</div>
       </div>

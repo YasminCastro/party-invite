@@ -41,10 +41,10 @@ export default function EditGuest({ setCardActive }: IProps) {
   return (
     <div className="mt-10">
       <div className="text-center">
-        <p className="font-bungee text-xl  text-purple-950  max-sm:text-base ">
+        <p className="font-bungee text-xl  text-white  max-sm:text-base ">
           Total de confirmados: {totalConfirmedGuests}
         </p>
-        <p className="font-bungee text-base  text-purple-950  max-sm:text-sm ">
+        <p className="font-bungee text-base  text-white  max-sm:text-sm ">
           Total de convidados: {totalGuests}
         </p>
       </div>

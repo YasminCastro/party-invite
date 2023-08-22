@@ -2,6 +2,7 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IStepActive } from "@/pages/admin";
+import { Button, Label, TextInput } from "flowbite-react";
 
 interface IProps {
   setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
@@ -49,9 +50,9 @@ const DeleteGuest: React.FC<IProps> = ({ setCardActive }) => {
         setError("Erro interno tente novamente mais tarde.");
       } else {
         setMessage(
-          "Convidado deletado com sucesso. Voltando para lista em 5s..."
+          "Convidado deletado com sucesso. Voltando para lista em 3s..."
         );
-        setTimeout(() => setCardActive("listGuests"), 5000);
+        setTimeout(() => setCardActive("listGuests"), 3000);
       }
     } catch (error: any) {
       setError("Erro interno tente novamente mais tarde.");
@@ -75,27 +76,31 @@ const DeleteGuest: React.FC<IProps> = ({ setCardActive }) => {
               <h3 className="font-bebas text-2xl  text-white max-lg:text-3xl max-md:text-xl ">
                 Certeza que deseja desconvidar:
               </h3>
-              <h3 className="font-bebas text-3xl  text-yellow-400 max-lg:text-3xl max-md:text-xl ">
+              <h3 className="font-bebas text-3xl  text-red-400 max-lg:text-3xl max-md:text-xl ">
                 {name}
               </h3>
             </div>
 
             <div className="flex gap-2">
-              <button
-                className="mb-2 mt-2 h-8 w-full text-base"
+              <Button
+                className="mb-2 mt-2 w-full text-base"
                 disabled={savingLoading}
+                color="gray"
+                type="submit"
               >
                 {savingLoading ? "Carregando..." : "Sim"}
-              </button>
-              <button
-                className="mb-2 mt-2 h-8 w-full text-base"
+              </Button>
+              <Button
+                className="mb-2 mt-2  w-full text-base"
+                color="gray"
                 disabled={savingLoading}
+                type="submit"
                 onClick={() => {
                   setCardActive("listGuests");
                 }}
               >
                 Não
-              </button>
+              </Button>
             </div>
 
             {error && <p className=" text-base text-red-300">{error}</p>}
