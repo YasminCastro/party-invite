@@ -1,4 +1,3 @@
-import "xp.css/dist/98.css";
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";

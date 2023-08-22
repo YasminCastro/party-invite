@@ -5,7 +5,6 @@ import NewGuestForm from "@/components/Admin/NewGuestForm";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
-import "xp.css/dist/98.css";
 
 export type IStepActive =
   | "newGuest"

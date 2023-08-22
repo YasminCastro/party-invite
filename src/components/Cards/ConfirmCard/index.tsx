@@ -1,9 +1,9 @@
+import projectConfig from "@/config/project";
 import { IStepActive } from "@/pages/confirm";
 import { useUser } from "@/providers/user";
 import axios from "axios";
 import { NextSeo } from "next-seo";
 import { FormEvent, useEffect, useState } from "react";
-import "xp.css/dist/98.css";
 
 interface IProps {
   setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
@@ -50,8 +50,8 @@ export default function ConfirmCard({ setCardActive }: IProps) {
   return (
     <>
       <NextSeo
-        title="404 • Confirmar presença"
-        description="Confirme sua presença na festa da Yas"
+        title={`${projectConfig.seoName} • Confirmar presença`}
+        description="Confirme sua presença na festa!"
       />
 
       <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">

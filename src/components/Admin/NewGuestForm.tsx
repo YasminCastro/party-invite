@@ -1,4 +1,3 @@
-import "xp.css/dist/98.css";
 import axios from "axios";
 import { FormEvent, useState } from "react";
 

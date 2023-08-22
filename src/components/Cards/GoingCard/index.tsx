@@ -4,7 +4,6 @@ import graphic from "/public/confirm/graphic-design-is-my-passion-designer.gif";
 
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import "xp.css/dist/98.css";
 import projectConfig from "@/config/project";
 
 export default function GoingCard() {

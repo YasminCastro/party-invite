@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import "xp.css/dist/98.css";
 
 export default function NotGoingCard() {
   const router = useRouter();

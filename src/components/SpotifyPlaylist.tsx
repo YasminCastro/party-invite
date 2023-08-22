@@ -1,6 +1,5 @@
 import projectConfig from "@/config/project";
 import { Spotify } from "react-spotify-embed";
-import "xp.css/dist/98.css";
 
 export default function SpotifyPlaylist() {
   return (
