@@ -48,7 +48,7 @@ export default function EditGuest({ setCardActive }: IProps) {
           Total de convidados: {totalGuests}
         </p>
       </div>
-      <div className="h-[75vh] overflow-auto">
+      <div className="mt-3 h-[75vh] overflow-auto">
         {loading && <GuestList guests={guests} setCardActive={setCardActive} />}
       </div>
     </div>

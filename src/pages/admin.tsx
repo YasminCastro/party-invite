@@ -32,11 +32,18 @@ export default function Admin() {
     }),
     []
   );
+  const router = useRouter();
 
   return (
     <>
       <NextSeo title="Admin" description="Área restrista" />
-      <PurpleToBlueButton path="/" title="Voltar" />
+      <Button
+        className="absolute right-6 top-6"
+        color="gray"
+        onClick={() => router.push("/")}
+      >
+        Voltar
+      </Button>
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-cyan-400  via-cyan-800 to-red-500">
         <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
           <Button
