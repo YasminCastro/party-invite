@@ -1,7 +1,7 @@
 import AddressMap from "@/components/AddressMap";
 import { useRouter } from "next/router";
 
-import Title from "@/components/Title404";
+import Title from "@/components/Title";
 import { setCookie } from "cookies-next";
 import { NextSeo } from "next-seo";
 import { useUser } from "@/providers/user";

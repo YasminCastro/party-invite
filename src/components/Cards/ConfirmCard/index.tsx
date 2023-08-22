@@ -4,6 +4,7 @@ import { useUser } from "@/providers/user";
 import axios from "axios";
 import { NextSeo } from "next-seo";
 import { FormEvent, useEffect, useState } from "react";
+import { Button, Label, TextInput, Radio } from "flowbite-react";
 
 interface IProps {
   setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
@@ -18,6 +19,8 @@ export default function ConfirmCard({ setCardActive }: IProps) {
   const [confirmValue, setConfirmValue] = useState(false);
 
   useEffect(() => {
+    console.log(user);
+
     setConfirmValue(user.status);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -59,43 +62,59 @@ export default function ConfirmCard({ setCardActive }: IProps) {
           onSubmit={handleLogin}
           className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-3/4 max-phone:w-full"
         >
-          <div>
-            <div className="flex w-full flex-col ">
-              <label className="text-base text-white">Nome</label>
-              <input
-                className="h-6 p-2 text-base"
+          <div className="w-full">
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="name" value="Nome" className="text-white" />
+              </div>
+              <TextInput
+                id="name"
+                required
+                type="text"
                 disabled
                 defaultValue={user.name}
               />
             </div>
-            <div className="m-4 flex gap-8 text-white">
-              <input
-                id="yes"
-                type="radio"
-                name="confirm"
-                onClick={() => setConfirmValue(true)}
-                defaultChecked={user.status}
-              />
-              <label htmlFor="yes" className="text-lg">
-                Vou :D
-              </label>
 
-              <input
-                id="no"
-                type="radio"
-                name="confirm"
-                onClick={() => setConfirmValue(false)}
-                defaultChecked={!user.status}
-              />
-              <label htmlFor="no" className="text-lg">
-                Não Vou :(
-              </label>
-            </div>
+            <fieldset
+              className="m-4 flex justify-center gap-8 text-white"
+              id="radio"
+            >
+              <div className="flex items-center gap-2">
+                <Radio
+                  defaultChecked={user.status}
+                  id="yes"
+                  name="confirm"
+                  value="yes"
+                  onClick={() => setConfirmValue(true)}
+                />
+                <Label htmlFor="yes" className="text-lg text-white">
+                  Vou :D
+                </Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <Radio
+                  id="no"
+                  name="confirm"
+                  value="no"
+                  defaultChecked={!user.status}
+                  onClick={() => setConfirmValue(false)}
+                />
+                <Label htmlFor="no" className="text-lg text-white">
+                  Não vou :(
+                </Label>
+              </div>
+            </fieldset>
           </div>
 
-          <button className="h-8 w-full text-base " disabled={loading}>
+          <Button
+            className="h-8 w-full text-base "
+            disabled={loading}
+            type="submit"
+            gradientDuoTone="purpleToPink"
+          >
             {loading ? "Carregando..." : "Confirmar"}
-          </button>
+          </Button>
         </form>
       </div>
     </>
