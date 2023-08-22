@@ -2,6 +2,7 @@ import projectConfig from "@/config/project";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { Button } from "flowbite-react";
+import PurpleToBlueButton from "@/components/PurpleToBlueButton";
 
 export default function NotGoingCard() {
   const router = useRouter();
@@ -13,13 +14,8 @@ export default function NotGoingCard() {
       />
 
       <div className="flex min-h-screen items-center justify-evenly bg-home bg-cover">
-        <Button
-          className="absolute right-6 top-6"
-          gradientDuoTone="purpleToBlue"
-          onClick={() => router.push("/")}
-        >
-          Voltar
-        </Button>
+        <PurpleToBlueButton path="/" title="Voltar" />
+
         <div className="flex flex-col gap-4 rounded-lg bg-gray-950 bg-opacity-80 p-8 text-center  max-md:w-full">
           <div className="mb-4">
             <h2 className="font-bebas text-2xl text-blue-400">

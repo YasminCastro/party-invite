@@ -2,6 +2,7 @@ import DeleteGuest from "@/components/Admin/DeleteGuest";
 import EditGuest from "@/components/Admin/EditGuest";
 import ListGuests from "@/components/Admin/ListGuests";
 import NewGuestForm from "@/components/Admin/NewGuestForm";
+import PurpleToBlueButton from "@/components/PurpleToBlueButton";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
@@ -34,13 +35,8 @@ export default function Admin() {
   return (
     <>
       <NextSeo title="Admin" description="Área restrista" />
-      <button
-        className="absolute right-6 top-6 h-8 w-5 text-base max-sm:text-sm"
-        onClick={() => push("/")}
-      >
-        Voltar
-      </button>
-      <div className="flex min-h-screen items-center justify-center bg-login bg-cover ">
+      <PurpleToBlueButton path="/" title="Voltar" />
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
         <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
           <button
             className="h-8 text-base max-sm:text-sm"
