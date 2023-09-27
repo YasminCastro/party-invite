@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import authMiddleware from "./config/joseAuth";
 import * as jose from "jose";
 
+//
+
 export default async function middleware(req: NextRequest) {
   const token = req.cookies.get("token") as any;
   if (!token) {
