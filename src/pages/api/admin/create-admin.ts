@@ -15,18 +15,40 @@ export default async function CreateAdmin(
 
     const name = "aniversariante";
 
-    const foundUser = await collection.findOne({ name });
+    const result = await collection.updateOne(
+      { name },
+      {
+        $setOnInsert: {
+          status: true,
+          receivedInvitation: true,
+          isAdmin: true,
+        },
+        $set: {
+          password: ADMIN_PASSWORD, // WARNING: Storing passwords like this is insecure. Always hash them.
+        },
+      },
+      { upsert: true }
+    );
 
-    if (foundUser) return res.status(200).json(foundUser);
-
-    const result = await collection.insertOne({
-      name,
-      status: true,
-      receivedInvitation: true,
-      isAdmin: true,
-      password: ADMIN_PASSWORD,
-    });
-    res.status(200).json(result);
+    if (result.upsertedCount > 0) {
+      res
+        .status(200)
+        .json({ message: "User created successfully", acknowledged: true });
+    } else if (result.modifiedCount > 0) {
+      res
+        .status(200)
+        .json({
+          message: "User password updated successfully",
+          acknowledged: true,
+        });
+    } else {
+      res
+        .status(200)
+        .json({
+          message: "Operation performed but no changes were made",
+          acknowledged: true,
+        });
+    }
   } catch (error: any) {
     res.status(200).json({ message: error.message, acknowledged: false });
   }
