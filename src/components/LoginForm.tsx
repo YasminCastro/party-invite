@@ -55,7 +55,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleLogin}
-      className="-m-20 flex w-1/2 flex-col items-center justify-center rounded-lg bg-gray-500 bg-opacity-20 bg-clip-padding p-4 max-lg:m-0  max-sm:w-3/4"
+      className="flex w-1/2 flex-col items-center justify-center rounded-lg bg-gray-500 bg-opacity-20 bg-clip-padding p-4 max-lg:m-0  max-sm:w-3/4"
     >
       <div className="flex w-full flex-col gap-4">
         <div>
