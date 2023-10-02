@@ -7,6 +7,7 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { useUser } from "@/providers/User";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import projectConfig from "@/config/project";
 
 type Inputs = {
   name: string;
@@ -96,7 +97,11 @@ export default function LoginForm() {
           {errors.root.message}
         </span>
       )}
-      <Button type="submit" disabled={loading} color="dark">
+      <Button
+        type="submit"
+        disabled={loading}
+        color={projectConfig.buttonColor}
+      >
         {loading ? "Carregando..." : "Entrar"}
       </Button>
     </form>

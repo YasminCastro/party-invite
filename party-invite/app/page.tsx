@@ -20,7 +20,7 @@ export default function Home() {
               router.push("/admin");
             }}
             className="absolute right-24 top-6 z-50"
-            color="dark"
+            color={projectConfig.buttonColor}
           >
             Admin
           </Button>
@@ -32,7 +32,7 @@ export default function Home() {
             router.push("/login");
           }}
           className="absolute right-6 top-6 z-50"
-          color="dark"
+          color={projectConfig.buttonColor}
         >
           Sair
         </Button>
@@ -51,7 +51,7 @@ export default function Home() {
             <Button
               className="w-full"
               onClick={() => router.push("/confirm")}
-              color="dark"
+              color={projectConfig.buttonColor}
             >
               Confirmar presença
             </Button>
