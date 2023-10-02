@@ -1,20 +1,32 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        title: "var(--font-anton)",
+        text: "var(--font-roboto)",
+        alt: "var(--font-bailjamjuree)",
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        login: "url('/login/background.jpg')",
+        home: "url('/home/home-background.png')",
+      },
+
+      colors: {
+        login: {
+          title: "#2A2A32",
+          form: "color: rgb(0 0 0 / var(--tw-text-opacity))",
+        },
       },
     },
   },
-  plugins: [],
-}
-export default config
+  plugins: [require("flowbite/plugin")],
+};
+export default config;
