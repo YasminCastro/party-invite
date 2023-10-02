@@ -1,14 +1,17 @@
+"use client";
+
 import ConfirmCard from "@/components/Cards/ConfirmCard";
 import GoingCard from "@/components/Cards/GoingCard";
 import NotGoingCard from "@/components/Cards/NotGoing";
-import { useUser } from "@/providers/user";
-import { useRouter } from "next/router";
+import { useUser } from "@/providers/User";
+import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 export type IStepActive = "confirm" | "going" | "notGoing";
 
 export default function Confirm() {
-  const { query } = useRouter();
+  const params = useParams();
+  const query = params.query as any;
   const { user, setUser } = useUser();
 
   useEffect(() => {}, [user]);
