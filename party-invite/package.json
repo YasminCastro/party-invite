@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cookies-next": "^4.0.0",
     "jsonwebtoken": "^9.0.2",
     "next": "^13.5.3",
     "next-seo": "^6.1.0",

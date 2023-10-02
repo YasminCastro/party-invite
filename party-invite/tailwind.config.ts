@@ -16,7 +16,7 @@ const config: Config = {
       },
       backgroundImage: {
         login: "url('/login/background.jpg')",
-        home: "url('/home/home-background.png')",
+        home: "url('/home/background.jpg')",
       },
 
       colors: {
