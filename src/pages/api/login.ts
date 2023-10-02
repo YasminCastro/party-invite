@@ -16,8 +16,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     if (!result) {
       res.status(200).json({
-        message:
-          "Você não está na lista de convidades ://, manda um zap para Yas pra ela te convidar!",
+        message: "Você não está na lista de convidades :/",
       });
 
       return;

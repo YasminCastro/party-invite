@@ -9,7 +9,7 @@ export default function SpotifyPlaylist() {
   return (
     <>
       {projectConfig.spotifyUrl && (
-        <div className="flex flex-col items-center justify-around ">
+        <div className="flex w-1/2 flex-col items-center justify-around max-lg:w-full">
           <button
             className="mb-2 h-8 text-base"
             onClick={() => (window.location.href = spotifyUrl)}

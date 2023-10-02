@@ -1,6 +1,4 @@
 import SpotifyPlaylist from "@/components/SpotifyPlaylist";
-import Image from "next/image";
-import graphic from "/public/confirm/graphic-design-is-my-passion-designer.gif";
 
 import { NextSeo } from "next-seo";
 import projectConfig from "@/config/project";
@@ -17,12 +15,19 @@ export default function GoingCard() {
       <div className="flex min-h-screen items-center justify-evenly bg-home bg-cover">
         <PurpleToBlueButton path="/" title="Voltar" />
 
-        <div className="flex gap-4 rounded-lg bg-gray-950 bg-opacity-80 p-8 max-md:w-full max-md:flex-col">
+        <div className="flex w-2/3 gap-4 rounded-lg bg-gray-950 bg-opacity-80 p-8 max-xl:w-full max-lg:flex-col">
           <div className="flex flex-col ">
-            <h2 className="mb-4 font-bebas text-4xl text-blue-400">
+            <h2 className="mb-4 pr-20 font-bebas text-4xl text-blue-400">
               Presença confirmada!
             </h2>
             <ul className="ml-4 w-[90%] list-disc font-bebas text-white max-md:w-full">
+              <li className="text-2xl max-sm:text-xl">
+                Para colaborar com a festança e garantir um banquete a todos,
+                estou aceitando uma contribuição de R$10, ficarei muito grato!
+                <br />
+                <a className=" text-blue-400">pix: 041.905.581-92</a>
+              </li>
+
               <li className="text-2xl max-sm:text-xl">
                 Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
               </li>
@@ -42,12 +47,8 @@ export default function GoingCard() {
               </li>
 
               <li className="text-2xl max-sm:text-xl">
-                Texto sobre a comida...
-              </li>
-
-              <li className="text-2xl max-sm:text-xl">
                 Quer me dar um presente e não sabe o que? pode me dar{" "}
-                <a className=" text-blue-400">cerveja</a>
+                <a className=" text-blue-400">cerveja!!</a>
               </li>
               <li className="text-2xl max-sm:text-xl">
                 Quer levar alguem? clica{" "}
