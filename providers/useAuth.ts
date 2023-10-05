@@ -31,5 +31,10 @@ export function useAuth() {
     }
   }
 
-  return { login, loading };
+  function logout() {
+    setCookie("token", null);
+    router.push("/login");
+  }
+
+  return { login, loading, logout };
 }

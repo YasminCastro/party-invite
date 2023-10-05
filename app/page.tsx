@@ -1,16 +1,16 @@
 "use client";
 
+import Link from "next/link";
+import { Button } from "flowbite-react";
+
 import AddressMap from "@/components/AddressMap/Index";
 import projectConfig from "@/config/project";
 import { useUser } from "@/providers/User";
-import { setCookie } from "cookies-next";
-import { Button } from "flowbite-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useAuth } from "@/providers/useAuth";
 
 export default function Home() {
   const { isAdmin } = useUser();
-  const router = useRouter();
+  const { logout } = useAuth();
 
   return (
     <div className="min-h-screen bg-home bg-cover">
@@ -18,9 +18,6 @@ export default function Home() {
         {isAdmin && (
           <Link href="/admin">
             <Button
-              onClick={() => {
-                router.push("/admin");
-              }}
               className="absolute right-24 top-6 z-50"
               color={projectConfig.buttonColor}
             >
@@ -30,10 +27,7 @@ export default function Home() {
         )}
 
         <Button
-          onClick={() => {
-            setCookie("token", null);
-            router.push("/login");
-          }}
+          onClick={logout}
           className="absolute right-6 top-6 z-50"
           color={projectConfig.buttonColor}
         >
