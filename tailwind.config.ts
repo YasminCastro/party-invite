@@ -24,6 +24,9 @@ const config: Config = {
           title: "#2A2A32",
           form: "color: rgb(0 0 0 / var(--tw-text-opacity))",
         },
+        admin: {
+          title: "#2A2A32",
+        },
       },
     },
   },

@@ -5,11 +5,11 @@ import { useParams } from "next/navigation";
 
 import { useUser } from "@/providers/User";
 
-import AttendanceForm from "@/components/Cards/AttendanceForm";
-import AttendingConfirmation from "@/components/Cards/AttendingConfirmation";
-import NotAttendingConfirmation from "@/components/Cards/NotAttendingConfirmation";
+import AttendanceForm from "@/components/ConfirmPresenceCards/AttendanceForm";
+import AttendingConfirmation from "@/components/ConfirmPresenceCards/AttendingConfirmation";
+import NotAttendingConfirmation from "@/components/ConfirmPresenceCards/NotAttendingConfirmation";
 
-export type IStepActive = "Form" | "Attending" | "NotAttending";
+export type IConfirmPresenceStepActive = "Form" | "Attending" | "NotAttending";
 
 export default function ConfirmPresence() {
   const { user } = useUser();
@@ -17,10 +17,12 @@ export default function ConfirmPresence() {
 
   const cardActiveFromQuery = (query as any)?.cardActive;
 
-  const [cardActive, setCardActive] = useState<IStepActive>("Form");
+  const [cardActive, setCardActive] =
+    useState<IConfirmPresenceStepActive>("Form");
 
   useEffect(() => {
-    if (cardActiveFromQuery) setCardActive(cardActiveFromQuery as IStepActive);
+    if (cardActiveFromQuery)
+      setCardActive(cardActiveFromQuery as IConfirmPresenceStepActive);
   }, [cardActiveFromQuery]);
 
   const cardsMap = useMemo(

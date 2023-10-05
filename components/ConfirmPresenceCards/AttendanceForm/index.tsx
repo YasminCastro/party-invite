@@ -2,13 +2,15 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { Button, Label, TextInput, Radio } from "flowbite-react";
 
-import { IStepActive } from "@/app/confirm-presence/page";
+import { IConfirmPresenceStepActive } from "@/app/confirm-presence/page";
 import { useUser } from "@/providers/User";
 import projectConfig from "@/config/project";
 import GoBackButton from "@/components/GoBackButton/Index";
 
 interface IProps {
-  setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
+  setCardActive: React.Dispatch<
+    React.SetStateAction<IConfirmPresenceStepActive>
+  >;
 }
 
 export default function AttendanceForm({ setCardActive }: IProps) {
