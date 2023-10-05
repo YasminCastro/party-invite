@@ -18,6 +18,10 @@ if (!process.env.GUESTS_PASSWORD) {
   throw new Error("GUESTS_PASSWORD NOT DEFINED");
 }
 
+if (!process.env.ADMIN_PASSWORD) {
+  throw new Error("ADMIN_PASSWORD NOT DEFINED");
+}
+
 export const MONGO_URL = process.env.MONGO_URL;
 export const MONGO_URL_GLOBAL = process.env.MONGO_URL_GLOBAL;
 export const DB_NAME = process.env.DB_NAME;

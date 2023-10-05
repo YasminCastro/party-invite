@@ -1,4 +1,4 @@
-import { GUESTS_PASSWORD, SECRET_TOKEN } from "@/config";
+import { ADMIN_PASSWORD, GUESTS_PASSWORD, SECRET_TOKEN } from "@/config";
 import db from "@/lib/client";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (result.isAdmin && result.password !== password) {
+    if (result.isAdmin && ADMIN_PASSWORD !== password) {
       return NextResponse.json(
         {
           message:
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!result.isAdmin && GUESTS_PASSWORD !== password.toLowerCase()) {
+    if (GUESTS_PASSWORD !== password) {
       return NextResponse.json(
         {
           message: "iiih errou a senha secreta, tenta novamente ae!",
