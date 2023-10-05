@@ -3,7 +3,7 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, {
   createContext,
   useCallback,
@@ -33,7 +33,7 @@ const UserContext = createContext({} as IValue);
 export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   const [user, setUser] = useState({} as IUser);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -66,12 +66,10 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
       getUser();
     };
 
-    // router.events.on("routeChangeStart", handleRouteChange);
-
-    // return () => {
-    //   router.events.off("routeChangeStart", handleRouteChange);
-    // };
-  }, [router, getUser]);
+    if (pathname !== "/login" && pathname !== "/convidades") {
+      handleRouteChange();
+    }
+  }, [pathname, getUser]);
 
   const value = useMemo(
     () => ({

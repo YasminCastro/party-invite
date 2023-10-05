@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Button, Label, TextInput, Radio } from "flowbite-react";
 import { IStepActive } from "@/app/confirm/page";
 import { useUser } from "@/providers/User";
+import projectConfig from "@/config/project";
 
 interface IProps {
   setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
@@ -20,7 +21,6 @@ export default function ConfirmCard({ setCardActive }: IProps) {
     console.log(user);
 
     setConfirmValue(user.status);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
@@ -29,11 +29,11 @@ export default function ConfirmCard({ setCardActive }: IProps) {
     setLoading(true);
 
     try {
-      console.log({ name: user.name, status: confirmValue });
-      const { data } = await axios.post("/api/guests/update", {
+      const { data } = await axios.put("/api/guests/update", {
         id: user._id,
         status: confirmValue,
       });
+      console.log(data);
 
       setUser(data.user);
       if (confirmValue) {
@@ -104,7 +104,7 @@ export default function ConfirmCard({ setCardActive }: IProps) {
             className="h-8 w-full text-base "
             disabled={loading}
             type="submit"
-            gradientDuoTone="purpleToPink"
+            color={projectConfig.buttonColor}
           >
             {loading ? "Carregando..." : "Confirmar"}
           </Button>

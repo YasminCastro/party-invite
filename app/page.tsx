@@ -16,15 +16,17 @@ export default function Home() {
     <div className="min-h-screen bg-home bg-cover">
       <div>
         {isAdmin && (
-          <Button
-            onClick={() => {
-              router.push("/admin");
-            }}
-            className="absolute right-24 top-6 z-50"
-            color={projectConfig.buttonColor}
-          >
-            Admin
-          </Button>
+          <Link href="/admin">
+            <Button
+              onClick={() => {
+                router.push("/admin");
+              }}
+              className="absolute right-24 top-6 z-50"
+              color={projectConfig.buttonColor}
+            >
+              Admin
+            </Button>
+          </Link>
         )}
 
         <Button
@@ -50,9 +52,11 @@ export default function Home() {
               {projectConfig.data}
             </h3>
 
-            <Button className="w-full" color={projectConfig.buttonColor}>
-              <Link href="/confirm">Confirmar presença</Link>
-            </Button>
+            <Link href="/confirm">
+              <Button className="w-full" color={projectConfig.buttonColor}>
+                Confirmar presença
+              </Button>
+            </Link>
             <AddressMap />
           </div>
         </div>
