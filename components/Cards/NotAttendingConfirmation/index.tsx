@@ -1,15 +1,9 @@
 import GoBackButton from "@/components/GoBackButton/Index";
 import projectConfig from "@/config/project";
-import { NextSeo } from "next-seo";
 
-export default function NotGoingCard() {
+export default function NotAttendingConfirmation() {
   return (
-    <>
-      <NextSeo
-        title={`${projectConfig.seoName}`}
-        description="Presença confirmada ou não..."
-      />
-
+    <div>
       <GoBackButton path="/" title="Voltar" />
       <div className="flex min-h-screen items-center justify-evenly bg-home bg-cover">
         <div className="flex flex-col gap-4 rounded-lg bg-gray-950 bg-opacity-80 p-8 text-center  max-md:w-full">
@@ -28,6 +22,6 @@ export default function NotGoingCard() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -46,7 +46,7 @@ export default function Home() {
               {projectConfig.data}
             </h3>
 
-            <Link href="/confirm">
+            <Link href="/confirm-presence">
               <Button className="w-full" color={projectConfig.buttonColor}>
                 Confirmar presença
               </Button>
