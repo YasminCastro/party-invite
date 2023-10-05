@@ -1,13 +1,13 @@
 "use client";
 
 import axios from "axios";
-import { setCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 import { Button, Label, TextInput } from "flowbite-react";
-import { useUser } from "@/providers/User";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+
 import projectConfig from "@/config/project";
+
+import { useAuth } from "@/providers/useAuth";
 
 type Inputs = {
   name: string;
@@ -21,10 +21,8 @@ export default function LoginForm() {
     setError,
     formState: { errors },
   } = useForm<Inputs>();
+  const { login, loading } = useAuth();
   const [guests, setGuests] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const { setUser } = useUser();
-  const router = useRouter();
 
   useEffect(() => {
     const getGests = async () => {
@@ -40,24 +38,10 @@ export default function LoginForm() {
   }, []);
 
   const onSubmit: SubmitHandler<Inputs> = async ({ name, password }) => {
-    setLoading(true);
     try {
-      const { data } = await axios.post("/api/login", {
-        name: name.trim().toLocaleLowerCase(),
-        password,
-      });
-
-      if (data.message) {
-        setError("root", { type: "custom", message: data.message });
-      } else {
-        setCookie("token", data.token);
-        setUser(data.user);
-        router.push("/");
-      }
+      await login(name, password);
     } catch (error: any) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
+      setError("root", { type: "custom", message: error.message });
     }
   };
 
