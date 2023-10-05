@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (GUESTS_PASSWORD !== password) {
+    if (!result.isAdmin && GUESTS_PASSWORD !== password) {
       return NextResponse.json(
         {
           message: "iiih errou a senha secreta, tenta novamente ae!",
