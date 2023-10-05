@@ -33,7 +33,7 @@ const UserContext = createContext({} as IValue);
 export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  // const router = useRouter();
+  const router = useRouter();
 
   const [user, setUser] = useState({} as IUser);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -61,17 +61,17 @@ export const UserProvider: React.FC<{ children?: React.ReactNode }> = ({
     }
   }, [cookie]);
 
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     getUser();
-  //   };
+  useEffect(() => {
+    const handleRouteChange = () => {
+      getUser();
+    };
 
-  //   router.events.on("routeChangeStart", handleRouteChange);
+    // router.events.on("routeChangeStart", handleRouteChange);
 
-  //   return () => {
-  //     router.events.off("routeChangeStart", handleRouteChange);
-  //   };
-  // }, [router, getUser]);
+    // return () => {
+    //   router.events.off("routeChangeStart", handleRouteChange);
+    // };
+  }, [router, getUser]);
 
   const value = useMemo(
     () => ({

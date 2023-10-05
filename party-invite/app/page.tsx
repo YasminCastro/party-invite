@@ -5,6 +5,7 @@ import projectConfig from "@/config/project";
 import { useUser } from "@/providers/User";
 import { setCookie } from "cookies-next";
 import { Button } from "flowbite-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -48,12 +49,9 @@ export default function Home() {
             <h3 className="font-title text-3xl text-login-title">
               {projectConfig.data}
             </h3>
-            <Button
-              className="w-full"
-              onClick={() => router.push("/confirm")}
-              color={projectConfig.buttonColor}
-            >
-              Confirmar presença
+
+            <Button className="w-full" color={projectConfig.buttonColor}>
+              <Link href="/confirm">Confirmar presença</Link>
             </Button>
             <AddressMap />
           </div>
