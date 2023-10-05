@@ -1,8 +1,7 @@
-import Image from "next/image";
-import graphic from "/public/confirm/graphic-design-is-my-passion-designer.gif";
-
 import { NextSeo } from "next-seo";
 import projectConfig from "@/config/project";
+import GoBackButton from "@/components/GoBackButton/Index";
+import SpotifyPlaylist from "@/components/SpotifyPlaylist/Index";
 
 export default function GoingCard() {
   return (
@@ -13,14 +12,14 @@ export default function GoingCard() {
       />
 
       <div className="flex min-h-screen items-center justify-evenly bg-home bg-cover">
-        {/* <PurpleToBlueButton path="/" title="Voltar" /> */}
+        <GoBackButton path="/" title="Voltar" />
 
         <div className="flex gap-4 rounded-lg bg-gray-950 bg-opacity-80 p-8 max-md:w-full max-md:flex-col">
           <div className="flex flex-col ">
-            <h2 className="font-bebas mb-4 text-4xl text-blue-400">
+            <h2 className="font-title mb-4 text-4xl text-blue-400">
               Presença confirmada!
             </h2>
-            <ul className="font-bebas ml-4 w-[90%] list-disc text-white max-md:w-full">
+            <ul className="font-alt ml-4 w-[90%] list-disc text-white max-md:w-full">
               <li className="text-2xl max-sm:text-xl">
                 Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
               </li>
@@ -63,7 +62,7 @@ export default function GoingCard() {
               </li>
             </ul>
           </div>
-          {/* {projectConfig.spotifyUrl && <SpotifyPlaylist />} */}
+          {projectConfig.spotifyUrl && <SpotifyPlaylist />}
         </div>
       </div>
     </>

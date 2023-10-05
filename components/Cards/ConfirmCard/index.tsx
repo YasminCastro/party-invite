@@ -4,6 +4,7 @@ import { Button, Label, TextInput, Radio } from "flowbite-react";
 import { IStepActive } from "@/app/confirm/page";
 import { useUser } from "@/providers/User";
 import projectConfig from "@/config/project";
+import GoBackButton from "@/components/GoBackButton/Index";
 
 interface IProps {
   setCardActive: React.Dispatch<React.SetStateAction<IStepActive>>;
@@ -108,6 +109,8 @@ export default function ConfirmCard({ setCardActive }: IProps) {
           >
             {loading ? "Carregando..." : "Confirmar"}
           </Button>
+
+          <GoBackButton path="/" title="Voltar" />
         </form>
       </div>
     </>
