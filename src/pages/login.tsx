@@ -3,6 +3,7 @@ import { NextSeo } from "next-seo";
 import projectConfig from "@/config/project";
 import Image from "next/image";
 import logo from "../../public/login/rharynice.svg";
+import rhary from "../../public/login/rhary.png";
 
 export default function Login() {
   return (
@@ -15,7 +16,12 @@ export default function Login() {
         <div className="relative h-[400px] w-[700px] max-2xl:h-[300px] max-2xl:w-[600px] max-xl:w-[500px] max-lg:h-[200px] max-lg:w-[400px] max-phone:h-[150px] max-phone:w-[300px] ">
           <Image src={logo} alt="Logo" fill sizes="100vw" />
         </div>
+
         <LoginForm />
+
+        <div className="absolute bottom-10 left-5 opacity-10">
+          <Image src={rhary} alt="Logo" width={100} />
+        </div>
       </div>
     </>
   );

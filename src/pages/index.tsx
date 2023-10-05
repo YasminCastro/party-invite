@@ -1,5 +1,6 @@
 import AddressMap from "@/components/AddressMap";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import Title from "@/components/Title";
 import { setCookie } from "cookies-next";
@@ -8,6 +9,7 @@ import { useUser } from "@/providers/user";
 import { Button } from "flowbite-react";
 
 import projectConfig from "@/config/project";
+import rhary from "../../public/home/rhary-sentado.png";
 
 export default function Home() {
   const router = useRouter();
@@ -59,6 +61,10 @@ export default function Home() {
             Confirmar presença
           </Button>
           <AddressMap />
+        </div>
+
+        <div className="absolute bottom-0 opacity-50">
+          <Image src={rhary} alt="Logo" width={70} />
         </div>
       </div>
     </>
