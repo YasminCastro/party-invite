@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import NewGuestForm from "@/components/AdminCards/NewGuestForm";
 import DeleteGuest from "@/components/AdminCards/DeleteGuest";
 import EditGuest from "@/components/AdminCards/EditGuest";
 import ListGuests from "@/components/AdminCards/ListGuests";
 import AdminNavigation from "@/components/AdminCards/AdminNavigation";
 import GoBackButton from "@/components/GoBackButton/Index";
+import NewGuest from "@/components/AdminCards/NewGuest";
 
 export type IAdminAction =
   | "newGuest"
@@ -30,7 +30,7 @@ export default function Admin() {
   let ActiveComponent;
   switch (cardActive) {
     case "newGuest":
-      ActiveComponent = NewGuestForm;
+      ActiveComponent = NewGuest;
       break;
     case "listGuests":
       ActiveComponent = ListGuests;
