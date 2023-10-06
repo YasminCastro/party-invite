@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import DeleteGuest from "@/components/AdminCards/DeleteGuest";
 import EditGuest from "@/components/AdminCards/EditGuest";
 import ListGuests from "@/components/AdminCards/ListGuests";
 import AdminNavigation from "@/components/AdminCards/AdminNavigation";
@@ -37,9 +36,6 @@ export default function Admin() {
       break;
     case "editGuest":
       ActiveComponent = EditGuest;
-      break;
-    case "deleteGuest":
-      ActiveComponent = DeleteGuest;
       break;
     default:
       ActiveComponent = ListGuests;
