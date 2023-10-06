@@ -1,13 +1,12 @@
 "use client";
 
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Button, Label, TextInput } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import projectConfig from "@/config/project";
 
 import { useAuth } from "@/providers/useAuth";
+import { useGuests } from "@/providers/useGuests";
 
 type Inputs = {
   name: string;
@@ -22,20 +21,7 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<Inputs>();
   const { login, loading } = useAuth();
-  const [guests, setGuests] = useState<any[]>([]);
-
-  useEffect(() => {
-    const getGests = async () => {
-      try {
-        const { data } = await axios.get("/api/guests/get");
-        setGuests(data);
-      } catch (error: any) {
-        console.log(error.message);
-      }
-    };
-
-    getGests();
-  }, []);
+  const { guests } = useGuests();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ name, password }) => {
     try {
@@ -59,11 +45,13 @@ export default function LoginForm() {
           list="guests"
           {...register("name")}
         />
-        <datalist id="guests" className="display">
-          {guests.map((guest) => (
-            <option key={guest._id} value={guest.name} />
-          ))}
-        </datalist>
+        {guests && (
+          <datalist id="guests" className="display">
+            {guests.map((guest) => (
+              <option key={guest._id} value={guest.name} />
+            ))}
+          </datalist>
+        )}
       </div>
 
       <div>
