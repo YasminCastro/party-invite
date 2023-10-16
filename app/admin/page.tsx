@@ -5,9 +5,10 @@ import { useParams } from "next/navigation";
 
 import EditGuest from "@/components/AdminCards/EditGuest";
 import ListGuests from "@/components/AdminCards/ListGuests";
-import AdminNavigation from "@/components/AdminCards/AdminNavigation";
 import GoBackButton from "@/components/GoBackButton/Index";
-import NewGuest from "@/components/AdminCards/NewGuest";
+import { Button } from "flowbite-react";
+import projectConfig from "@/config/project";
+import NewGuestModal from "@/components/AdminCards/NewGuestModal";
 
 export type IAdminAction =
   | "newGuest"
@@ -15,8 +16,11 @@ export type IAdminAction =
   | "listGuests"
   | "deleteGuest";
 
+export type IAdminModal = "NewGuest" | "";
+
 export default function Admin() {
   const { query } = useParams();
+  const [openModal, setOpenModal] = useState<string | undefined>();
 
   const cardActiveFromQuery = (query as any)?.cardActive;
 
@@ -28,9 +32,6 @@ export default function Admin() {
 
   let ActiveComponent;
   switch (cardActive) {
-    case "newGuest":
-      ActiveComponent = NewGuest;
-      break;
     case "listGuests":
       ActiveComponent = ListGuests;
       break;
@@ -45,9 +46,28 @@ export default function Admin() {
     <>
       <GoBackButton title="Voltar" path="/" />
       <div className="flex min-h-screen items-center justify-center bg-home">
-        <AdminNavigation setActiveView={setCardActive} />
+        <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
+          <Button
+            onClick={() => setOpenModal("NewGuest")}
+            color={projectConfig.buttonColor}
+            size="sm"
+          >
+            Novo
+          </Button>
+          <Button
+            onClick={() => setCardActive("listGuests")}
+            color={projectConfig.buttonColor}
+            size="sm"
+          >
+            Lista
+          </Button>
+        </div>
         <ActiveComponent setCardActive={setCardActive} />
       </div>
+
+      {openModal === "NewGuest" && (
+        <NewGuestModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
     </>
   );
 }
