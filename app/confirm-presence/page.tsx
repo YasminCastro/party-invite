@@ -5,7 +5,6 @@ import { useMemo, useState } from "react";
 import { useUser } from "@/providers/User";
 
 import AttendanceForm from "@/components/ConfirmPresenceCards/AttendanceForm";
-import AttendingConfirmation from "@/components/ConfirmPresenceCards/AttendingConfirmation";
 import NotAttendingConfirmation from "@/components/ConfirmPresenceCards/NotAttendingConfirmation";
 import AttendingModal from "@/components/ConfirmPresenceCards/AttendingModal";
 
@@ -19,7 +18,6 @@ export default function ConfirmPresence() {
   const cardsMap = useMemo(
     () => ({
       Form: () => <AttendanceForm setOpenModal={setOpenModal} />,
-      Attending: () => <AttendingConfirmation />,
       NotAttending: () => <NotAttendingConfirmation />,
     }),
     [user]

@@ -1,10 +1,11 @@
 import PixButton from "@/components/PixButton/Index";
-import SpotifyPlaylist from "@/components/SpotifyPlaylist/Index";
 import WhatsappLink from "@/components/WhatsappLink";
+import { Spotify } from "react-spotify-embed";
 import projectConfig from "@/config/project";
-import { Modal } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 
 import { useRouter } from "next/navigation";
+import SpotifyButton from "@/components/SpotifyButton/Index";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -13,6 +14,7 @@ interface IProps {
 
 export default function AttendingModal({ openModal, setOpenModal }: IProps) {
   const { push } = useRouter();
+
   return (
     <>
       <Modal
@@ -29,9 +31,9 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
           </div>
         </Modal.Header>
         <Modal.Body>
-          <div className="flex gap-4">
-            <div className="flex flex-col justify-between">
-              <ul className="font-text ml-4 w-3/4 list-disc text-xl  max-sm:text-xl">
+          <div className="flex gap-4 max-sm:flex-col">
+            <div className="flex flex-col gap-10 ">
+              <ul className="font-text ml-4 w-4/5 list-disc text-xl max-sm:text-xl">
                 <li>
                   Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
                 </li>
@@ -69,11 +71,17 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                   </p>
                 </li>
               </ul>
-
-              <PixButton />
+              <div className="flex gap-x-6">
+                <PixButton />
+                <SpotifyButton />
+              </div>
             </div>
 
-            {projectConfig.spotifyUrl && <SpotifyPlaylist />}
+            {projectConfig.spotifyUrl && (
+              <div className="flex w-1/2 flex-col items-center justify-around max-sm:w-full">
+                <Spotify link={projectConfig.spotifyUrl} className=" w-full" />
+              </div>
+            )}
           </div>
         </Modal.Body>
       </Modal>
