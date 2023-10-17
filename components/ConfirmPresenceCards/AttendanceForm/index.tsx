@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
-import { Button, Label, TextInput, Radio } from "flowbite-react";
+import { Button, Label, TextInput, Radio, Spinner } from "flowbite-react";
 
 import { useUser } from "@/providers/User";
 import projectConfig from "@/config/project";
@@ -14,19 +14,24 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
   const { user, setUser } = useUser();
   const [isLoading, setIsLoading] = useState(true);
   const [loadingResponse, setLoadingResponse] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: "", status: false });
+  const [currentUser, setCurrentUser] = useState({
+    name: user?.name || "",
+    status: user?.status || false,
+  });
 
   useEffect(() => {
     if (user) {
       setCurrentUser(user);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
   }, [user]);
 
   if (isLoading) {
     return (
       <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
-        <p className="text-xl">Carregando...</p>
+        <Spinner aria-label="Carregando..." size="xl" />
       </div>
     );
   }
