@@ -2,35 +2,34 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { Button, Label, TextInput, Radio } from "flowbite-react";
 
-import { IConfirmPresenceStepActive } from "@/app/confirm-presence/page";
 import { useUser } from "@/providers/User";
 import projectConfig from "@/config/project";
 import GoBackButton from "@/components/GoBackButton/Index";
 
 interface IProps {
-  setCardActive: React.Dispatch<
-    React.SetStateAction<IConfirmPresenceStepActive>
-  >;
+  setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-export default function AttendanceForm({ setCardActive }: IProps) {
+export default function AttendanceForm({ setOpenModal }: IProps) {
   const { user, setUser } = useUser();
   const [isLoading, setIsLoading] = useState(true);
   const [loadingResponse, setLoadingResponse] = useState(false);
+  const [currentUser, setCurrentUser] = useState({ name: "", status: false });
 
   useEffect(() => {
     if (user) {
+      setCurrentUser(user);
       setIsLoading(false);
     }
   }, [user]);
 
   if (isLoading) {
-    <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
-      <p className="text-xl">Carregando...</p>
-    </div>;
+    return (
+      <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
+        <p className="text-xl">Carregando...</p>
+      </div>
+    );
   }
-
-  const [confirmValue, setConfirmValue] = useState(user?.status || false);
 
   async function handleConfirmation(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,14 +39,14 @@ export default function AttendanceForm({ setCardActive }: IProps) {
     try {
       const { data } = await axios.put("/api/guests/update", {
         id: user._id,
-        status: confirmValue,
+        status: currentUser.status,
       });
 
       setUser(data.user);
-      if (confirmValue) {
-        setCardActive("Attending");
+      if (currentUser.status) {
+        setOpenModal("Attending");
       } else {
-        setCardActive("NotAttending");
+        setOpenModal("NotAttending");
       }
     } catch (error: any) {
       console.log(error.message);
@@ -71,7 +70,7 @@ export default function AttendanceForm({ setCardActive }: IProps) {
             required
             type="text"
             disabled
-            defaultValue={user.name}
+            defaultValue={currentUser.name}
           />
           <fieldset
             className="m-4 flex justify-center gap-8 text-white"
@@ -79,11 +78,14 @@ export default function AttendanceForm({ setCardActive }: IProps) {
           >
             <div className="flex items-center gap-2">
               <Radio
-                checked={confirmValue}
+                checked={currentUser.status}
                 id="yes"
                 name="confirm"
                 value="yes"
-                onClick={() => setConfirmValue(true)}
+                onClick={() => setCurrentUser({ ...currentUser, status: true })}
+                onChange={() =>
+                  setCurrentUser({ ...currentUser, status: true })
+                }
               />
               <Label
                 htmlFor="yes"
@@ -94,11 +96,16 @@ export default function AttendanceForm({ setCardActive }: IProps) {
             </div>
             <div className="flex items-center gap-2">
               <Radio
-                checked={!confirmValue}
+                checked={!currentUser.status}
                 id="no"
                 name="confirm"
                 value="no"
-                onClick={() => setConfirmValue(false)}
+                onClick={() =>
+                  setCurrentUser({ ...currentUser, status: false })
+                }
+                onChange={() =>
+                  setCurrentUser({ ...currentUser, status: false })
+                }
               />
               <Label
                 htmlFor="no"

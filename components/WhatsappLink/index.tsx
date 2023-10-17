@@ -18,7 +18,7 @@ export default function WhatsappLink({
       )}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-mono text-blue-400"
+      className="font-mono text-green-400"
     >
       {children}
     </a>

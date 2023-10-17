@@ -13,7 +13,7 @@ export default function SpotifyPlaylist() {
         <div className="flex w-1/2 flex-col items-center justify-around max-lg:w-full">
           <Button
             className="my-4 h-8 text-base"
-            color={projectConfig.buttonColor}
+            color="dark"
             onClick={() => (window.location.href = spotifyUrl)}
           >
             Colaborar na playlist da festa

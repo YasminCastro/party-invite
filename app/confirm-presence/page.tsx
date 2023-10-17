@@ -1,38 +1,42 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useParams } from "next/navigation";
+import { useMemo, useState } from "react";
 
 import { useUser } from "@/providers/User";
 
 import AttendanceForm from "@/components/ConfirmPresenceCards/AttendanceForm";
 import AttendingConfirmation from "@/components/ConfirmPresenceCards/AttendingConfirmation";
 import NotAttendingConfirmation from "@/components/ConfirmPresenceCards/NotAttendingConfirmation";
+import AttendingModal from "@/components/ConfirmPresenceCards/AttendingModal";
 
 export type IConfirmPresenceStepActive = "Form" | "Attending" | "NotAttending";
 
 export default function ConfirmPresence() {
+  const [openModal, setOpenModal] = useState<string | undefined>();
+
   const { user } = useUser();
-  const { query } = useParams();
-
-  const cardActiveFromQuery = (query as any)?.cardActive;
-
-  const [cardActive, setCardActive] =
-    useState<IConfirmPresenceStepActive>("Form");
-
-  useEffect(() => {
-    if (cardActiveFromQuery)
-      setCardActive(cardActiveFromQuery as IConfirmPresenceStepActive);
-  }, [cardActiveFromQuery]);
 
   const cardsMap = useMemo(
     () => ({
-      Form: () => <AttendanceForm setCardActive={setCardActive} />,
+      Form: () => <AttendanceForm setOpenModal={setOpenModal} />,
       Attending: () => <AttendingConfirmation />,
       NotAttending: () => <NotAttendingConfirmation />,
     }),
     [user]
   );
 
-  return <>{cardsMap[cardActive]()}</>;
+  return (
+    <>
+      <AttendanceForm setOpenModal={setOpenModal} />
+
+      {openModal === "Attending" && (
+        <AttendingModal
+          openModal={openModal}
+          setOpenModal={(modal) => {
+            setOpenModal(modal);
+          }}
+        />
+      )}
+    </>
+  );
 }
