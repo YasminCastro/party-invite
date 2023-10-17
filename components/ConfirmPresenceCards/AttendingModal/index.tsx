@@ -2,7 +2,7 @@ import PixButton from "@/components/PixButton/Index";
 import WhatsappLink from "@/components/WhatsappLink";
 import { Spotify } from "react-spotify-embed";
 import projectConfig from "@/config/project";
-import { Button, Modal } from "flowbite-react";
+import { Modal } from "flowbite-react";
 
 import { useRouter } from "next/navigation";
 import SpotifyButton from "@/components/SpotifyButton/Index";
@@ -14,6 +14,7 @@ interface IProps {
 
 export default function AttendingModal({ openModal, setOpenModal }: IProps) {
   const { push } = useRouter();
+  const size = projectConfig.spotifyUrl ? "6xl" : "xl";
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
           setOpenModal(undefined);
           push("/");
         }}
-        size="6xl"
+        size={size}
       >
         <Modal.Header>
           <div className="font-title text-green-400 text-3xl max-sm:text-2xl">
@@ -33,7 +34,7 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
         <Modal.Body>
           <div className="flex gap-4 max-md:flex-col">
             <div className="flex flex-col gap-10">
-              <ul className="font-text ml-4 list-disc text-xl max-sm:text-lg">
+              <ul className="font-text ml-4 list-disc text-xl max-sm:text-lg ">
                 <li>
                   Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
                 </li>

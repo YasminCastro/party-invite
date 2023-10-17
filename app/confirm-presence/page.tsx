@@ -1,27 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
-import { useUser } from "@/providers/User";
+import { useState } from "react";
 
 import AttendanceForm from "@/components/ConfirmPresenceCards/AttendanceForm";
-import NotAttendingConfirmation from "@/components/ConfirmPresenceCards/NotAttendingConfirmation";
 import AttendingModal from "@/components/ConfirmPresenceCards/AttendingModal";
+import NotAttendingModal from "@/components/ConfirmPresenceCards/NotAttendingModal";
 
 export type IConfirmPresenceStepActive = "Form" | "Attending" | "NotAttending";
 
 export default function ConfirmPresence() {
   const [openModal, setOpenModal] = useState<string | undefined>();
-
-  const { user } = useUser();
-
-  const cardsMap = useMemo(
-    () => ({
-      Form: () => <AttendanceForm setOpenModal={setOpenModal} />,
-      NotAttending: () => <NotAttendingConfirmation />,
-    }),
-    [user]
-  );
 
   return (
     <>
@@ -29,6 +17,15 @@ export default function ConfirmPresence() {
 
       {openModal === "Attending" && (
         <AttendingModal
+          openModal={openModal}
+          setOpenModal={(modal) => {
+            setOpenModal(modal);
+          }}
+        />
+      )}
+
+      {openModal === "NotAttending" && (
+        <NotAttendingModal
           openModal={openModal}
           setOpenModal={(modal) => {
             setOpenModal(modal);
