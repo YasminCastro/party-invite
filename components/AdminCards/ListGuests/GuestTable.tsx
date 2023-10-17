@@ -1,3 +1,4 @@
+import "react-loading-skeleton/dist/skeleton.css";
 import { useState } from "react";
 import {
   AiFillCheckCircle,
@@ -10,13 +11,16 @@ import EditModal from "./EditModal";
 import { useGuests } from "@/providers/Guests";
 import { Checkbox } from "flowbite-react";
 import { updateGuest } from "@/lib/guest";
+import GuestTableSkeleton from "./GuestTableSkeleton";
 
-interface IProps {}
-
-export default function GuestTable({}: IProps) {
+export default function GuestTable() {
   const { guests, loading } = useGuests();
   const [openModal, setOpenModal] = useState<string | undefined>();
   const [selectedGuest, setSelectedGuest] = useState<any>();
+
+  if (loading) {
+    return <GuestTableSkeleton />;
+  }
 
   return (
     <div>
