@@ -1,4 +1,5 @@
 import projectConfig from "@/config/project";
+import { Button } from "flowbite-react";
 import { Spotify } from "react-spotify-embed";
 
 export default function SpotifyPlaylist() {
@@ -10,12 +11,13 @@ export default function SpotifyPlaylist() {
     <>
       {projectConfig.spotifyUrl && (
         <div className="flex w-1/2 flex-col items-center justify-around max-lg:w-full">
-          <button
-            className="mb-2 h-8 text-base"
+          <Button
+            className="my-4 h-8 text-base"
+            color={projectConfig.buttonColor}
             onClick={() => (window.location.href = spotifyUrl)}
           >
             Colaborar na playlist da festa
-          </button>
+          </Button>
           <Spotify link={spotifyUrl} className=" w-full" />
         </div>
       )}
