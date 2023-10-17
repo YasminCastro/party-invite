@@ -35,14 +35,14 @@ export default function Home() {
         </Button>
       </div>
 
-      <div className="absolute top-1/3 w-full">
-        <div className="flex justify-evenly">
-          <h1 className="font-title text-6xl text-login-title">
+      <div className="absolute top-1/3 w-full max-md:top-1/4">
+        <div className="flex justify-evenly max-md:flex-col max-md:items-center max-md:gap-y-4">
+          <h1 className="font-title text-6xl text-login-title max-sm:text-5xl">
             {projectConfig.partyName}
           </h1>
 
-          <div className="flex w-1/3 flex-col items-center gap-2">
-            <h3 className="font-title text-3xl text-login-title">
+          <div className="flex w-1/3 flex-col items-center gap-2 max-md:w-2/3 max-sm:w-11/12">
+            <h3 className="font-title text-3xl text-login-title max-sm:text-2xl">
               {projectConfig.data}
             </h3>
 
