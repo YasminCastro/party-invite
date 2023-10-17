@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function PUT(req: NextRequest) {
   try {
     const { name, receivedInvitation, isAdmin, id, status } = await req.json();
-    console.log(name, receivedInvitation, isAdmin, id, status);
 
     if (!id) throw new Error("Argument id is missing");
 

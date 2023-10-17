@@ -8,6 +8,8 @@ import {
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
 import { useGuests } from "@/providers/Guests";
+import { Checkbox } from "flowbite-react";
+import { updateGuest } from "@/lib/guest";
 
 interface IProps {}
 
@@ -36,21 +38,27 @@ export default function GuestTable({}: IProps) {
               return (
                 <tr key={guest._id} className="border-gray-700 bg-gray-800">
                   <td>{guest.name}</td>
-                  <td>
-                    {guest.receivedInvitation ? (
-                      <AiFillCheckCircle color="green" />
-                    ) : (
-                      <AiFillCloseCircle color="red" />
-                    )}
+                  <td className="text-center">
+                    <Checkbox
+                      className=" text-green-500 bg-gray-100  focus:ring-green-500"
+                      defaultChecked={guest.receivedInvitation}
+                      onChange={() => {
+                        updateGuest({
+                          id: guest._id,
+                          name: guest.name,
+                          receivedInvitation: !guest.receivedInvitation,
+                        });
+                      }}
+                    />
                   </td>
-                  <td>
+                  <td className="text-center">
                     {guest.status ? (
                       <AiFillCheckCircle color="green" />
                     ) : (
                       <AiFillCloseCircle color="red" />
                     )}
                   </td>
-                  <td>
+                  <td className="text-center">
                     {!guest.isAdmin && (
                       <AiOutlineEdit
                         size={18}
@@ -62,7 +70,7 @@ export default function GuestTable({}: IProps) {
                       />
                     )}
                   </td>
-                  <td>
+                  <td className="text-center">
                     {!guest.isAdmin && (
                       <AiOutlineDelete
                         size={18}

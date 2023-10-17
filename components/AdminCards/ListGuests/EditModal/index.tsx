@@ -1,6 +1,6 @@
 import projectConfig from "@/config/project";
+import { updateGuest } from "@/lib/guest";
 import { useGuests } from "@/providers/Guests";
-import axios from "axios";
 import { Button, Label, Modal, Radio, TextInput } from "flowbite-react";
 import { useState } from "react";
 
@@ -26,19 +26,17 @@ export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
     setSuccess("");
 
     try {
-      const { data } = await axios.put("/api/guests/update", {
-        name: name.trim().toLocaleLowerCase(),
-        receivedInvitation: receivedInvitation,
+      const { message } = await updateGuest({
         id: guest._id,
+        name: guest.name,
+        receivedInvitation,
       });
 
-      if (data.message) {
-        setError("Erro interno tente novamente mais tarde.");
-      } else {
+      if (message) {
         await fetchGuests();
         setSuccess("Convidado atualizado com sucesso.");
       }
-    } catch (error: any) {
+    } catch (error) {
       setError("Erro interno tente novamente mais tarde.");
     } finally {
       setLoading(false);
