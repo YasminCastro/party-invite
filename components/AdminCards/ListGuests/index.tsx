@@ -1,5 +1,5 @@
+import { useGuests } from "@/providers/Guests";
 import GuestTable from "./GuestTable";
-import { useGuests } from "@/providers/useGuests";
 
 interface IProps {}
 

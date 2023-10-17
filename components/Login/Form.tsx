@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import projectConfig from "@/config/project";
 
 import { useAuth } from "@/providers/useAuth";
-import { useGuests } from "@/providers/useGuests";
+import { useGuests } from "@/providers/Guests";
 
 type Inputs = {
   name: string;

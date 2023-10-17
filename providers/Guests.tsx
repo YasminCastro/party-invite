@@ -1,10 +1,31 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+"use client";
 
-export function useGuests() {
+import axios from "axios";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
+interface IValue {
+  guests: any[];
+  loading: boolean;
+  error: string;
+  totalConfirmedGuests: number;
+  totalGuests: number;
+  fetchGuests: any;
+}
+
+const GuestsContext = createContext({} as IValue);
+
+export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   const [guests, setGuests] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [totalConfirmedGuests, setTotalConfirmedGuests] = useState(0);
   const [totalGuests, setTotalGuests] = useState(0);
 
@@ -31,14 +52,23 @@ export function useGuests() {
     fetchGuests();
   }, []);
 
-  return {
-    guests,
-    loading,
-    error,
-    totalConfirmedGuests,
-    totalGuests,
-  };
-}
+  const value = useMemo(
+    () => ({
+      guests,
+      loading,
+      error,
+      totalConfirmedGuests,
+      totalGuests,
+      fetchGuests,
+    }),
+    [guests, loading, error, totalConfirmedGuests, totalGuests, fetchGuests]
+  );
+  return (
+    <GuestsContext.Provider value={value}>{children}</GuestsContext.Provider>
+  );
+};
+
+export const useGuests = (): IValue => useContext(GuestsContext);
 
 const compareGuests = (guestA: any, guestB: any) => {
   if (guestA.status && !guestB.status) {

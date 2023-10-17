@@ -1,5 +1,5 @@
 import projectConfig from "@/config/project";
-import { useGuests } from "@/providers/useGuests";
+import { useGuests } from "@/providers/Guests";
 import axios from "axios";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
@@ -18,7 +18,7 @@ export default function DeleteModal({
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const { guests } = useGuests();
+  const { fetchGuests } = useGuests();
 
   const handleDelete = async () => {
     setLoading(true);
@@ -31,6 +31,7 @@ export default function DeleteModal({
       );
 
       if (status === 200) {
+        await fetchGuests();
         setSuccess("Convidado excluído com sucesso!");
       } else {
         setError("Algo deu errado. Tente novamente mais tarde.");

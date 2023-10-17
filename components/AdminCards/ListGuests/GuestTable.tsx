@@ -1,5 +1,3 @@
-import { useGuests } from "@/providers/useGuests";
-
 import { useState } from "react";
 import {
   AiFillCheckCircle,
@@ -9,6 +7,7 @@ import {
 } from "react-icons/ai";
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
+import { useGuests } from "@/providers/Guests";
 
 interface IProps {}
 
@@ -34,7 +33,6 @@ export default function GuestTable({}: IProps) {
           {!loading &&
             guests &&
             guests.map((guest) => {
-              console.log(guest);
               return (
                 <tr key={guest._id} className="border-gray-700 bg-gray-800">
                   <td>{guest.name}</td>
