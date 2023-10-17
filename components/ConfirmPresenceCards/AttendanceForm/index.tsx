@@ -60,7 +60,7 @@ export default function AttendanceForm({ setCardActive }: IProps) {
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
       <form
         onSubmit={handleConfirmation}
-        className="max-phone:w-full flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-3/4"
+        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-full"
       >
         <div className="w-full">
           <div className="mb-2 block">
@@ -85,7 +85,10 @@ export default function AttendanceForm({ setCardActive }: IProps) {
                 value="yes"
                 onClick={() => setConfirmValue(true)}
               />
-              <Label htmlFor="yes" className="text-lg text-white">
+              <Label
+                htmlFor="yes"
+                className="text-lg text-white max-phone:text-base"
+              >
                 Vou :D
               </Label>
             </div>
@@ -97,7 +100,10 @@ export default function AttendanceForm({ setCardActive }: IProps) {
                 value="no"
                 onClick={() => setConfirmValue(false)}
               />
-              <Label htmlFor="no" className="text-lg text-white">
+              <Label
+                htmlFor="no"
+                className="text-lg text-white max-phone:text-base"
+              >
                 Não vou :(
               </Label>
             </div>
