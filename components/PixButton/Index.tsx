@@ -9,7 +9,7 @@ export default function PixButton() {
     <>
       {projectConfig.chavePix && (
         <Tooltip content="Chave pix copiada!" trigger="click">
-          <Button color="dark">
+          <Button color="dark" className="">
             <CopyToClipboard text={projectConfig.chavePix}>
               <span className="flex items-center gap-2">
                 <FaPix />

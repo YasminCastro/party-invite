@@ -26,14 +26,14 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
         size="6xl"
       >
         <Modal.Header>
-          <div className="font-title text-green-400 text-3xl">
+          <div className="font-title text-green-400 text-3xl max-sm:text-2xl">
             Presença confirmada!
           </div>
         </Modal.Header>
         <Modal.Body>
-          <div className="flex gap-4 max-sm:flex-col">
-            <div className="flex flex-col gap-10 ">
-              <ul className="font-text ml-4 w-4/5 list-disc text-xl max-sm:text-xl">
+          <div className="flex gap-4 max-md:flex-col">
+            <div className="flex flex-col gap-10">
+              <ul className="font-text ml-4 list-disc text-xl max-sm:text-lg">
                 <li>
                   Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
                 </li>
@@ -50,8 +50,6 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                     </WhatsappLink>
                   </p>
                 </li>
-
-                <li>Texto sobre a comida...</li>
 
                 <li>
                   Quer me dar um presente e não sabe o que? pode me dar{" "}
@@ -71,14 +69,14 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                   </p>
                 </li>
               </ul>
-              <div className="flex gap-x-6">
+              <div className="flex gap-x-6 justify-center max-sm:flex-col max-sm:gap-y-3">
                 <PixButton />
                 <SpotifyButton />
               </div>
             </div>
 
             {projectConfig.spotifyUrl && (
-              <div className="flex w-1/2 flex-col items-center justify-around max-sm:w-full">
+              <div className="w-1/2 max-md:w-full">
                 <Spotify link={projectConfig.spotifyUrl} className=" w-full" />
               </div>
             )}
