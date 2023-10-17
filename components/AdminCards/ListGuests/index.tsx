@@ -1,12 +1,9 @@
 import GuestTable from "./GuestTable";
-import { IAdminAction } from "@/app/admin/page";
 import { useGuests } from "@/providers/useGuests";
 
-interface IProps {
-  setCardActive: React.Dispatch<React.SetStateAction<IAdminAction>>;
-}
+interface IProps {}
 
-export default function ListGuests({ setCardActive }: IProps) {
+export default function ListGuests({}: IProps) {
   const { error, totalConfirmedGuests, totalGuests } = useGuests();
 
   if (error) {
@@ -24,7 +21,7 @@ export default function ListGuests({ setCardActive }: IProps) {
         </p>
       </div>
       <div className="mt-3 h-[75vh] overflow-auto">
-        <GuestTable setCardActive={setCardActive} />
+        <GuestTable />
       </div>
     </div>
   );

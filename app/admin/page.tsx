@@ -1,46 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useState } from "react";
 
-import EditGuest from "@/components/AdminCards/EditGuest";
 import ListGuests from "@/components/AdminCards/ListGuests";
 import GoBackButton from "@/components/GoBackButton/Index";
 import { Button } from "flowbite-react";
 import projectConfig from "@/config/project";
 import NewGuestModal from "@/components/AdminCards/NewGuestModal";
 
-export type IAdminAction =
-  | "newGuest"
-  | "editGuest"
-  | "listGuests"
-  | "deleteGuest";
-
 export type IAdminModal = "NewGuest" | "";
 
 export default function Admin() {
-  const { query } = useParams();
   const [openModal, setOpenModal] = useState<string | undefined>();
-
-  const cardActiveFromQuery = (query as any)?.cardActive;
-
-  const [cardActive, setCardActive] = useState<IAdminAction>("listGuests");
-
-  useEffect(() => {
-    if (cardActiveFromQuery) setCardActive(cardActiveFromQuery as IAdminAction);
-  }, [cardActiveFromQuery]);
-
-  let ActiveComponent;
-  switch (cardActive) {
-    case "listGuests":
-      ActiveComponent = ListGuests;
-      break;
-    case "editGuest":
-      ActiveComponent = EditGuest;
-      break;
-    default:
-      ActiveComponent = ListGuests;
-  }
 
   return (
     <>
@@ -54,15 +25,8 @@ export default function Admin() {
           >
             Novo
           </Button>
-          <Button
-            onClick={() => setCardActive("listGuests")}
-            color={projectConfig.buttonColor}
-            size="sm"
-          >
-            Lista
-          </Button>
         </div>
-        <ActiveComponent setCardActive={setCardActive} />
+        <ListGuests />
       </div>
 
       {openModal === "NewGuest" && (
