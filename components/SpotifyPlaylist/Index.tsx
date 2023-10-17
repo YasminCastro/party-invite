@@ -14,7 +14,8 @@ export default function SpotifyPlaylist() {
           <Button
             className="my-4 h-8 text-base"
             color="dark"
-            onClick={() => (window.location.href = spotifyUrl)}
+            href={spotifyUrl}
+            target="_blank"
           >
             Colaborar na playlist da festa
           </Button>
