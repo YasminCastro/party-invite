@@ -1,5 +1,6 @@
 import { IAdminModal } from "@/app/admin/page";
 import projectConfig from "@/config/project";
+import { useGuests } from "@/providers/Guests";
 import axios from "axios";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
@@ -14,6 +15,7 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [name, setName] = useState("");
+  const { fetchGuests } = useGuests();
 
   const handleNewGuest = async () => {
     setLoading(true);
@@ -26,6 +28,7 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
       });
 
       if (data.acknowledged) {
+        await fetchGuests();
         setSuccess(
           `${name.toUpperCase()} foi adicionade na lista de convidados.`
         );
