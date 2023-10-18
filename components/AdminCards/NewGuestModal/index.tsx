@@ -1,4 +1,3 @@
-import { IAdminModal } from "@/app/admin/page";
 import projectConfig from "@/config/project";
 import { useGuests } from "@/providers/Guests";
 import axios from "axios";
@@ -7,7 +6,7 @@ import { useState } from "react";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
-  openModal: IAdminModal | undefined;
+  openModal: string | undefined;
 }
 
 export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
