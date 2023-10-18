@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 
-export interface IGuests {
+export interface IGuest {
   _id: string;
   name: string;
   receivedInvitation: boolean;
@@ -18,7 +18,7 @@ export interface IGuests {
 }
 
 interface IValue {
-  guests: IGuests[];
+  guests: IGuest[];
   loading: boolean;
   error: string;
   totalConfirmedGuests: number;

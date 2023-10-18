@@ -10,7 +10,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
-import { useGuests } from "@/providers/Guests";
+import { IGuest, useGuests } from "@/providers/Guests";
 import { Checkbox, CustomFlowbiteTheme, Flowbite, Table } from "flowbite-react";
 import { updateGuest } from "@/lib/guest";
 import GuestTableSkeleton from "./GuestTableSkeleton";
@@ -33,7 +33,7 @@ interface SortConfig {
 export default function GuestTable({ isAdminPage }: IProps) {
   const { guests, loading } = useGuests();
   const [openModal, setOpenModal] = useState<string | undefined>();
-  const [selectedGuest, setSelectedGuest] = useState<any>();
+  const [selectedGuest, setSelectedGuest] = useState<IGuest | null>();
   const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: "status",
     direction: "ascending",
@@ -54,13 +54,12 @@ export default function GuestTable({ isAdminPage }: IProps) {
   const direction =
     sortConfig.direction === "ascending" ? "descending" : "ascending";
 
-  const getIcon = () => {
-    return sortConfig.direction === "ascending" ? (
+  const icon =
+    sortConfig.direction === "ascending" ? (
       <IoIosArrowUp />
     ) : (
       <IoIosArrowDown />
     );
-  };
 
   const customTheme: CustomFlowbiteTheme = {
     table: {
@@ -86,7 +85,7 @@ export default function GuestTable({ isAdminPage }: IProps) {
           >
             <span className="flex items-center justify-center gap-1">
               Nome
-              {getIcon()}
+              {icon}
             </span>
           </Table.HeadCell>
           {isAdminPage && <Table.HeadCell>Recebeu convite?</Table.HeadCell>}
@@ -101,7 +100,7 @@ export default function GuestTable({ isAdminPage }: IProps) {
           >
             <span className="flex items-center justify-center gap-1">
               Status
-              {getIcon()}
+              {icon}
             </span>
           </Table.HeadCell>
           {isAdminPage && <Table.HeadCell>Editar</Table.HeadCell>}

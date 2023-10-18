@@ -1,9 +1,9 @@
-import { IGuests } from "@/providers/Guests";
+import { IGuest } from "@/providers/Guests";
 
-export const compareByName = (a: IGuests, b: IGuests): number => {
+export const compareByName = (a: IGuest, b: IGuest): number => {
   return a.name.localeCompare(b.name);
 };
 
-export const compareByStatus = (a: IGuests, b: IGuests): number => {
+export const compareByStatus = (a: IGuest, b: IGuest): number => {
   return a.status === b.status ? 0 : a.status ? -1 : 1;
 };
