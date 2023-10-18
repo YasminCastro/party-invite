@@ -6,6 +6,8 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
 import { useGuests } from "@/providers/Guests";
@@ -17,19 +19,66 @@ export default function GuestTable() {
   const { guests, loading } = useGuests();
   const [openModal, setOpenModal] = useState<string | undefined>();
   const [selectedGuest, setSelectedGuest] = useState<any>();
+  const [sortConfig, setSortConfig] = useState({
+    key: "status",
+    direction: "ascending",
+  });
 
   if (loading) {
     return <GuestTableSkeleton />;
   }
+
+  const sortedGuests = [...guests].sort((a, b) => {
+    if (a[sortConfig.key] < b[sortConfig.key]) {
+      return sortConfig.direction === "ascending" ? -1 : 1;
+    }
+    if (a[sortConfig.key] > b[sortConfig.key]) {
+      return sortConfig.direction === "ascending" ? 1 : -1;
+    }
+    return 0;
+  });
+
+  const direction =
+    sortConfig.direction === "ascending" ? "descending" : "ascending";
 
   return (
     <div>
       <table className="bg-gray-700 text-xs uppercase text-gray-400 ">
         <thead>
           <tr>
-            <th>Nome</th>
+            <th
+              className="flex items-center justify-center gap-1"
+              onClick={() =>
+                setSortConfig({
+                  key: "name",
+                  direction,
+                })
+              }
+            >
+              Nome
+              {sortConfig.direction === "ascending" ? (
+                <IoIosArrowUp />
+              ) : (
+                <IoIosArrowDown />
+              )}
+            </th>
             <th>Recebeu convite?</th>
-            <th>Status</th>
+            <th
+              className="flex items-center justify-center gap-1"
+              onClick={() =>
+                setSortConfig({
+                  key: "status",
+                  direction,
+                })
+              }
+            >
+              Status
+              {sortConfig.direction === "ascending" ? (
+                <IoIosArrowUp />
+              ) : (
+                <IoIosArrowDown />
+              )}
+            </th>
             <th>Editar</th>
             <th>Excluir</th>
           </tr>
@@ -38,7 +87,7 @@ export default function GuestTable() {
         <tbody>
           {!loading &&
             guests &&
-            guests.map((guest) => {
+            sortedGuests.map((guest) => {
               return (
                 <tr key={guest._id} className="border-gray-700 bg-gray-800">
                   <td>{guest.name}</td>
