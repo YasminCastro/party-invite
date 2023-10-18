@@ -9,8 +9,16 @@ import React, {
   useState,
 } from "react";
 
+export interface IGuests {
+  _id: string;
+  name: string;
+  receivedInvitation: boolean;
+  status: boolean;
+  isAdmin?: boolean;
+}
+
 interface IValue {
-  guests: any[];
+  guests: IGuests[];
   loading: boolean;
   error: string;
   totalConfirmedGuests: number;
@@ -32,6 +40,7 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
   const fetchGuests = async () => {
     try {
       const { data } = await axios.get("/api/guests/get");
+      console.log(data);
       data.sort(compareGuests);
       setGuests(data);
 

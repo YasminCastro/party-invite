@@ -14,16 +14,27 @@ import { useGuests } from "@/providers/Guests";
 import { Checkbox, CustomFlowbiteTheme, Flowbite, Table } from "flowbite-react";
 import { updateGuest } from "@/lib/guest";
 import GuestTableSkeleton from "./GuestTableSkeleton";
+import { compareByName, compareByStatus } from "@/utils/sort";
 
 interface IProps {
   isAdminPage: boolean;
+}
+
+const compareFunctions = {
+  name: compareByName,
+  status: compareByStatus,
+};
+
+interface SortConfig {
+  key: keyof typeof compareFunctions;
+  direction: "ascending" | "descending";
 }
 
 export default function GuestTable({ isAdminPage }: IProps) {
   const { guests, loading } = useGuests();
   const [openModal, setOpenModal] = useState<string | undefined>();
   const [selectedGuest, setSelectedGuest] = useState<any>();
-  const [sortConfig, setSortConfig] = useState({
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: "status",
     direction: "ascending",
   });
@@ -32,14 +43,12 @@ export default function GuestTable({ isAdminPage }: IProps) {
     return <GuestTableSkeleton isAdminPage={isAdminPage} />;
   }
 
+  const compareFunction = compareFunctions[sortConfig.key];
+
   const sortedGuests = [...guests].sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
-      return sortConfig.direction === "ascending" ? -1 : 1;
-    }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
-      return sortConfig.direction === "ascending" ? 1 : -1;
-    }
-    return 0;
+    return sortConfig.direction === "ascending"
+      ? compareFunction(a, b)
+      : -compareFunction(a, b);
   });
 
   const direction =
