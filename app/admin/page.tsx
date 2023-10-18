@@ -8,8 +8,6 @@ import { Button } from "flowbite-react";
 import projectConfig from "@/config/project";
 import NewGuestModal from "@/components/AdminCards/NewGuestModal";
 
-export type IAdminModal = "NewGuest" | "";
-
 export default function Admin() {
   const [openModal, setOpenModal] = useState<string | undefined>();
 
@@ -26,7 +24,7 @@ export default function Admin() {
             Novo
           </Button>
         </div>
-        <ListGuests />
+        <ListGuests isAdminPage={true} />
       </div>
 
       {openModal === "NewGuest" && (

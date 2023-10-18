@@ -1,9 +1,11 @@
 import { useGuests } from "@/providers/Guests";
 import GuestTable from "./GuestTable";
 
-interface IProps {}
+interface IProps {
+  isAdminPage: boolean;
+}
 
-export default function ListGuests({}: IProps) {
+export default function ListGuests({ isAdminPage }: IProps) {
   const { error, totalConfirmedGuests, totalGuests } = useGuests();
 
   if (error) {
@@ -21,7 +23,7 @@ export default function ListGuests({}: IProps) {
         </p>
       </div>
       <div className="mt-3 h-[75vh] overflow-auto">
-        <GuestTable />
+        <GuestTable isAdminPage={isAdminPage} />
       </div>
     </div>
   );

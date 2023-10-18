@@ -1,17 +1,21 @@
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-export default function GuestTableSkeleton() {
+interface IProps {
+  isAdminPage: boolean;
+}
+
+export default function GuestTableSkeleton({ isAdminPage }: IProps) {
   return (
     <div>
       <table className="bg-gray-700 text-xs uppercase text-gray-400 ">
         <thead>
           <tr>
             <th>Nome</th>
-            <th>Recebeu convite?</th>
+            {isAdminPage && <th>Recebeu convite?</th>}
             <th>Status</th>
-            <th>Editar</th>
-            <th>Excluir</th>
+            {isAdminPage && <th>Editar</th>}
+            {isAdminPage && <th>Excluir</th>}
           </tr>
         </thead>
         <tbody>
@@ -24,15 +28,19 @@ export default function GuestTableSkeleton() {
                 <td>
                   <Skeleton />
                 </td>
-                <td>
-                  <Skeleton />
-                </td>
-                <td>
-                  <Skeleton />
-                </td>
-                <td>
-                  <Skeleton />
-                </td>
+                {isAdminPage && (
+                  <>
+                    <td>
+                      <Skeleton />
+                    </td>
+                    <td>
+                      <Skeleton />
+                    </td>
+                    <td>
+                      <Skeleton />
+                    </td>
+                  </>
+                )}
               </SkeletonTheme>
             </tr>
           ))}

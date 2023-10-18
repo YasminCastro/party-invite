@@ -15,7 +15,11 @@ import { Checkbox } from "flowbite-react";
 import { updateGuest } from "@/lib/guest";
 import GuestTableSkeleton from "./GuestTableSkeleton";
 
-export default function GuestTable() {
+interface IProps {
+  isAdminPage: boolean;
+}
+
+export default function GuestTable({ isAdminPage }: IProps) {
   const { guests, loading } = useGuests();
   const [openModal, setOpenModal] = useState<string | undefined>();
   const [selectedGuest, setSelectedGuest] = useState<any>();
@@ -25,7 +29,7 @@ export default function GuestTable() {
   });
 
   if (loading) {
-    return <GuestTableSkeleton />;
+    return <GuestTableSkeleton isAdminPage={isAdminPage} />;
   }
 
   const sortedGuests = [...guests].sort((a, b) => {
@@ -62,7 +66,7 @@ export default function GuestTable() {
                 <IoIosArrowDown />
               )}
             </th>
-            <th>Recebeu convite?</th>
+            {isAdminPage && <th>Recebeu convite?</th>}
             <th
               className="flex items-center justify-center gap-1"
               onClick={() =>
@@ -79,8 +83,8 @@ export default function GuestTable() {
                 <IoIosArrowDown />
               )}
             </th>
-            <th>Editar</th>
-            <th>Excluir</th>
+            {isAdminPage && <th>Editar</th>}
+            {isAdminPage && <th>Excluir</th>}
           </tr>
         </thead>
 
@@ -91,19 +95,22 @@ export default function GuestTable() {
               return (
                 <tr key={guest._id} className="border-gray-700 bg-gray-800">
                   <td>{guest.name}</td>
-                  <td className="text-center">
-                    <Checkbox
-                      className=" text-green-500 bg-gray-100  focus:ring-green-500"
-                      defaultChecked={guest.receivedInvitation}
-                      onChange={() => {
-                        updateGuest({
-                          id: guest._id,
-                          name: guest.name,
-                          receivedInvitation: !guest.receivedInvitation,
-                        });
-                      }}
-                    />
-                  </td>
+                  {isAdminPage && (
+                    <td className="text-center">
+                      <Checkbox
+                        className=" text-green-500 bg-gray-100  focus:ring-green-500"
+                        defaultChecked={guest.receivedInvitation}
+                        onChange={() => {
+                          updateGuest({
+                            id: guest._id,
+                            name: guest.name,
+                            receivedInvitation: !guest.receivedInvitation,
+                          });
+                        }}
+                      />
+                    </td>
+                  )}
+
                   <td className="text-center">
                     {guest.status ? (
                       <AiFillCheckCircle color="green" />
@@ -111,30 +118,35 @@ export default function GuestTable() {
                       <AiFillCloseCircle color="red" />
                     )}
                   </td>
-                  <td className="text-center">
-                    {!guest.isAdmin && (
-                      <AiOutlineEdit
-                        size={18}
-                        className="cursor-pointer focus:outline-none hover:text-blue-400 active:text-blue-600"
-                        onClick={() => {
-                          setSelectedGuest(guest);
-                          setOpenModal("EditGuest");
-                        }}
-                      />
-                    )}
-                  </td>
-                  <td className="text-center">
-                    {!guest.isAdmin && (
-                      <AiOutlineDelete
-                        size={18}
-                        className="cursor-pointer focus:outline-none hover:text-blue-400 active:text-blue-600"
-                        onClick={() => {
-                          setSelectedGuest(guest);
-                          setOpenModal("DeleteGuest");
-                        }}
-                      />
-                    )}
-                  </td>
+                  {isAdminPage && (
+                    <td className="text-center">
+                      {!guest.isAdmin && (
+                        <AiOutlineEdit
+                          size={18}
+                          className="cursor-pointer focus:outline-none hover:text-blue-400 active:text-blue-600"
+                          onClick={() => {
+                            setSelectedGuest(guest);
+                            setOpenModal("EditGuest");
+                          }}
+                        />
+                      )}
+                    </td>
+                  )}
+
+                  {isAdminPage && (
+                    <td className="text-center">
+                      {!guest.isAdmin && (
+                        <AiOutlineDelete
+                          size={18}
+                          className="cursor-pointer focus:outline-none hover:text-blue-400 active:text-blue-600"
+                          onClick={() => {
+                            setSelectedGuest(guest);
+                            setOpenModal("DeleteGuest");
+                          }}
+                        />
+                      )}
+                    </td>
+                  )}
                 </tr>
               );
             })}
