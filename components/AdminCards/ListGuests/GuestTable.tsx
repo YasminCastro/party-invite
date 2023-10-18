@@ -11,7 +11,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
 import { useGuests } from "@/providers/Guests";
-import { Checkbox } from "flowbite-react";
+import { Checkbox, CustomFlowbiteTheme, Flowbite, Table } from "flowbite-react";
 import { updateGuest } from "@/lib/guest";
 import GuestTableSkeleton from "./GuestTableSkeleton";
 
@@ -45,58 +45,66 @@ export default function GuestTable({ isAdminPage }: IProps) {
   const direction =
     sortConfig.direction === "ascending" ? "descending" : "ascending";
 
-  return (
-    <div>
-      <table className="bg-gray-700 text-xs uppercase text-gray-400 ">
-        <thead>
-          <tr>
-            <th
-              className="flex items-center justify-center gap-1"
-              onClick={() =>
-                setSortConfig({
-                  key: "name",
-                  direction,
-                })
-              }
-            >
-              Nome
-              {sortConfig.direction === "ascending" ? (
-                <IoIosArrowUp />
-              ) : (
-                <IoIosArrowDown />
-              )}
-            </th>
-            {isAdminPage && <th>Recebeu convite?</th>}
-            <th
-              className="flex items-center justify-center gap-1"
-              onClick={() =>
-                setSortConfig({
-                  key: "status",
-                  direction,
-                })
-              }
-            >
-              Status
-              {sortConfig.direction === "ascending" ? (
-                <IoIosArrowUp />
-              ) : (
-                <IoIosArrowDown />
-              )}
-            </th>
-            {isAdminPage && <th>Editar</th>}
-            {isAdminPage && <th>Excluir</th>}
-          </tr>
-        </thead>
+  const getIcon = () => {
+    return sortConfig.direction === "ascending" ? (
+      <IoIosArrowUp />
+    ) : (
+      <IoIosArrowDown />
+    );
+  };
 
-        <tbody>
+  const customTheme: CustomFlowbiteTheme = {
+    table: {
+      head: { base: "text-gray-400 group/head", cell: { base: "bg-gray-700" } },
+      row: {
+        base: "border-gray-700 bg-gray-800",
+        hovered: "hover:bg-gray-600",
+      },
+    },
+  };
+
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Table hoverable>
+        <Table.Head>
+          <Table.HeadCell
+            className="flex items-center justify-center gap-1 "
+            onClick={() =>
+              setSortConfig({
+                key: "name",
+                direction,
+              })
+            }
+          >
+            Nome
+            {getIcon()}
+          </Table.HeadCell>
+          {isAdminPage && <Table.HeadCell>Recebeu convite?</Table.HeadCell>}
+          <Table.HeadCell
+            className="flex items-center justify-center gap-1 "
+            onClick={() =>
+              setSortConfig({
+                key: "status",
+                direction,
+              })
+            }
+          >
+            Status
+            {getIcon()}
+          </Table.HeadCell>
+          {isAdminPage && <Table.HeadCell>Editar</Table.HeadCell>}
+          {isAdminPage && <Table.HeadCell>Excluir</Table.HeadCell>}
+        </Table.Head>
+
+        <Table.Body className="divide-y">
           {!loading &&
             guests &&
             sortedGuests.map((guest) => {
               return (
-                <tr key={guest._id} className="border-gray-700 bg-gray-800">
-                  <td>{guest.name}</td>
+                <Table.Row key={guest._id}>
+                  <Table.Cell>{guest.name}</Table.Cell>
                   {isAdminPage && (
-                    <td className="text-center">
+                    <Table.Cell className="text-center">
                       <Checkbox
                         className=" text-green-500 bg-gray-100  focus:ring-green-500"
                         defaultChecked={guest.receivedInvitation}
@@ -108,18 +116,18 @@ export default function GuestTable({ isAdminPage }: IProps) {
                           });
                         }}
                       />
-                    </td>
+                    </Table.Cell>
                   )}
 
-                  <td className="text-center">
+                  <Table.Cell className="text-center">
                     {guest.status ? (
                       <AiFillCheckCircle color="green" />
                     ) : (
                       <AiFillCloseCircle color="red" />
                     )}
-                  </td>
+                  </Table.Cell>
                   {isAdminPage && (
-                    <td className="text-center">
+                    <Table.Cell className="text-center">
                       {!guest.isAdmin && (
                         <AiOutlineEdit
                           size={18}
@@ -130,11 +138,11 @@ export default function GuestTable({ isAdminPage }: IProps) {
                           }}
                         />
                       )}
-                    </td>
+                    </Table.Cell>
                   )}
 
                   {isAdminPage && (
-                    <td className="text-center">
+                    <Table.Cell className="text-center">
                       {!guest.isAdmin && (
                         <AiOutlineDelete
                           size={18}
@@ -145,13 +153,13 @@ export default function GuestTable({ isAdminPage }: IProps) {
                           }}
                         />
                       )}
-                    </td>
+                    </Table.Cell>
                   )}
-                </tr>
+                </Table.Row>
               );
             })}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
 
       {openModal === "DeleteGuest" && selectedGuest && (
         <DeleteModal
@@ -173,6 +181,6 @@ export default function GuestTable({ isAdminPage }: IProps) {
           guest={selectedGuest}
         />
       )}
-    </div>
+    </Flowbite>
   );
 }
