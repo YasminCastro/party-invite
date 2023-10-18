@@ -68,7 +68,6 @@ export default function GuestTable({ isAdminPage }: IProps) {
       <Table hoverable>
         <Table.Head>
           <Table.HeadCell
-            className="flex items-center justify-center gap-1 "
             onClick={() =>
               setSortConfig({
                 key: "name",
@@ -76,8 +75,10 @@ export default function GuestTable({ isAdminPage }: IProps) {
               })
             }
           >
-            Nome
-            {getIcon()}
+            <span className="flex items-center justify-center gap-1">
+              Nome
+              {getIcon()}
+            </span>
           </Table.HeadCell>
           {isAdminPage && <Table.HeadCell>Recebeu convite?</Table.HeadCell>}
           <Table.HeadCell
@@ -89,8 +90,10 @@ export default function GuestTable({ isAdminPage }: IProps) {
               })
             }
           >
-            Status
-            {getIcon()}
+            <span className="flex items-center justify-center gap-1">
+              Status
+              {getIcon()}
+            </span>
           </Table.HeadCell>
           {isAdminPage && <Table.HeadCell>Editar</Table.HeadCell>}
           {isAdminPage && <Table.HeadCell>Excluir</Table.HeadCell>}
