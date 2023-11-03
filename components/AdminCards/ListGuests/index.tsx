@@ -15,10 +15,10 @@ export default function ListGuests({ isAdminPage }: IProps) {
   return (
     <div>
       <div className="text-center">
-        <p className="font-title text-xl  text-admin-title  max-sm:text-base ">
+        <p className="font-title text-xl  text-admin-title  max-sm:text-base font-bold">
           Total de confirmados: {totalConfirmedGuests}
         </p>
-        <p className="font-title text-base  text-admin-title  max-sm:text-sm ">
+        <p className="font-title text-base  text-admin-title  max-sm:text-sm font-bold">
           Total de convidados: {totalGuests}
         </p>
       </div>
