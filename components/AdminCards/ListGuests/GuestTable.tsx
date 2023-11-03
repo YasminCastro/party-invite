@@ -63,9 +63,15 @@ export default function GuestTable({ isAdminPage }: IProps) {
 
   const customTheme: CustomFlowbiteTheme = {
     table: {
-      head: { base: "text-gray-400 group/head", cell: { base: "bg-gray-700" } },
+      root: {
+        base: "w-full max-[370px]:text-xs",
+      },
+      head: {
+        base: "text-gray-400 group/head",
+        cell: { base: "bg-gray-700 p-3 max-sm:p-2" },
+      },
       row: {
-        base: "border-gray-700 bg-gray-800",
+        base: "border-gray-700 bg-gray-800 text-white",
         hovered: "hover:bg-gray-600",
       },
     },
