@@ -7,7 +7,6 @@ export default function AddressMap() {
   const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(loading);
     const timeoutId = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
