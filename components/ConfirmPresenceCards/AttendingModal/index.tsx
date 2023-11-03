@@ -28,14 +28,14 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
         size={size}
       >
         <Modal.Header>
-          <div className="font-title text-green-400 text-3xl max-sm:text-2xl">
+          <div className="font-title text-3xl text-green-400 max-sm:text-2xl">
             Presença confirmada!
           </div>
         </Modal.Header>
         <Modal.Body>
           <div className="flex gap-4 max-md:flex-col">
             <div className="flex flex-col gap-10">
-              <ul className="font-text ml-4 list-disc text-xl max-sm:text-lg ">
+              <ul className="ml-4 list-disc font-text text-xl max-sm:text-lg ">
                 <li className="flex space-x-2">
                   <BiSolidStar />
                   <span>
@@ -69,11 +69,12 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                 <li className="flex space-x-2">
                   <BiSolidStar />
                   <span>
-                    Estou pedindo contribuições para a comida da festa.
+                    Quer ajudar nos comes e bebes (vai ter pinga) manda 10zao no
+                    pix (se quiser mandar mais pode).
                   </span>
                 </li>
               </ul>
-              <div className="flex gap-x-6 justify-center max-sm:flex-col max-sm:gap-y-3">
+              <div className="flex justify-center gap-x-6 max-sm:flex-col max-sm:gap-y-3">
                 <PixButton />
                 <SpotifyButton />
               </div>
