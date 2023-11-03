@@ -15,8 +15,8 @@ const config: Config = {
         alt: "var(--font-bailjamjuree)",
       },
       backgroundImage: {
-        login: "url('/login/background.jpg')",
-        home: "url('/home/background.jpg')",
+        login: "url('/login/background.png')",
+        home: "url('/home/background.png')",
       },
 
       colors: {
