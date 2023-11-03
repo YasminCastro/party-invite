@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        title: "var(--font-anton)",
+        title: "var(--font-orbitron)",
         text: "var(--font-roboto)",
         alt: "var(--font-bailjamjuree)",
       },
@@ -21,7 +21,7 @@ const config: Config = {
 
       colors: {
         login: {
-          title: "#2A2A32",
+          title: "#f8fafc",
           form: "color: rgb(0 0 0 / var(--tw-text-opacity))",
         },
         admin: {

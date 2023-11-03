@@ -7,6 +7,7 @@ import projectConfig from "@/config/project";
 
 import { useAuth } from "@/providers/useAuth";
 import { useGuests } from "@/providers/Guests";
+import { customButton } from "../CustomButtonCss";
 
 type Inputs = {
   name: string;
@@ -37,7 +38,7 @@ export default function LoginForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div>
-        <Label htmlFor="name" value="Nome" className="text-form" />
+        <Label htmlFor="name" value="Nome" className="text-white" />
         <TextInput
           id="name"
           required
@@ -55,7 +56,7 @@ export default function LoginForm() {
       </div>
 
       <div>
-        <Label htmlFor="password" value="Senha" className="text-form" />
+        <Label htmlFor="password" value="Senha" className="text-white" />
         <TextInput
           id="password"
           required
@@ -72,7 +73,8 @@ export default function LoginForm() {
       <Button
         type="submit"
         disabled={loading}
-        color={projectConfig.buttonColor}
+        theme={customButton}
+        color="primary"
       >
         {loading ? "Carregando..." : "Entrar"}
       </Button>
