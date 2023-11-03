@@ -2,10 +2,6 @@ if (!process.env.MONGO_URL) {
   throw new Error("MONGO URL NOT DEFINED");
 }
 
-if (!process.env.MONGO_URL_GLOBAL) {
-  throw new Error("MONGO_URL_GLOBAL NOT DEFINED");
-}
-
 if (!process.env.DB_NAME) {
   throw new Error("DB_NAME NOT DEFINED");
 }
