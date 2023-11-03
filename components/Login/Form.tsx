@@ -33,7 +33,7 @@ export default function LoginForm() {
 
   return (
     <form
-      className="flex w-1/2 flex-col space-y-3 rounded-lg bg-gray-500 bg-opacity-20 p-4"
+      className="flex w-1/2 flex-col space-y-3 rounded-lg bg-gray-500 bg-opacity-20 p-4 max-md:w-full"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div>
