@@ -88,7 +88,11 @@ export default function GuestTable({ isAdminPage }: IProps) {
               {icon}
             </span>
           </Table.HeadCell>
-          {isAdminPage && <Table.HeadCell>Recebeu convite?</Table.HeadCell>}
+          {isAdminPage && (
+            <Table.HeadCell className="max-sm:hidden">
+              Recebeu convite?
+            </Table.HeadCell>
+          )}
           <Table.HeadCell
             className="flex items-center justify-center gap-1 "
             onClick={() =>
@@ -115,7 +119,7 @@ export default function GuestTable({ isAdminPage }: IProps) {
                 <Table.Row key={guest._id}>
                   <Table.Cell>{guest.name}</Table.Cell>
                   {isAdminPage && (
-                    <Table.Cell className="text-center">
+                    <Table.Cell className="text-center max-sm:hidden">
                       <Checkbox
                         className=" text-green-500 bg-gray-100  focus:ring-green-500"
                         defaultChecked={guest.receivedInvitation}
