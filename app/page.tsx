@@ -7,13 +7,15 @@ import AddressMap from "@/components/AddressMap/Index";
 import projectConfig from "@/config/project";
 import { useUser } from "@/providers/User";
 import { useAuth } from "@/providers/useAuth";
+import { useState } from "react";
 
 export default function Home() {
   const { isAdmin } = useUser();
   const { logout } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   return (
-    <div className="min-h-screen bg-home bg-cover">
+    <div className="min-h-screen bg-home bg-cover bg-center">
       <div>
         {isAdmin && (
           <Link href="/admin">
@@ -37,7 +39,7 @@ export default function Home() {
 
       <div className="absolute top-1/3 w-full max-md:top-1/4">
         <div className="flex justify-evenly max-md:flex-col max-md:items-center max-md:gap-y-4">
-          <h1 className="font-title text-6xl text-login-title max-sm:text-5xl">
+          <h1 className="font-title text-6xl text-login-title max-sm:text-5xl font-bold">
             {projectConfig.partyName}
           </h1>
 
@@ -47,10 +49,18 @@ export default function Home() {
             </h3>
 
             <Link href="/confirm-presence">
-              <Button className="w-full" color={projectConfig.buttonColor}>
-                Confirmar presença
+              <Button
+                className="w-full"
+                color={projectConfig.buttonColor}
+                onClick={() => {
+                  setLoading(true);
+                }}
+                disabled={loading}
+              >
+                {loading ? "Carregando..." : "Confirmar presença"}
               </Button>
             </Link>
+
             <AddressMap />
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
+      <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover bg-center">
         <Spinner aria-label="Carregando..." size="xl" />
       </div>
     );
@@ -61,7 +61,7 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
   }
 
   return (
-    <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover">
+    <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover bg-center">
       <form
         onSubmit={handleConfirmation}
         className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-full"

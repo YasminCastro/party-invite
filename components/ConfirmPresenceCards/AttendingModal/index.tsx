@@ -3,6 +3,7 @@ import WhatsappLink from "@/components/WhatsappLink";
 import { Spotify } from "react-spotify-embed";
 import projectConfig from "@/config/project";
 import { Modal } from "flowbite-react";
+import { BiSolidStar } from "react-icons/bi";
 
 import { useRouter } from "next/navigation";
 import SpotifyButton from "@/components/SpotifyButton/Index";
@@ -35,39 +36,41 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
           <div className="flex gap-4 max-md:flex-col">
             <div className="flex flex-col gap-10">
               <ul className="font-text ml-4 list-disc text-xl max-sm:text-lg ">
-                <li>
-                  Não se esqueça de levar sua bebida e caixa/bolsa térmica!!
+                <li className="flex space-x-2">
+                  <BiSolidStar />
+                  <span>
+                    <b>Obrigatório</b> o uso de qualquer fantasia{" "}
+                    <i>(não precisa ser elaborada)</i> .
+                  </span>
                 </li>
-                <li>
-                  Caso você tenha conjuge não esqueça de confimar a presença
-                  delu também!!
-                  <p className="mt-[-5px] font-mono text-sm">
-                    caso seu conjugue não esteja na lista me avisa no{" "}
-                    <WhatsappLink
-                      number={projectConfig.whatsappNumber}
-                      message="Oiee, não achei meu conjugue na lista pode colocar elu por favor?"
+                <li className="flex space-x-2">
+                  <BiSolidStar />
+                  <span>
+                    Não se esqueça de levar sua bebida e caixa térmica!!
+                  </span>
+                </li>
+                <li className="flex space-x-2">
+                  <BiSolidStar />
+                  <span>
+                    Quer levar alguem? clica{" "}
+                    <a
+                      href={`https://api.whatsapp.com/send?phone=${projectConfig.whatsappNumber}&text=Oiee%2C%20quero%20convidar%20uma%20pessoa%20para%20seu%20niver...`}
+                      target="_blank"
+                      className=" text-pink-400"
                     >
-                      zap
-                    </WhatsappLink>
-                  </p>
+                      aqui{" "}
+                    </a>
+                    para mandar um zap pra ver se pode.
+                    <p className="mt-[-5px] font-mono text-sm">
+                      sujeito a lotação do local.
+                    </p>
+                  </span>
                 </li>
-
-                <li>
-                  Quer me dar um presente e não sabe o que? pode me dar{" "}
-                  <p className=" text-green-400">cerveja</p>
-                </li>
-                <li>
-                  Quer levar alguem? clica{" "}
-                  <WhatsappLink
-                    number={projectConfig.whatsappNumber}
-                    message="Oieee quero chamar uma pessoa para o seu aniversario..."
-                  >
-                    aqui
-                  </WhatsappLink>{" "}
-                  para mandar um zap pra ver se pode.
-                  <p className="mt-[-5px] font-mono text-sm">
-                    sujeito a lotação do local.
-                  </p>
+                <li className="flex space-x-2">
+                  <BiSolidStar />
+                  <span>
+                    Estou pedindo contribuições para a comida da festa.
+                  </span>
                 </li>
               </ul>
               <div className="flex gap-x-6 justify-center max-sm:flex-col max-sm:gap-y-3">
