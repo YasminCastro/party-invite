@@ -63,7 +63,11 @@ export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
           </div>
 
           <fieldset className="m-4 flex justify-center gap-8 " id="radio">
-            <Label htmlFor="radio" value="Recebeu o convite?" />
+            <Label
+              htmlFor="radio"
+              value="Recebeu o convite?"
+              className="max-sm:text-xs"
+            />
             <div className="flex items-center gap-2">
               <Radio
                 defaultChecked={receivedInvitation}
@@ -72,7 +76,9 @@ export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
                 value="yes"
                 onClick={() => setReceivedInvitation(true)}
               />
-              <Label htmlFor="yes">Sim</Label>
+              <Label htmlFor="yes" className="max-sm:text-xs">
+                Sim
+              </Label>
             </div>
             <div className="flex items-center gap-2">
               <Radio
@@ -82,7 +88,9 @@ export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
                 defaultChecked={!receivedInvitation}
                 onClick={() => setReceivedInvitation(false)}
               />
-              <Label htmlFor="no">Não</Label>
+              <Label htmlFor="no" className="max-sm:text-xs">
+                Não
+              </Label>
             </div>
           </fieldset>
 
