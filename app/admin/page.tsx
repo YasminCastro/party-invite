@@ -14,16 +14,15 @@ export default function Admin() {
   return (
     <>
       <GoBackButton title="Voltar" path="/" />
-      <div className="flex min-h-screen items-center justify-center bg-home">
-        <div className="absolute top-6 flex gap-4 max-md:left-6 max-md:gap-2 max-sm:left-4">
-          <Button
-            onClick={() => setOpenModal("NewGuest")}
-            color={projectConfig.buttonColor}
-            size="sm"
-          >
-            Novo
-          </Button>
-        </div>
+      <div className="flex flex-col min-h-screen items-center bg-home space-y-4">
+        <Button
+          onClick={() => setOpenModal("NewGuest")}
+          color={projectConfig.buttonColor}
+          size="sm"
+          className="mt-4"
+        >
+          Novo
+        </Button>
         <ListGuests isAdminPage={true} />
       </div>
 

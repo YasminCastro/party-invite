@@ -13,7 +13,7 @@ export default function ListGuests({ isAdminPage }: IProps) {
   }
 
   return (
-    <div className="mt-14">
+    <div>
       <div className="text-center">
         <p className="font-title text-xl  text-admin-title  max-sm:text-base ">
           Total de confirmados: {totalConfirmedGuests}
@@ -22,7 +22,7 @@ export default function ListGuests({ isAdminPage }: IProps) {
           Total de convidados: {totalGuests}
         </p>
       </div>
-      <div className="mt-3 h-[75vh] overflow-auto">
+      <div className="mt-3 h-[78vh] overflow-auto">
         <GuestTable isAdminPage={isAdminPage} />
       </div>
     </div>
