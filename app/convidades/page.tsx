@@ -5,7 +5,7 @@ import GoBackButton from "@/components/GoBackButton/Index";
 
 export default function Convidades() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-home bg-cover bg-center">
+    <div className="flex min-h-screen items-center justify-center bg-login bg-cover bg-center">
       <GoBackButton title="Início" path="/" />
       <ListGuests isAdminPage={false} />
     </div>
