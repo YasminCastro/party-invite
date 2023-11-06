@@ -39,8 +39,13 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   const fetchGuests = async () => {
     try {
-      const { data } = await axios.get("/api/guests/get");
-      console.log(data);
+      const { data } = await axios.get("/api/guests/get", {
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      });
       data.sort(compareGuests);
       setGuests(data);
 
