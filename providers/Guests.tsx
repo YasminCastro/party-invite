@@ -41,7 +41,7 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
     try {
       const { data } = await axios.get("/api/guests/get", {
         headers: {
-          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Cache-Control": "no-cache",
           Pragma: "no-cache",
           Expires: "0",
         },
