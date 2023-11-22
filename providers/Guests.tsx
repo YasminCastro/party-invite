@@ -39,7 +39,8 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   const fetchGuests = async () => {
     try {
-      const { data } = await axios.get("/api/guests/get", {
+      const timestamp = new Date().getTime();
+      const { data } = await axios.get(`/api/guests/get?_=${timestamp}`, {
         headers: {
           "Cache-Control": "no-cache",
           Pragma: "no-cache",
