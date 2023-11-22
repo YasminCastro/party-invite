@@ -49,6 +49,9 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
       data.sort(compareGuests);
       setGuests(data);
 
+      console.log("GUESTS FETCHED");
+      console.log(data);
+
       const confirmedGuests = data.reduce(
         (count: number, guest: any) => count + (guest.status ? 1 : 0),
         0
