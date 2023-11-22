@@ -9,7 +9,14 @@ export async function GET() {
     const collection = db.collection("guests");
     const result = await collection.find().toArray();
 
-    return NextResponse.json(result, { status: 200 });
+    const response = NextResponse.json(result, { status: 200 });
+    response.headers.append(
+      "Cache-Control",
+      "no-cache, no-store, must-revalidate"
+    );
+    response.headers.append("Pragma", "no-cache");
+    response.headers.append("Expires", "0");
+    return response;
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
