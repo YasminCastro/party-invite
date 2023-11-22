@@ -39,8 +39,7 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   const fetchGuests = async () => {
     try {
-      const timestamp = new Date().getTime();
-      const { data } = await axios.get(`/api/guests/get?_=${timestamp}`, {
+      const { data } = await axios.get(`/api/guests/get`, {
         headers: {
           "Cache-Control": "no-cache",
           Pragma: "no-cache",
@@ -67,17 +66,14 @@ export const GuestProvider: React.FC<{ children?: React.ReactNode }> = ({
     fetchGuests();
   }, []);
 
-  const value = useMemo(
-    () => ({
-      guests,
-      loading,
-      error,
-      totalConfirmedGuests,
-      totalGuests,
-      fetchGuests,
-    }),
-    [guests, loading, error, totalConfirmedGuests, totalGuests, fetchGuests]
-  );
+  const value = {
+    guests,
+    loading,
+    error,
+    totalConfirmedGuests,
+    totalGuests,
+    fetchGuests,
+  };
   return (
     <GuestsContext.Provider value={value}>{children}</GuestsContext.Provider>
   );
