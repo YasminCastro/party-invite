@@ -5,3 +5,11 @@ export interface IGuest {
   status: boolean;
   isAdmin?: boolean;
 }
+
+export interface IUpdateGuest {
+  _id: string;
+  name?: string;
+  status?: boolean;
+  receivedInvitation?: boolean;
+  isAdmin?: boolean;
+}

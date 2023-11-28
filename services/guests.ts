@@ -1,3 +1,4 @@
+import { IUpdateGuest } from "@/interface/guests";
 import axios from "axios";
 
 export async function getGuests() {
@@ -20,4 +21,13 @@ export async function getGuests() {
     guestsCount: data.length,
     confirmedGuestsCount: confirmedGuests,
   };
+}
+
+export async function updateGuests(user: IUpdateGuest) {
+  const { data } = await axios.put("/api/guests/update", {
+    id: user._id,
+    status: user.status,
+  });
+
+  return data.user;
 }
