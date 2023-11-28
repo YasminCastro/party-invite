@@ -23,11 +23,23 @@ export async function getGuests() {
   };
 }
 
-export async function updateGuests(user: IUpdateGuest) {
-  const { data } = await axios.put("/api/guests/update", {
-    id: user._id,
-    status: user.status,
-  });
+export async function updateGuests(guest: IUpdateGuest) {
+  console.log("guest", guest);
+  let query: any = {
+    id: guest._id,
+  };
+
+  if ("status" in guest) query.status = guest.status;
+  if ("receivedInvitation" in guest) {
+    query.receivedInvitation = guest.receivedInvitation;
+  }
+  if (guest.name) query.name = guest.name.trim().toLocaleLowerCase();
+
+  console.log("query", query);
+
+  const { data } = await axios.put("/api/guests/update", query);
+
+  console.log("data", data);
 
   return data.user;
 }

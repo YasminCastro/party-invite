@@ -1,4 +1,3 @@
-import "react-loading-skeleton/dist/skeleton.css";
 import { useState } from "react";
 import {
   AiFillCheckCircle,
@@ -6,18 +5,19 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { Spinner } from "flowbite-react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
-import { IGuest, useGuests } from "@/providers/Guests";
 import { Checkbox, CustomFlowbiteTheme, Flowbite, Table } from "flowbite-react";
-import { updateGuest } from "@/lib/guest";
-import GuestTableSkeleton from "./GuestTableSkeleton";
 import { compareByName, compareByStatus } from "@/utils/sort";
+import { IGuest } from "@/interface/guests";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   isAdminPage: boolean;
+  guests: IGuest[];
 }
 
 const compareFunctions = {
@@ -30,18 +30,14 @@ interface SortConfig {
   direction: "ascending" | "descending";
 }
 
-export default function GuestTable({ isAdminPage }: IProps) {
-  const { guests, loading } = useGuests();
+export default function GuestTable({ isAdminPage, guests }: IProps) {
   const [openModal, setOpenModal] = useState<string | undefined>();
   const [selectedGuest, setSelectedGuest] = useState<IGuest | null>();
+  const [error, setError] = useState("");
   const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: "status",
     direction: "ascending",
   });
-
-  if (loading) {
-    return <GuestTableSkeleton isAdminPage={isAdminPage} />;
-  }
 
   const compareFunction = compareFunctions[sortConfig.key];
 
@@ -77,6 +73,18 @@ export default function GuestTable({ isAdminPage }: IProps) {
     },
   };
 
+  const editUser = async (guest: any) => {
+    try {
+      await guestsService.updateGuests({
+        _id: guest._id,
+        name: guest.name,
+        receivedInvitation: guest.receivedInvitation,
+      });
+    } catch (error) {
+      console.log(error);
+      setError("Erro interno tente novamente mais tarde.");
+    }
+  };
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Table hoverable>
@@ -118,22 +126,23 @@ export default function GuestTable({ isAdminPage }: IProps) {
         </Table.Head>
 
         <Table.Body className="divide-y">
-          {!loading &&
-            guests &&
+          {guests &&
             sortedGuests.map((guest) => {
+              let receivedInvitation = guest.receivedInvitation;
               return (
                 <Table.Row key={guest._id}>
                   <Table.Cell>{guest.name}</Table.Cell>
                   {isAdminPage && (
                     <Table.Cell className="text-center max-sm:hidden">
                       <Checkbox
-                        className=" text-green-500 bg-gray-100  focus:ring-green-500"
-                        defaultChecked={guest.receivedInvitation}
-                        onChange={() => {
-                          updateGuest({
-                            id: guest._id,
+                        className=" text-green-500 bg-gray-100  focus:ring-green-500 "
+                        defaultChecked={receivedInvitation}
+                        onChange={async () => {
+                          receivedInvitation = !receivedInvitation;
+                          await editUser({
+                            _id: guest._id,
                             name: guest.name,
-                            receivedInvitation: !guest.receivedInvitation,
+                            receivedInvitation,
                           });
                         }}
                       />
