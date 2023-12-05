@@ -1,5 +1,4 @@
 import PixButton from "@/components/PixButton/Index";
-import WhatsappLink from "@/components/WhatsappLink";
 import { Spotify } from "react-spotify-embed";
 import projectConfig from "@/config/project";
 import { Modal } from "flowbite-react";

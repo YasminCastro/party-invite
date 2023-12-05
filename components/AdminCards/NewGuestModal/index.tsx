@@ -1,6 +1,4 @@
 import projectConfig from "@/config/project";
-import { useGuests } from "@/providers/Guests";
-import axios from "axios";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
 import * as guestsService from "@/services/guests";
@@ -15,7 +13,6 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const { fetchGuests } = useGuests();
 
   const handleNewGuest = async () => {
     setLoading(true);
@@ -26,7 +23,6 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
       const response = await guestsService.createGuest(name);
 
       if (response.acknowledged) {
-        await fetchGuests();
         setSuccess(
           `${name.toUpperCase()} foi adicionade na lista de convidados.`
         );
@@ -46,12 +42,13 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
     }
   };
 
+  const handleCloseModal = () => {
+    setOpenModal(undefined);
+  };
+
   return (
     <>
-      <Modal
-        show={openModal === "NewGuest"}
-        onClose={() => setOpenModal(undefined)}
-      >
+      <Modal show={openModal === "NewGuest"} onClose={handleCloseModal}>
         <Modal.Header>Criar Convidado</Modal.Header>
         <Modal.Body>
           <div className="space-y-2">
@@ -85,11 +82,7 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
           >
             {loading ? "Carregando..." : "Salvar"}
           </Button>
-          <Button
-            color="gray"
-            onClick={() => setOpenModal(undefined)}
-            disabled={loading}
-          >
+          <Button color="gray" onClick={handleCloseModal} disabled={loading}>
             {success ? "Voltar" : "Cancelar"}
           </Button>
         </Modal.Footer>

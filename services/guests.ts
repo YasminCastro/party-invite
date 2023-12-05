@@ -24,7 +24,6 @@ export async function getGuests() {
 }
 
 export async function updateGuests(guest: IUpdateGuest) {
-  console.log("guest", guest);
   let query: any = {
     id: guest._id,
   };
