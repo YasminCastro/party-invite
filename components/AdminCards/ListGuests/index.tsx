@@ -7,9 +7,10 @@ import GuestTableSkeleton from "./GuestTableSkeleton";
 
 interface IProps {
   isAdminPage: boolean;
+  reloadGuests?: string;
 }
 
-export default function ListGuests({ isAdminPage }: IProps) {
+export default function ListGuests({ isAdminPage, reloadGuests }: IProps) {
   const [guests, setGuests] = useState<IGuest[]>([]);
   const [totalGuests, setTotalGuests] = useState(0);
   const [totalConfirmedGuests, setTotalConfirmedGuestss] = useState(0);
@@ -32,7 +33,7 @@ export default function ListGuests({ isAdminPage }: IProps) {
 
   useEffect(() => {
     getGuests();
-  }, []);
+  }, [reloadGuests]);
 
   if (loading) {
     return <GuestTableSkeleton isAdminPage={isAdminPage} />;

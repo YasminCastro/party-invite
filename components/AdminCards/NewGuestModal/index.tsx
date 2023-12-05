@@ -5,10 +5,15 @@ import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
   openModal: string | undefined;
 }
 
-export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
+export default function NewGuestModal({
+  openModal,
+  setOpenModal,
+  setReloadGuests,
+}: IProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -44,6 +49,7 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
 
   const handleCloseModal = () => {
     setOpenModal(undefined);
+    setReloadGuests(new Date().toString());
   };
 
   return (
