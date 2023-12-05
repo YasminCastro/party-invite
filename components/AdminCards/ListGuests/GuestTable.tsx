@@ -81,7 +81,6 @@ export default function GuestTable({
     try {
       await guestsService.updateGuests({
         _id: guest._id,
-        name: guest.name,
         receivedInvitation: guest.receivedInvitation,
       });
     } catch (error) {
@@ -133,6 +132,7 @@ export default function GuestTable({
           {guests &&
             sortedGuests.map((guest) => {
               let receivedInvitation = guest.receivedInvitation;
+
               return (
                 <Table.Row key={guest._id}>
                   <Table.Cell>{guest.name}</Table.Cell>

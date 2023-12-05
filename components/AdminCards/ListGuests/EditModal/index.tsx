@@ -32,7 +32,7 @@ export default function EditModal({
     try {
       const response = await guestsService.updateGuests({
         _id: guest._id,
-        name: guest.name,
+        name,
         receivedInvitation,
       });
 

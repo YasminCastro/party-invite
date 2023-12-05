@@ -36,7 +36,10 @@ export async function updateGuests(guest: IUpdateGuest) {
 
   const { data } = await axios.put("/api/guests/update", query);
 
-  return data.user;
+  console.log(query);
+  console.log(data);
+
+  return data;
 }
 
 export async function createGuest(name: string) {
