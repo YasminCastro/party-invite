@@ -35,11 +35,7 @@ export async function updateGuests(guest: IUpdateGuest) {
   }
   if (guest.name) query.name = guest.name.trim().toLocaleLowerCase();
 
-  console.log("query", query);
-
   const { data } = await axios.put("/api/guests/update", query);
-
-  console.log("data", data);
 
   return data.user;
 }
