@@ -7,10 +7,15 @@ import GuestTableSkeleton from "./GuestTableSkeleton";
 
 interface IProps {
   isAdminPage: boolean;
-  reloadGuests?: string;
+  reloadGuests: string;
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ListGuests({ isAdminPage, reloadGuests }: IProps) {
+export default function ListGuests({
+  isAdminPage,
+  reloadGuests,
+  setReloadGuests,
+}: IProps) {
   const [guests, setGuests] = useState<IGuest[]>([]);
   const [totalGuests, setTotalGuests] = useState(0);
   const [totalConfirmedGuests, setTotalConfirmedGuestss] = useState(0);
@@ -54,7 +59,11 @@ export default function ListGuests({ isAdminPage, reloadGuests }: IProps) {
         </p>
       </div>
       <div className="mt-3 h-[78vh] overflow-auto">
-        <GuestTable isAdminPage={isAdminPage} guests={guests} />
+        <GuestTable
+          isAdminPage={isAdminPage}
+          guests={guests}
+          setReloadGuests={setReloadGuests}
+        />
       </div>
     </div>
   );

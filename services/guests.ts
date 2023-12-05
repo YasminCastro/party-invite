@@ -46,3 +46,9 @@ export async function createGuest(name: string) {
 
   return data;
 }
+
+export async function deleteGuest(id: string) {
+  const { status } = await axios.delete(`/api/guests/delete?id=${id}`);
+
+  return status;
+}

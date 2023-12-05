@@ -5,7 +5,6 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
 } from "react-icons/ai";
-import { Spinner } from "flowbite-react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import DeleteModal from "./DeleteModal";
@@ -18,6 +17,7 @@ import * as guestsService from "@/services/guests";
 interface IProps {
   isAdminPage: boolean;
   guests: IGuest[];
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const compareFunctions = {
@@ -30,7 +30,11 @@ interface SortConfig {
   direction: "ascending" | "descending";
 }
 
-export default function GuestTable({ isAdminPage, guests }: IProps) {
+export default function GuestTable({
+  isAdminPage,
+  guests,
+  setReloadGuests,
+}: IProps) {
   const [openModal, setOpenModal] = useState<string | undefined>();
   const [selectedGuest, setSelectedGuest] = useState<IGuest | null>();
   const [error, setError] = useState("");
@@ -198,6 +202,7 @@ export default function GuestTable({ isAdminPage, guests }: IProps) {
             if (!modal) setSelectedGuest(null);
             setOpenModal(modal);
           }}
+          setReloadGuests={setReloadGuests}
           guest={selectedGuest}
         />
       )}

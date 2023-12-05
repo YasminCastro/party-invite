@@ -1,24 +1,24 @@
 import projectConfig from "@/config/project";
-import { useGuests } from "@/providers/Guests";
-import axios from "axios";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
   openModal: string | undefined;
   guest: any;
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function DeleteModal({
   openModal,
   setOpenModal,
   guest,
+  setReloadGuests,
 }: IProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const { fetchGuests } = useGuests();
 
   const handleDelete = async () => {
     setLoading(true);
@@ -26,12 +26,10 @@ export default function DeleteModal({
     setSuccess("");
 
     try {
-      const { status } = await axios.delete(
-        `/api/guests/delete?id=${guest._id}`
-      );
+      const response = await guestsService.deleteGuest(guest._id);
 
-      if (status === 200) {
-        await fetchGuests();
+      if (response === 200) {
+        setReloadGuests(new Date().toString());
         setSuccess("Convidado excluído com sucesso!");
       } else {
         setError("Algo deu errado. Tente novamente mais tarde.");

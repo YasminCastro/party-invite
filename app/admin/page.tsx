@@ -24,7 +24,11 @@ export default function Admin() {
         >
           Novo
         </Button>
-        <ListGuests isAdminPage={true} reloadGuests={reloadGuests} />
+        <ListGuests
+          isAdminPage={true}
+          reloadGuests={reloadGuests}
+          setReloadGuests={setReloadGuests}
+        />
       </div>
 
       {openModal === "NewGuest" && (
