@@ -214,6 +214,7 @@ export default function GuestTable({
             setOpenModal(modal);
           }}
           guest={selectedGuest}
+          setReloadGuests={setReloadGuests}
         />
       )}
     </Flowbite>
