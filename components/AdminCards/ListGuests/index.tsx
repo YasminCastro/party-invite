@@ -1,13 +1,49 @@
 "use client";
-import { useGuests } from "@/providers/Guests";
 import GuestTable from "./GuestTable";
+import * as guestsService from "@/services/guests";
+import { useEffect, useState } from "react";
+import { IGuest } from "@/interface/guests";
+import GuestTableSkeleton from "./GuestTableSkeleton";
 
 interface IProps {
   isAdminPage: boolean;
+  reloadGuests: string;
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ListGuests({ isAdminPage }: IProps) {
-  const { error, totalConfirmedGuests, totalGuests } = useGuests();
+export default function ListGuests({
+  isAdminPage,
+  reloadGuests,
+  setReloadGuests,
+}: IProps) {
+  const [guests, setGuests] = useState<IGuest[]>([]);
+  const [totalGuests, setTotalGuests] = useState(0);
+  const [totalConfirmedGuests, setTotalConfirmedGuestss] = useState(0);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const getGuests = async () => {
+    try {
+      const response = await guestsService.getGuests();
+      console.log("GET GUESTS", response);
+      setGuests(response.guests);
+      setTotalGuests(response.guestsCount);
+      setTotalConfirmedGuestss(response.confirmedGuestsCount);
+    } catch (error: any) {
+      console.log(error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getGuests();
+  }, [reloadGuests]);
+
+  if (loading) {
+    return <GuestTableSkeleton isAdminPage={isAdminPage} />;
+  }
 
   if (error) {
     return <p>Ocorreu um erro ao carregar os convidados.</p>;
@@ -24,7 +60,11 @@ export default function ListGuests({ isAdminPage }: IProps) {
         </p>
       </div>
       <div className="mt-3 h-[78vh] overflow-auto">
-        <GuestTable isAdminPage={isAdminPage} />
+        <GuestTable
+          isAdminPage={isAdminPage}
+          guests={guests}
+          setReloadGuests={setReloadGuests}
+        />
       </div>
     </div>
   );

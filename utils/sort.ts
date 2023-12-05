@@ -1,4 +1,4 @@
-import { IGuest } from "@/providers/Guests";
+import { IGuest } from "@/interface/guests";
 
 export const compareByName = (a: IGuest, b: IGuest): number => {
   return a.name.localeCompare(b.name);

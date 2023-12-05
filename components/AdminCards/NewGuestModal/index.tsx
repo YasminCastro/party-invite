@@ -1,20 +1,23 @@
 import projectConfig from "@/config/project";
-import { useGuests } from "@/providers/Guests";
-import axios from "axios";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
   openModal: string | undefined;
 }
 
-export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
+export default function NewGuestModal({
+  openModal,
+  setOpenModal,
+  setReloadGuests,
+}: IProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const { fetchGuests } = useGuests();
 
   const handleNewGuest = async () => {
     setLoading(true);
@@ -22,18 +25,15 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
     setSuccess("");
 
     try {
-      const { data } = await axios.post("/api/guests/new", {
-        name: name.trim().toLocaleLowerCase(),
-      });
+      const response = await guestsService.createGuest(name);
 
-      if (data.acknowledged) {
-        await fetchGuests();
+      if (response.acknowledged) {
         setSuccess(
           `${name.toUpperCase()} foi adicionade na lista de convidados.`
         );
         setName("");
       } else {
-        if (data.message === "Guest alredy exists") {
+        if (response.message === "Guest alredy exists") {
           setError("Convidado já registrado.");
         } else {
           setError("Erro interno tente novamente mais tarde.");
@@ -47,12 +47,14 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
     }
   };
 
+  const handleCloseModal = () => {
+    setOpenModal(undefined);
+    setReloadGuests(new Date().toString());
+  };
+
   return (
     <>
-      <Modal
-        show={openModal === "NewGuest"}
-        onClose={() => setOpenModal(undefined)}
-      >
+      <Modal show={openModal === "NewGuest"} onClose={handleCloseModal}>
         <Modal.Header>Criar Convidado</Modal.Header>
         <Modal.Body>
           <div className="space-y-2">
@@ -86,11 +88,7 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
           >
             {loading ? "Carregando..." : "Salvar"}
           </Button>
-          <Button
-            color="gray"
-            onClick={() => setOpenModal(undefined)}
-            disabled={loading}
-          >
+          <Button color="gray" onClick={handleCloseModal} disabled={loading}>
             {success ? "Voltar" : "Cancelar"}
           </Button>
         </Modal.Footer>

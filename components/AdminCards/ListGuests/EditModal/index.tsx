@@ -1,16 +1,22 @@
+"use client";
 import projectConfig from "@/config/project";
-import { updateGuest } from "@/lib/guest";
-import { useGuests } from "@/providers/Guests";
 import { Button, Label, Modal, Radio, TextInput } from "flowbite-react";
 import { useState } from "react";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
   openModal: string | undefined;
   guest: any;
+  setReloadGuests: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
+export default function EditModal({
+  openModal,
+  setOpenModal,
+  guest,
+  setReloadGuests,
+}: IProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +24,6 @@ export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
   const [receivedInvitation, setReceivedInvitation] = useState(
     guest.receivedInvitation
   );
-  const { fetchGuests } = useGuests();
 
   const handleEditGuest = async () => {
     setLoading(true);
@@ -26,14 +31,14 @@ export default function EditModal({ openModal, setOpenModal, guest }: IProps) {
     setSuccess("");
 
     try {
-      const { message } = await updateGuest({
-        id: guest._id,
-        name: guest.name,
+      const response = await guestsService.updateGuests({
+        _id: guest._id,
+        name,
         receivedInvitation,
       });
 
-      if (message) {
-        await fetchGuests();
+      if (response) {
+        setReloadGuests(new Date().toString());
         setSuccess("Convidado atualizado com sucesso.");
       }
     } catch (error) {

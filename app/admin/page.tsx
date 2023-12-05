@@ -10,6 +10,7 @@ import NewGuestModal from "@/components/AdminCards/NewGuestModal";
 
 export default function Admin() {
   const [openModal, setOpenModal] = useState<string | undefined>();
+  const [reloadGuests, setReloadGuests] = useState<string>("");
 
   return (
     <>
@@ -23,11 +24,19 @@ export default function Admin() {
         >
           Novo
         </Button>
-        <ListGuests isAdminPage={true} />
+        <ListGuests
+          isAdminPage={true}
+          reloadGuests={reloadGuests}
+          setReloadGuests={setReloadGuests}
+        />
       </div>
 
       {openModal === "NewGuest" && (
-        <NewGuestModal openModal={openModal} setOpenModal={setOpenModal} />
+        <NewGuestModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          setReloadGuests={setReloadGuests}
+        />
       )}
     </>
   );

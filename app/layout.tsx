@@ -1,4 +1,3 @@
-import { GuestProvider } from "@/providers/Guests";
 import "./globals.css";
 import projectConfig from "@/config/project";
 import { UserProvider } from "@/providers/User";
@@ -38,9 +37,7 @@ export default function RootLayout({
         className={`${roboto.variable} ${baiJamJuree.variable} ${anton.variable} ${orbitron.variable}`}
       >
         <UserProvider>
-          <GuestProvider>
-            <main>{children}</main>
-          </GuestProvider>
+          <main>{children}</main>
         </UserProvider>
       </body>
     </html>

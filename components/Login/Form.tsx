@@ -3,11 +3,11 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import projectConfig from "@/config/project";
-
 import { useAuth } from "@/providers/useAuth";
-import { useGuests } from "@/providers/Guests";
 import { customButton } from "../CustomButtonCss";
+import { useEffect, useState } from "react";
+import { IGuest } from "@/interface/guests";
+import * as guestsService from "@/services/guests";
 
 type Inputs = {
   name: string;
@@ -22,7 +22,20 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<Inputs>();
   const { login, loading } = useAuth();
-  const { guests } = useGuests();
+  const [guests, setGuests] = useState<IGuest[]>([]);
+
+  const getGuests = async () => {
+    try {
+      const response = await guestsService.getGuests();
+      setGuests(response.guests);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getGuests();
+  }, []);
 
   const onSubmit: SubmitHandler<Inputs> = async ({ name, password }) => {
     try {

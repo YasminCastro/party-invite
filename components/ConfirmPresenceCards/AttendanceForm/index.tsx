@@ -1,10 +1,10 @@
-import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { Button, Label, TextInput, Radio, Spinner } from "flowbite-react";
 
 import { useUser } from "@/providers/User";
 import projectConfig from "@/config/project";
 import GoBackButton from "@/components/GoBackButton/Index";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -42,12 +42,12 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
     setLoadingResponse(true);
 
     try {
-      const { data } = await axios.put("/api/guests/update", {
-        id: user._id,
+      const response = await guestsService.updateGuests({
+        _id: user._id,
         status: currentUser.status,
       });
 
-      setUser(data.user);
+      setUser(response);
       if (currentUser.status) {
         setOpenModal("Attending");
       } else {
