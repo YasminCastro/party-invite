@@ -9,6 +9,8 @@ import { useUser } from "@/providers/User";
 import { useAuth } from "@/providers/useAuth";
 import { useState } from "react";
 
+//
+
 export default function Home() {
   const { isAdmin } = useUser();
   const { logout } = useAuth();
