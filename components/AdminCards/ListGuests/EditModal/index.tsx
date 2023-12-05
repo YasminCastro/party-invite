@@ -1,3 +1,4 @@
+"use client";
 import projectConfig from "@/config/project";
 import { Button, Label, Modal, Radio, TextInput } from "flowbite-react";
 import { useState } from "react";
