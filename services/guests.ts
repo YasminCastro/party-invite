@@ -39,3 +39,11 @@ export async function updateGuests(guest: IUpdateGuest) {
 
   return data.user;
 }
+
+export async function createGuest(name: string) {
+  const { data } = await axios.post("/api/guests/new", {
+    name: name.trim().toLocaleLowerCase(),
+  });
+
+  return data;
+}

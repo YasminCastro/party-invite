@@ -3,6 +3,7 @@ import { useGuests } from "@/providers/Guests";
 import axios from "axios";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -22,18 +23,16 @@ export default function NewGuestModal({ openModal, setOpenModal }: IProps) {
     setSuccess("");
 
     try {
-      const { data } = await axios.post("/api/guests/new", {
-        name: name.trim().toLocaleLowerCase(),
-      });
+      const response = await guestsService.createGuest(name);
 
-      if (data.acknowledged) {
+      if (response.acknowledged) {
         await fetchGuests();
         setSuccess(
           `${name.toUpperCase()} foi adicionade na lista de convidados.`
         );
         setName("");
       } else {
-        if (data.message === "Guest alredy exists") {
+        if (response.message === "Guest alredy exists") {
           setError("Convidado já registrado.");
         } else {
           setError("Erro interno tente novamente mais tarde.");
