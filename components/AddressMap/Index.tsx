@@ -15,7 +15,7 @@ export default function AddressMap() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center">
       {loading ? (
         <SkeletonTheme
           baseColor="#e0e0e0"
@@ -34,6 +34,9 @@ export default function AddressMap() {
           className="mt-4 w-full rounded-xl"
         ></iframe>
       )}
+      <h4 className="font-title text-xl text-login-title max-lg:text-lg max-sm:text-base mt-2  w-fit">
+        {projectConfig.addressWritten}
+      </h4>
     </div>
   );
 }

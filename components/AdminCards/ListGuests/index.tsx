@@ -1,3 +1,4 @@
+"use client";
 import GuestTable from "./GuestTable";
 import * as guestsService from "@/services/guests";
 import { useEffect, useState } from "react";
