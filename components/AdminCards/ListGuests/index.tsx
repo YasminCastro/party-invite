@@ -25,6 +25,7 @@ export default function ListGuests({
   const getGuests = async () => {
     try {
       const response = await guestsService.getGuests();
+      console.log("GET GUESTS", response);
       setGuests(response.guests);
       setTotalGuests(response.guestsCount);
       setTotalConfirmedGuestss(response.confirmedGuestsCount);
