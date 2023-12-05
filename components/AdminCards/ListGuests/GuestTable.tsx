@@ -1,3 +1,4 @@
+"use client";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useState } from "react";
 import {

@@ -1,3 +1,4 @@
+"use client";
 import { useGuests } from "@/providers/Guests";
 import GuestTable from "./GuestTable";
 
