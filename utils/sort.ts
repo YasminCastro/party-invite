@@ -7,3 +7,5 @@ export const compareByName = (a: IGuest, b: IGuest): number => {
 export const compareByStatus = (a: IGuest, b: IGuest): number => {
   return a.status === b.status ? 0 : a.status ? -1 : 1;
 };
+
+//rerender
