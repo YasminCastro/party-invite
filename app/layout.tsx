@@ -2,24 +2,14 @@ import "./globals.css";
 import projectConfig from "@/config/project";
 import { UserProvider } from "@/providers/User";
 import type { Metadata } from "next";
-import { Roboto_Flex, Bai_Jamjuree, Anton, Orbitron } from "next/font/google";
+import { Roboto_Flex, Lilita_One } from "next/font/google";
 
 const roboto = Roboto_Flex({ subsets: ["latin"], variable: "--font-roboto" });
-const anton = Anton({
+
+const lilita = Lilita_One({
   subsets: ["latin"],
-  variable: "--font-anton",
   weight: "400",
-});
-
-const baiJamJuree = Bai_Jamjuree({
-  subsets: ["latin"],
-  weight: "700",
-  variable: "--font-bailjamjuree",
-});
-
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
+  variable: "--font-lilita",
 });
 
 export const metadata: Metadata = {
@@ -33,9 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${roboto.variable} ${baiJamJuree.variable} ${anton.variable} ${orbitron.variable}`}
-      >
+      <body className={`${roboto.variable}   ${lilita.variable}`}>
         <UserProvider>
           <main>{children}</main>
         </UserProvider>
