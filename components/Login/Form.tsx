@@ -1,10 +1,20 @@
 "use client";
 
-import { Button, Label, TextInput } from "flowbite-react";
+import { TextInput } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 import { useAuth } from "@/providers/useAuth";
-import { customButton } from "../CustomButtonCss";
 import { useEffect, useState } from "react";
 import { IGuest } from "@/interface/guests";
 import * as guestsService from "@/services/guests";
@@ -46,51 +56,44 @@ export default function LoginForm() {
   };
 
   return (
-    <form
-      className="flex w-1/2 flex-col space-y-3 rounded-lg bg-gray-500 bg-opacity-20 p-4 max-md:w-full"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div>
-        <Label htmlFor="name" value="Nome" className="text-white" />
-        <TextInput
-          id="name"
-          required
-          type="text"
-          list="guests"
-          {...register("name")}
-        />
-        {guests && (
-          <datalist id="guests" className="display">
-            {guests.map((guest) => (
-              <option key={guest._id} value={guest.name} />
-            ))}
-          </datalist>
-        )}
-      </div>
+    <Card className="w-96">
+      <CardHeader></CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="name">Nome</Label>
+              <Input
+                id="name"
+                required
+                type="text"
+                list="guests"
+                {...register("name")}
+              />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="password">Senha</Label>
+              <Input
+                id="password"
+                required
+                type="password"
+                {...register("password")}
+              />
+            </div>
 
-      <div>
-        <Label htmlFor="password" value="Senha" className="text-white" />
-        <TextInput
-          id="password"
-          required
-          type="password"
-          {...register("password")}
-        />
-      </div>
-
-      {errors.root && (
-        <span className="w-fit self-center font-bold text-red-500">
-          {errors.root.message}
-        </span>
-      )}
-      <Button
-        type="submit"
-        disabled={loading}
-        theme={customButton}
-        color="primary"
-      >
-        {loading ? "Carregando..." : "Entrar"}
-      </Button>
-    </form>
+            {errors.root && (
+              <span className="w-fit self-center font-bold text-red-500">
+                {errors.root.message}
+              </span>
+            )}
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button type="submit" disabled={loading}>
+          {loading ? "Carregando..." : "Entrar"}
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
