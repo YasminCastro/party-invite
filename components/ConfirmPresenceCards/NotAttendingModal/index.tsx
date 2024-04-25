@@ -1,7 +1,13 @@
 import projectConfig from "@/config/project";
-import { Modal } from "flowbite-react";
 
 import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -11,33 +17,41 @@ interface IProps {
 export default function NotAttendingModal({ openModal, setOpenModal }: IProps) {
   const { push } = useRouter();
 
+  let trigger = false;
+
+  if (openModal === "NotAttending") {
+    trigger = true;
+  }
+
   return (
     <>
-      <Modal
-        show={openModal === "NotAttending"}
-        onClose={() => {
+      <Dialog
+        open={trigger}
+        onOpenChange={() => {
           setOpenModal(undefined);
           push("/");
         }}
       >
-        <Modal.Header>
-          <div className="font-title text-red-400 text-3xl max-sm:text-2xl">
-            Muito triste que você não vai :/
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="font-text text-xl">
-            <p>Talvez na próxima você consiga</p>
-            <p>
-              ps. caso mude de ideia, confirme sua presença até o dia{" "}
-              <span className="text-red-400 font-bold">
-                {projectConfig.lastDateToConfirm}
-              </span>
-              .
-            </p>
-          </div>
-        </Modal.Body>
-      </Modal>
+        <DialogContent className="w-1/2 max-w-full">
+          <DialogHeader>
+            <DialogTitle className="text-3xl text-red-400">
+              Muito triste que você não vai :/
+            </DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            <div className="font-text text-xl">
+              <p>Talvez na próxima você consiga</p>
+              <p>
+                ps. caso mude de ideia, confirme sua presença até o dia{" "}
+                <span className="text-red-400 font-bold">
+                  {projectConfig.lastDateToConfirm}
+                </span>
+                .
+              </p>
+            </div>
+          </DialogDescription>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
