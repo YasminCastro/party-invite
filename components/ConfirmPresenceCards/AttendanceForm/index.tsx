@@ -1,10 +1,13 @@
 import { FormEvent, useEffect, useState } from "react";
-import { Button, Label, TextInput, Radio, Spinner } from "flowbite-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { useUser } from "@/providers/User";
-import projectConfig from "@/config/project";
 import GoBackButton from "@/components/GoBackButton/Index";
 import * as guestsService from "@/services/guests";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -30,8 +33,11 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover bg-center">
-        <Spinner aria-label="Carregando..." size="xl" />
+      <div className="flex justify-center min-h-screen bg-home bg-cover bg-center">
+        <div className="flex w-1/2 flex-col items-center justify-center gap-2 p-4 max-md:w-2/3 max-sm:w-full">
+          <Skeleton className="w-full h-1/4" />
+          <GoBackButton path="/" title="Voltar" />
+        </div>
       </div>
     );
   }
@@ -64,25 +70,27 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover bg-center">
       <form
         onSubmit={handleConfirmation}
-        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-30 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-full"
+        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-10 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-full"
       >
         <div className="w-full">
           <div className="mb-2 block">
-            <Label htmlFor="name" value="Nome" className="text-white" />
+            <Label htmlFor="name" className="text-primary">
+              Nome
+            </Label>
           </div>
-          <TextInput
+          <Input
             id="name"
             required
             type="text"
             disabled
             defaultValue={currentUser.name}
           />
-          <fieldset
+          <RadioGroup
+            defaultValue={currentUser.status}
             className="m-4 flex justify-center gap-8 text-white"
-            id="radio"
           >
-            <div className="flex items-center gap-2">
-              <Radio
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem
                 checked={currentUser.status}
                 id="yes"
                 name="confirm"
@@ -92,15 +100,12 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
                   setCurrentUser({ ...currentUser, status: true })
                 }
               />
-              <Label
-                htmlFor="yes"
-                className="text-lg text-white max-phone:text-base"
-              >
+              <Label htmlFor="yes" className="text-xl">
                 Vou :D
               </Label>
             </div>
-            <div className="flex items-center gap-2">
-              <Radio
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem
                 checked={!currentUser.status}
                 id="no"
                 name="confirm"
@@ -112,21 +117,17 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
                   setCurrentUser({ ...currentUser, status: false })
                 }
               />
-              <Label
-                htmlFor="no"
-                className="text-lg text-white max-phone:text-base"
-              >
+              <Label htmlFor="no" className="text-xl">
                 Não vou :(
               </Label>
             </div>
-          </fieldset>
+          </RadioGroup>
         </div>
 
         <Button
           className="h-8 w-full text-base"
           disabled={loadingResponse}
           type="submit"
-          color={projectConfig.buttonColor}
         >
           {loadingResponse ? "Carregando..." : "Confirmar"}
         </Button>
