@@ -1,6 +1,5 @@
 "use client";
 
-import { TextInput } from "flowbite-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,10 +7,8 @@ import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 import { useAuth } from "@/providers/useAuth";
@@ -78,7 +75,15 @@ export default function LoginForm() {
                 required
                 type="password"
                 {...register("password")}
+                list="guests"
               />
+              {guests && (
+                <datalist id="guests" className="display">
+                  {guests.map((guest) => (
+                    <option key={guest._id} value={guest.name} />
+                  ))}
+                </datalist>
+              )}
             </div>
 
             {errors.root && (
@@ -90,7 +95,11 @@ export default function LoginForm() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button type="submit" disabled={loading}>
+        <Button
+          type="submit"
+          disabled={loading}
+          onClick={handleSubmit(onSubmit)}
+        >
           {loading ? "Carregando..." : "Entrar"}
         </Button>
       </CardFooter>
