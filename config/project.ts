@@ -14,8 +14,8 @@ interface IProject {
 }
 
 const projectConfig: IProject = {
-  partyName: "Quintal do Gê",
-  seoName: "Quintal do Gê",
+  partyName: "QUINTAL DO GÊ",
+  seoName: "QUINTAL DO GÊ",
   data: "22/06/2024 às 11h30",
   lastDateToConfirm: "19/12",
   spotifyUrl: null,
