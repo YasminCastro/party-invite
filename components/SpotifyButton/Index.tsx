@@ -1,17 +1,20 @@
 import projectConfig from "@/config/project";
-import { Button } from "flowbite-react";
+import { Button } from "@/components/ui/button";
 
 import { FaSpotify } from "react-icons/fa";
+import Link from "next/link";
 
 export default function SpotifyButton() {
   return (
     <>
       {projectConfig.spotifyUrl && (
-        <Button color="dark" href={projectConfig.spotifyUrl} target="_blank">
-          <span className="flex items-center gap-2">
-            <FaSpotify />
-            Colaborar na playlist da festa
-          </span>
+        <Button asChild>
+          <Link href={projectConfig.spotifyUrl} target="_blank">
+            <span className="flex items-center gap-2">
+              <FaSpotify />
+              Colaborar na playlist
+            </span>
+          </Link>
         </Button>
       )}
     </>

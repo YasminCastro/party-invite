@@ -1,11 +1,16 @@
 import PixButton from "@/components/PixButton/Index";
 import { Spotify } from "react-spotify-embed";
 import projectConfig from "@/config/project";
-import { Modal } from "flowbite-react";
-import { BiSolidStar } from "react-icons/bi";
 
 import { useRouter } from "next/navigation";
 import SpotifyButton from "@/components/SpotifyButton/Index";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -14,66 +19,45 @@ interface IProps {
 
 export default function AttendingModal({ openModal, setOpenModal }: IProps) {
   const { push } = useRouter();
-  const size = projectConfig.spotifyUrl ? "6xl" : "xl";
+
+  let trigger = false;
+
+  if (openModal === "Attending") {
+    trigger = true;
+  }
 
   return (
     <>
-      <Modal
-        show={openModal === "Attending"}
-        onClose={() => {
+      <Dialog
+        open={trigger}
+        onOpenChange={() => {
           setOpenModal(undefined);
           push("/");
         }}
-        size={size}
       >
-        <Modal.Header>
-          <div className="font-title text-3xl text-green-400 max-sm:text-2xl">
-            Presença confirmada!
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="flex gap-4 max-md:flex-col">
-            <div className="flex flex-col gap-10">
-              <ul className="ml-4 list-disc font-text text-xl max-sm:text-lg ">
-                <li className="flex space-x-2">
-                  <BiSolidStar />
-                  <span>
-                    <b>Obrigatório</b> o uso de qualquer fantasia{" "}
-                    <i>(não precisa ser elaborada)</i> .
-                  </span>
+        <DialogContent className="w-1/2 max-w-full">
+          <DialogHeader>
+            <DialogTitle className="text-3xl text-green-600">
+              Oba! Vou adorar ter você comigo!
+            </DialogTitle>
+          </DialogHeader>
+          <DialogDescription className="flex gap-2">
+            <div className="w-2/3 flex flex-col justify-between">
+              <ul className="list-disc list-inside space-y-1 text-lg">
+                <li>
+                  Nesse ano, decidi fazer algo diferente, tô pedindo para cada
+                  convidado levar 2kg de alimentos não perecíveis, os quais
+                  serão utilizados na produção de marmitas para moradores de
+                  rua.
                 </li>
-                <li className="flex space-x-2">
-                  <BiSolidStar />
-                  <span>
-                    Não se esqueça de levar sua bebida e caixa térmica!!
-                  </span>
-                </li>
-                <li className="flex space-x-2">
-                  <BiSolidStar />
-                  <span>
-                    Quer levar alguem? clica{" "}
-                    <a
-                      href={`https://api.whatsapp.com/send?phone=${projectConfig.whatsappNumber}&text=Oiee%2C%20quero%20convidar%20uma%20pessoa%20para%20seu%20niver...`}
-                      target="_blank"
-                      className=" text-pink-400"
-                    >
-                      aqui{" "}
-                    </a>
-                    para mandar um zap pra ver se pode.
-                    <p className="mt-[-5px] font-mono text-sm">
-                      sujeito a lotação do local.
-                    </p>
-                  </span>
-                </li>
-                <li className="flex space-x-2">
-                  <BiSolidStar />
-                  <span>
-                    Quer ajudar nos comes e bebes (vai ter pinga) manda 10zao no
-                    pix (se quiser mandar mais pode).
-                  </span>
+                <li>Não se esqueça de levar sua bebida e caixa térmica!</li>
+                <li>After na Roxy!</li>
+                <li>
+                  Quer me ajudar nos comes e bebes (vai ter pinga e doses) manda
+                  10zao no pix (se quiser mandar mais, pode).
                 </li>
               </ul>
-              <div className="flex justify-center gap-x-6 max-sm:flex-col max-sm:gap-y-3">
+              <div className="gap-2 flex">
                 <PixButton />
                 <SpotifyButton />
               </div>
@@ -84,9 +68,9 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                 <Spotify link={projectConfig.spotifyUrl} className=" w-full" />
               </div>
             )}
-          </div>
-        </Modal.Body>
-      </Modal>
+          </DialogDescription>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
