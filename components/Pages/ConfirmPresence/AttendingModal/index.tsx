@@ -1,9 +1,9 @@
-import PixButton from "@/components/PixButton/Index";
+import PixButton from "@/components/Pages/ConfirmPresence/AttendingModal/PixButton/Index";
 import { Spotify } from "react-spotify-embed";
 import projectConfig from "@/config/project";
 
 import { useRouter } from "next/navigation";
-import SpotifyButton from "@/components/SpotifyButton/Index";
+import SpotifyButton from "@/components/Pages/ConfirmPresence/AttendingModal/SpotifyButton/Index";
 import {
   Dialog,
   DialogContent,

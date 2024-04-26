@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import { useUser } from "@/providers/User";
-import GoBackButton from "@/components/GoBackButton/Index";
+import GoBackButton from "@/components/Global/GoBackButton/Index";
 import * as guestsService from "@/services/guests";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 

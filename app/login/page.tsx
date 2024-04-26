@@ -1,4 +1,4 @@
-import LoginForm from "@/components/Login/Form";
+import LoginForm from "@/components/Pages/Login/Form";
 import projectConfig from "@/config/project";
 
 export default function Login() {

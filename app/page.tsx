@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-import AddressMap from "@/components/AddressMap/Index";
+import AddressMap from "@/components/Pages/Home/AddressMap/Index";
 import projectConfig from "@/config/project";
 import { useUser } from "@/providers/User";
 import { useAuth } from "@/providers/useAuth";

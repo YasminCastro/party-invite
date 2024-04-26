@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import GoBackButton from "@/components/GoBackButton/Index";
+import GoBackButton from "@/components/Global/GoBackButton/Index";
 import { IGuest } from "@/interface/guests";
 import * as guestsService from "@/services/guests";
 

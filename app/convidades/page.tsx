@@ -1,7 +1,7 @@
 "use client";
 
 import ListGuests from "@/components/AdminCards/ListGuests";
-import GoBackButton from "@/components/GoBackButton/Index";
+import GoBackButton from "@/components/Global/GoBackButton/Index";
 import { useState } from "react";
 
 export default function Convidades() {

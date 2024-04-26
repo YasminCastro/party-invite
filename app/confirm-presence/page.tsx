@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import AttendanceForm from "@/components/ConfirmPresenceCards/AttendanceForm";
-import AttendingModal from "@/components/ConfirmPresenceCards/AttendingModal";
-import NotAttendingModal from "@/components/ConfirmPresenceCards/NotAttendingModal";
+import AttendanceForm from "@/components/Pages/ConfirmPresence/AttendanceForm";
+import AttendingModal from "@/components/Pages/ConfirmPresence/AttendingModal";
+import NotAttendingModal from "@/components/Pages/ConfirmPresence/NotAttendingModal";
 
 export type IConfirmPresenceStepActive = "Form" | "Attending" | "NotAttending";
 
