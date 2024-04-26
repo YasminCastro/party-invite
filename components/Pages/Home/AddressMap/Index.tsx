@@ -14,9 +14,9 @@ export default function AddressMap() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="flex w-full flex-col items-center">
       {loading ? (
-        <Skeleton className="w-full h-52" />
+        <Skeleton className="h-52 w-full" />
       ) : (
         <iframe
           src={projectConfig.address}
@@ -27,7 +27,7 @@ export default function AddressMap() {
           className="mt-4 w-full rounded-xl"
         ></iframe>
       )}
-      <h4 className="text-xl font-bold max-lg:text-lg max-sm:text-base mt-2  w-fit">
+      <h4 className="mt-2 w-fit text-xl font-bold max-lg:text-lg  max-sm:text-base">
         {projectConfig.addressWritten}
       </h4>
     </div>

@@ -15,7 +15,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="min-h-screen bg-home bg-cover bg-center flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-home bg-cover bg-center">
       <div>
         {isAdmin && (
           <Link href="/admin">
@@ -28,15 +28,15 @@ export default function Home() {
         </Button>
       </div>
 
-      <div className="w-full flex justify-evenly max-md:flex-col max-md:items-center max-md:gap-y-4">
+      <div className="flex w-full justify-evenly max-md:flex-col max-md:items-center max-md:gap-y-4">
         <div className="w-1/3 max-xl:w-1/2 max-md:mb-4 max-md:w-3/4">
-          <h1 className="font-title text-center text-primary text-7xl max-xl:text-5xl max-sm:text-4xl">
+          <h1 className="text-center font-title text-7xl text-primary max-xl:text-5xl max-sm:text-4xl">
             {projectConfig.partyName}
           </h1>
         </div>
 
         <div className="flex w-1/3 flex-col items-center gap-2 max-md:w-2/3 max-sm:w-11/12">
-          <h3 className="font-title text-3xl max-lg:text-2xl max-sm:text-xl">
+          <h3 className="text-3xl font-bold max-lg:text-2xl max-sm:text-xl">
             {projectConfig.data}
           </h3>
 
