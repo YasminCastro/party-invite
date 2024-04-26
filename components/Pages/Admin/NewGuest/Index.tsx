@@ -26,6 +26,7 @@ import * as guestsService from "@/services/guests";
 
 interface IProps {
   setOpenNewGuest: React.Dispatch<SetStateAction<boolean>>;
+  setRefreshList: React.Dispatch<SetStateAction<string>>;
   openNewGuest: boolean;
 }
 
@@ -35,7 +36,11 @@ const formSchema = z.object({
   }),
 });
 
-export default function NewGuest({ setOpenNewGuest, openNewGuest }: IProps) {
+export default function NewGuest({
+  setOpenNewGuest,
+  openNewGuest,
+  setRefreshList,
+}: IProps) {
   const [successMessage, setSuccessMessage] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,7 +54,6 @@ export default function NewGuest({ setOpenNewGuest, openNewGuest }: IProps) {
     setSuccessMessage("");
     try {
       const response = await guestsService.createGuest(name);
-      console.log(response);
       if (response.acknowledged) {
         setSuccessMessage(
           `${name.toUpperCase()} foi adicionado na lista de convidados.`,
@@ -81,6 +85,7 @@ export default function NewGuest({ setOpenNewGuest, openNewGuest }: IProps) {
       open={openNewGuest}
       onOpenChange={() => {
         setOpenNewGuest(false);
+        setRefreshList(new Date().toString());
       }}
     >
       <DialogContent>

@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function Admin() {
   const [openNewGuest, setOpenNewGuest] = useState(false);
+  const [refreshList, setRefreshList] = useState("");
 
   return (
     <>
@@ -22,12 +23,13 @@ export default function Admin() {
           Novo Convidado
         </Button>
       </div>
-      <GuestList isAdmin={true} />
+      <GuestList isAdmin={true} refreshList={refreshList} />
 
       {openNewGuest && (
         <NewGuest
           setOpenNewGuest={setOpenNewGuest}
           openNewGuest={openNewGuest}
+          setRefreshList={setRefreshList}
         />
       )}
     </>

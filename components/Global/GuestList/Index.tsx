@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 
 import { IGuest } from "@/interface/guests";
@@ -8,9 +6,10 @@ import GuestTable from "./GuestTable/Index";
 
 interface IProps {
   isAdmin: boolean;
+  refreshList: string;
 }
 
-export default function GuestList({ isAdmin }: IProps) {
+export default function GuestList({ isAdmin, refreshList }: IProps) {
   const [totalGuests, setTotalGuests] = useState(0);
   const [totalConfirmedGuests, setTotalConfirmedGuestss] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -32,7 +31,7 @@ export default function GuestList({ isAdmin }: IProps) {
 
   useEffect(() => {
     getGuests();
-  }, []);
+  }, [refreshList]);
 
   return (
     <div className="my-6 flex flex-col items-center space-y-6">
