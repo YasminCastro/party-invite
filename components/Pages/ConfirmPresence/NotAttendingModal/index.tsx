@@ -43,7 +43,7 @@ export default function NotAttendingModal({ openModal, setOpenModal }: IProps) {
               <p>Talvez na próxima você consiga</p>
               <p>
                 ps. caso mude de ideia, confirme sua presença até o dia{" "}
-                <span className="text-red-400 font-bold">
+                <span className="font-bold text-red-400">
                   {projectConfig.lastDateToConfirm}
                 </span>
                 .
