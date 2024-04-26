@@ -35,7 +35,7 @@ export default function GuestList({ isAdmin }: IProps) {
   }, []);
 
   return (
-    <div className="my-14 flex flex-col items-center space-y-8">
+    <div className="my-6 flex flex-col items-center space-y-6">
       <div className="w-1/2 rounded bg-card p-8 shadow-lg">
         <div className="flex justify-evenly">
           <p className="text-xl"> Total de convidados: {totalGuests}</p>
