@@ -1,7 +1,6 @@
 import projectConfig from "@/config/project";
 import { useEffect, useState } from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AddressMap() {
   const [loading, setIsLoading] = useState(true);
@@ -17,13 +16,7 @@ export default function AddressMap() {
   return (
     <div className="w-full flex flex-col items-center">
       {loading ? (
-        <SkeletonTheme
-          baseColor="#e0e0e0"
-          highlightColor="#dcdcdc"
-          borderRadius={12}
-        >
-          <Skeleton className="w-full h-48" />
-        </SkeletonTheme>
+        <Skeleton className="w-full h-52" />
       ) : (
         <iframe
           src={projectConfig.address}
@@ -34,7 +27,7 @@ export default function AddressMap() {
           className="mt-4 w-full rounded-xl"
         ></iframe>
       )}
-      <h4 className="font-title text-xl text-login-title max-lg:text-lg max-sm:text-base mt-2  w-fit">
+      <h4 className="text-xl font-bold max-lg:text-lg max-sm:text-base mt-2  w-fit">
         {projectConfig.addressWritten}
       </h4>
     </div>
