@@ -33,9 +33,9 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center min-h-screen bg-home bg-cover bg-center">
+      <div className="flex min-h-screen justify-center bg-home bg-cover bg-center">
         <div className="flex w-1/2 flex-col items-center justify-center gap-2 p-4 max-md:w-2/3 max-sm:w-full">
-          <Skeleton className="w-full h-1/4" />
+          <Skeleton className="h-1/4 w-full" />
           <GoBackButton path="/" title="Voltar" />
         </div>
       </div>
@@ -85,15 +85,11 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
             disabled
             defaultValue={currentUser.name}
           />
-          <RadioGroup
-            defaultValue={currentUser.status}
-            className="m-4 flex justify-center gap-8 text-white"
-          >
+          <RadioGroup className="m-4 flex justify-center gap-8 text-white">
             <div className="flex items-center space-x-2">
               <RadioGroupItem
                 checked={currentUser.status}
                 id="yes"
-                name="confirm"
                 value="yes"
                 onClick={() => setCurrentUser({ ...currentUser, status: true })}
                 onChange={() =>
@@ -108,7 +104,6 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
               <RadioGroupItem
                 checked={!currentUser.status}
                 id="no"
-                name="confirm"
                 value="no"
                 onClick={() =>
                   setCurrentUser({ ...currentUser, status: false })
