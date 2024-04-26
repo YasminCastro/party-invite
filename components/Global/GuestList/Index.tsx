@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 
 import { IGuest } from "@/interface/guests";
 import * as guestsService from "@/services/guests";
@@ -7,9 +7,14 @@ import GuestTable from "./GuestTable/Index";
 interface IProps {
   isAdmin: boolean;
   refreshList: string;
+  setRefreshList: React.Dispatch<SetStateAction<string>>;
 }
 
-export default function GuestList({ isAdmin, refreshList }: IProps) {
+export default function GuestList({
+  isAdmin,
+  refreshList,
+  setRefreshList,
+}: IProps) {
   const [totalGuests, setTotalGuests] = useState(0);
   const [totalConfirmedGuests, setTotalConfirmedGuestss] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -18,7 +23,6 @@ export default function GuestList({ isAdmin, refreshList }: IProps) {
   const getGuests = async () => {
     try {
       const response = await guestsService.getGuests();
-      console.log("GET GUESTS", response);
       setGuests(response.guests);
       setTotalGuests(response.guestsCount);
       setTotalConfirmedGuestss(response.confirmedGuestsCount);
@@ -44,7 +48,11 @@ export default function GuestList({ isAdmin, refreshList }: IProps) {
         </div>
       </div>
       <div className="w-1/2 rounded bg-card p-8 shadow-lg">
-        <GuestTable isAdmin={isAdmin} guests={guests} />
+        <GuestTable
+          isAdmin={isAdmin}
+          guests={guests}
+          setRefreshList={setRefreshList}
+        />
       </div>
     </div>
   );

@@ -23,7 +23,11 @@ export default function Admin() {
           Novo Convidado
         </Button>
       </div>
-      <GuestList isAdmin={true} refreshList={refreshList} />
+      <GuestList
+        isAdmin={true}
+        refreshList={refreshList}
+        setRefreshList={setRefreshList}
+      />
 
       {openNewGuest && (
         <NewGuest
