@@ -42,8 +42,8 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="flex gap-2">
-            <div className="w-2/3 flex flex-col justify-between">
-              <ul className="list-disc list-inside space-y-1 text-lg">
+            <div className="flex w-2/3 flex-col justify-between">
+              <ul className="list-inside list-disc space-y-1 text-lg">
                 <li>
                   Nesse ano, decidi fazer algo diferente, tô pedindo para cada
                   convidado levar 2kg de alimentos não perecíveis, os quais
@@ -57,9 +57,9 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                   10zao no pix (se quiser mandar mais, pode).
                 </li>
               </ul>
-              <div className="gap-2 flex">
+              <div className="flex gap-2">
                 <PixButton />
-                <SpotifyButton />
+                {/* <SpotifyButton /> */}
               </div>
             </div>
 
