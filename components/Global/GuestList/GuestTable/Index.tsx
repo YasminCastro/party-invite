@@ -12,10 +12,12 @@ import {
   AiFillCheckCircle,
   AiFillCloseCircle,
   AiOutlineDelete,
+  AiOutlineEdit,
 } from "react-icons/ai";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SetStateAction, useState } from "react";
 import DeleteGuest from "@/components/Pages/Admin/DeleteGuest/Index";
+import EditGuest from "@/components/Pages/Admin/EditGuest/Index";
 
 interface IProps {
   isAdmin: boolean;
@@ -30,6 +32,7 @@ export default function GuestTable({
 }: IProps) {
   console.log(guests);
   const [openDeleteGuest, setOpenDeleteGuest] = useState(false);
+  const [openEditGuest, setOpenEditGuest] = useState(false);
   const [guest, setGuest] = useState<IGuest>();
 
   return (
@@ -58,7 +61,18 @@ export default function GuestTable({
               <TableCell>
                 <Checkbox checked={guest.receivedInvitation} />
               </TableCell>
-              {isAdmin && <TableCell>Editar</TableCell>}
+              {isAdmin && (
+                <TableCell>
+                  <AiOutlineEdit
+                    size={18}
+                    className="cursor-pointer hover:text-blue-400  active:text-blue-600"
+                    onClick={() => {
+                      setOpenEditGuest(true);
+                      setGuest(guest);
+                    }}
+                  />
+                </TableCell>
+              )}
               {isAdmin && (
                 <TableCell>
                   <AiOutlineDelete
@@ -80,6 +94,15 @@ export default function GuestTable({
         <DeleteGuest
           setOpenDeleteGuest={setOpenDeleteGuest}
           openDeleteGuest={openDeleteGuest}
+          setRefreshList={setRefreshList}
+          guest={guest}
+        />
+      )}
+
+      {openEditGuest && guest && (
+        <EditGuest
+          setOpenEditGuest={setOpenEditGuest}
+          openEditGuest={openEditGuest}
           setRefreshList={setRefreshList}
           guest={guest}
         />
