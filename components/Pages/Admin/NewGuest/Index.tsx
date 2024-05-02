@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/dialog";
 
 import * as guestsService from "@/services/guests";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface IProps {
   setOpenNewGuest: React.Dispatch<SetStateAction<boolean>>;
@@ -34,6 +35,9 @@ const formSchema = z.object({
   name: z.string().min(3, {
     message: "Nome deve ter no mínimo 3 caracteres.",
   }),
+  isAdmin: z.boolean().optional(),
+  receivedInvitation: z.boolean().optional(),
+  status: z.boolean().optional(),
 });
 
 export default function NewGuest({
@@ -47,16 +51,20 @@ export default function NewGuest({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      isAdmin: false,
+      receivedInvitation: false,
+      status: false,
     },
   });
 
-  async function onSubmit({ name }: z.infer<typeof formSchema>) {
+  async function onSubmit(guest: z.infer<typeof formSchema>) {
     setSuccessMessage("");
+    console.log(guest);
     try {
-      const response = await guestsService.createGuest(name);
+      const response = await guestsService.createGuest(guest);
       if (response.acknowledged) {
         setSuccessMessage(
-          `${name.toUpperCase()} foi adicionado na lista de convidados.`,
+          `${guest.name.toUpperCase()} foi adicionado na lista de convidados.`,
         );
         form.setValue("name", "");
       } else {
@@ -107,6 +115,67 @@ export default function NewGuest({
                 </FormItem>
               )}
             />
+
+            <div className="flex justify-evenly">
+              <FormField
+                control={form.control}
+                name="receivedInvitation"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mr-2">Recebeu Convite?</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        defaultChecked={field.value}
+                        onCheckedChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mr-2">Status</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        defaultChecked={field.value}
+                        onCheckedChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="isAdmin"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mr-2">É Administrador?</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        defaultChecked={field.value}
+                        onCheckedChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className="flex flex-col space-y-3">
               {successMessage && (
                 <span className=" text-base leading-relaxed text-green-500">

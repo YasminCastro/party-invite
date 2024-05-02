@@ -13,3 +13,10 @@ export interface IUpdateGuest {
   receivedInvitation?: boolean;
   isAdmin?: boolean;
 }
+
+export interface INewGuest {
+  name: string;
+  status?: boolean;
+  receivedInvitation?: boolean;
+  isAdmin?: boolean;
+}

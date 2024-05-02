@@ -76,19 +76,17 @@ export default function GuestTable({
                 )}
               </TableCell>
               <TableCell>
-                {!guest.isAdmin && (
-                  <Checkbox
-                    defaultChecked={guest.receivedInvitation}
-                    onCheckedChange={(e) => {
-                      changeReceivedInvitation({
-                        _id: guest._id,
-                        receivedInvitation: e as boolean,
-                      });
-                    }}
-                  />
-                )}
+                <Checkbox
+                  defaultChecked={guest.receivedInvitation}
+                  onCheckedChange={(e) => {
+                    changeReceivedInvitation({
+                      _id: guest._id,
+                      receivedInvitation: e as boolean,
+                    });
+                  }}
+                />
               </TableCell>
-              {!guest.isAdmin && isAdmin && (
+              {isAdmin && (
                 <TableCell>
                   <AiOutlineEdit
                     size={18}

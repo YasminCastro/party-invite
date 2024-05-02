@@ -1,4 +1,4 @@
-import { IUpdateGuest } from "@/interface/guests";
+import { INewGuest, IUpdateGuest } from "@/interface/guests";
 import axios from "axios";
 
 export async function getGuests() {
@@ -40,10 +40,8 @@ export async function updateGuests(guest: IUpdateGuest) {
   return data;
 }
 
-export async function createGuest(name: string) {
-  const { data } = await axios.post("/api/guests/new", {
-    name: name.trim().toLocaleLowerCase(),
-  });
+export async function createGuest(guest: INewGuest) {
+  const { data } = await axios.post("/api/guests/new", guest);
 
   return data;
 }

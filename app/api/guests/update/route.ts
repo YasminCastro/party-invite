@@ -32,7 +32,7 @@ export async function PUT(req: NextRequest) {
     const result = await collection.findOneAndUpdate(
       { _id: new ObjectId(id) },
       { $set: update },
-      { returnDocument: "after" }
+      { returnDocument: "after" },
     );
 
     return NextResponse.json(result, { status: 200 });

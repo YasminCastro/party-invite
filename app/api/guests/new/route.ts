@@ -1,9 +1,11 @@
+import { INewGuest } from "@/interface/guests";
 import db from "@/lib/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { name } = await req.json();
+    const { name, receivedInvitation, isAdmin, status }: INewGuest =
+      await req.json();
     if (!name) throw new Error("Name is missing");
 
     const database = await db;
@@ -17,15 +19,25 @@ export async function POST(req: Request) {
         {
           message: "Guest alredy exists",
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
-    const result = await collection.insertOne({
-      name,
-      status: false,
-      receivedInvitation: false,
-    });
+    let newUser: any = { name: name.trim().toLocaleLowerCase() };
+
+    if (receivedInvitation !== undefined) {
+      newUser.receivedInvitation = receivedInvitation;
+    }
+
+    if (status !== undefined) {
+      newUser.status = status;
+    }
+
+    if (isAdmin !== undefined) {
+      newUser.isAdmin = isAdmin;
+    }
+
+    const result = await collection.insertOne(newUser);
 
     return NextResponse.json(result, { status: 200 });
   } catch (error: any) {
