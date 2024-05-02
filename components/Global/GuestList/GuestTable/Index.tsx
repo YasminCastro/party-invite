@@ -30,7 +30,6 @@ export default function GuestTable({
   guests,
   setRefreshList,
 }: IProps) {
-  console.log(guests);
   const [openDeleteGuest, setOpenDeleteGuest] = useState(false);
   const [openEditGuest, setOpenEditGuest] = useState(false);
   const [guest, setGuest] = useState<IGuest>();
@@ -61,7 +60,7 @@ export default function GuestTable({
               <TableCell>
                 <Checkbox checked={guest.receivedInvitation} />
               </TableCell>
-              {isAdmin && (
+              {!guest.isAdmin && isAdmin && (
                 <TableCell>
                   <AiOutlineEdit
                     size={18}
@@ -73,7 +72,7 @@ export default function GuestTable({
                   />
                 </TableCell>
               )}
-              {isAdmin && (
+              {!guest.isAdmin && isAdmin && (
                 <TableCell>
                   <AiOutlineDelete
                     size={18}
