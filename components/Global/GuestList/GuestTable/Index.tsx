@@ -43,7 +43,7 @@ export default function GuestTable({
     receivedInvitation: boolean;
   }) => {
     try {
-      const response = await guestsService.updateGuests({
+      await guestsService.updateGuests({
         _id,
         receivedInvitation,
       });
