@@ -28,9 +28,9 @@ export default function Home() {
         </Button>
       </div>
 
-      <div className="flex w-full justify-evenly max-md:flex-col max-md:items-center max-md:gap-y-4">
+      <div className="flex w-full justify-evenly max-md:flex-col max-md:items-center ">
         <div className="w-1/3 max-xl:w-1/2 max-md:mb-4 max-md:w-3/4">
-          <h1 className="text-center font-title text-7xl text-primary max-xl:text-5xl max-sm:text-4xl">
+          <h1 className="text-center font-title text-7xl text-primary max-lg:mt-24 max-lg:text-5xl">
             {projectConfig.partyName}
           </h1>
         </div>
