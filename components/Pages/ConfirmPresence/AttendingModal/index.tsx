@@ -35,15 +35,15 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
           push("/");
         }}
       >
-        <DialogContent className="w-1/2 max-w-full">
+        <DialogContent className="w-1/2  max-w-full max-xl:w-screen">
           <DialogHeader>
             <DialogTitle className="text-3xl text-green-600">
               Oba! Vou adorar ter você comigo!
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="flex gap-2">
-            <div className="flex w-2/3 flex-col justify-between">
-              <ul className="list-inside list-disc space-y-1 text-lg">
+            <div className="flex w-2/3 flex-col justify-between max-md:w-full">
+              <ul className="list-inside list-disc space-y-1 text-lg max-sm:text-base">
                 <li>
                   Nesse ano, decidi fazer algo diferente, tô pedindo para cada
                   convidado levar 2kg de alimentos não perecíveis, os quais
@@ -57,14 +57,14 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
                   10zao no pix (se quiser mandar mais, pode).
                 </li>
               </ul>
-              <div className="flex gap-2">
+              <div className="mt-4 flex gap-2">
                 <PixButton />
-                {/* <SpotifyButton /> */}
+                <SpotifyButton message="Playlist da festa" />
               </div>
             </div>
 
             {projectConfig.spotifyUrl && (
-              <div className="w-1/2 max-md:w-full">
+              <div className="w-1/2 max-md:hidden ">
                 <Spotify link={projectConfig.spotifyUrl} className=" w-full" />
               </div>
             )}
