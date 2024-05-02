@@ -14,7 +14,7 @@ export async function getGuests() {
 
   const confirmedGuests = data.reduce(
     (count: number, guest: any) => count + (guest.status ? 1 : 0),
-    0
+    0,
   );
 
   return {
@@ -36,9 +36,6 @@ export async function updateGuests(guest: IUpdateGuest) {
   if (guest.name) query.name = guest.name.trim().toLocaleLowerCase();
 
   const { data } = await axios.put("/api/guests/update", query);
-
-  console.log(query);
-  console.log(data);
 
   return data;
 }

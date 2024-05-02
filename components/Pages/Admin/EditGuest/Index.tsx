@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction } from "react";
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -24,6 +24,7 @@ import {
 
 import * as guestsService from "@/services/guests";
 import { IGuest } from "@/interface/guests";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface IProps {
   setOpenEditGuest: React.Dispatch<SetStateAction<boolean>>;
@@ -36,6 +37,8 @@ const formSchema = z.object({
   name: z.string().min(3, {
     message: "Nome deve ter no mínimo 3 caracteres.",
   }),
+  status: z.boolean(),
+  receivedInvitation: z.boolean(),
 });
 
 export default function EditGuest({
@@ -44,36 +47,36 @@ export default function EditGuest({
   setRefreshList,
   guest,
 }: IProps) {
-  const [successMessage, setSuccessMessage] = useState("");
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: guest.name,
+      status: guest.status,
+      receivedInvitation: guest.receivedInvitation,
     },
   });
 
-  async function onSubmit({ name }: z.infer<typeof formSchema>) {
-    setSuccessMessage("");
+  async function onSubmit({
+    name,
+    status,
+    receivedInvitation,
+  }: z.infer<typeof formSchema>) {
     try {
-      const response = await guestsService.createGuest(name);
-      if (response.acknowledged) {
-        setSuccessMessage(
-          `${name.toUpperCase()} foi adicionado na lista de convidados.`,
-        );
-        form.setValue("name", "");
+      const response = await guestsService.updateGuests({
+        _id: guest._id,
+        name,
+        status,
+        receivedInvitation,
+      });
+
+      if (response._id) {
+        setOpenEditGuest(false);
+        setRefreshList(new Date().toString());
       } else {
-        if (response.message === "Guest alredy exists") {
-          form.setError("name", {
-            type: "custom",
-            message: "Convidado já registrado.",
-          });
-        } else {
-          form.setError("name", {
-            type: "custom",
-            message: "Erro interno tente novamente mais tarde.",
-          });
-        }
+        form.setError("name", {
+          type: "custom",
+          message: "Erro interno tente novamente mais tarde.",
+        });
       }
     } catch (error) {
       form.setError("name", {
@@ -110,12 +113,49 @@ export default function EditGuest({
                 </FormItem>
               )}
             />
+
+            <div className="flex justify-evenly">
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mr-2">Status</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        defaultChecked={field.value}
+                        onCheckedChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="receivedInvitation"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mr-2">Recebeu Convite?</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        defaultChecked={field.value}
+                        onCheckedChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <div className="flex flex-col space-y-3">
-              {successMessage && (
-                <span className=" text-base leading-relaxed text-green-500">
-                  {successMessage}
-                </span>
-              )}
               <Button type="submit">Salvar</Button>
             </div>
           </form>
