@@ -17,7 +17,6 @@ export default function GuestList({
 }: IProps) {
   const [totalGuests, setTotalGuests] = useState(0);
   const [totalConfirmedGuests, setTotalConfirmedGuestss] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [guests, setGuests] = useState<IGuest[]>([]);
 
   const getGuests = async () => {
@@ -28,8 +27,6 @@ export default function GuestList({
       setTotalConfirmedGuestss(response.confirmedGuestsCount);
     } catch (error: any) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -38,8 +35,8 @@ export default function GuestList({
   }, [refreshList]);
 
   return (
-    <div className="my-6 flex flex-col items-center space-y-6">
-      <div className="w-1/2 rounded bg-card p-8 shadow-lg">
+    <div className="my-4 flex flex-col items-center space-y-4">
+      <div className="w-1/2 rounded-2xl bg-card p-6 shadow-lg">
         <div className="flex justify-evenly">
           <p className="text-xl"> Total de convidados: {totalGuests}</p>
           <p className="text-xl">
@@ -47,7 +44,7 @@ export default function GuestList({
           </p>
         </div>
       </div>
-      <div className="w-1/2 rounded bg-card p-8 shadow-lg">
+      <div className="h-[72vh] w-1/2 overflow-auto rounded-2xl bg-card p-4 shadow-lg">
         <GuestTable
           isAdmin={isAdmin}
           guests={guests}
