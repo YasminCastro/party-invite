@@ -18,6 +18,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { SetStateAction, useState } from "react";
 import DeleteGuest from "@/components/Pages/Admin/DeleteGuest/Index";
 import EditGuest from "@/components/Pages/Admin/EditGuest/Index";
+import * as guestsService from "@/services/guests";
 
 interface IProps {
   isAdmin: boolean;
@@ -33,6 +34,23 @@ export default function GuestTable({
   const [openDeleteGuest, setOpenDeleteGuest] = useState(false);
   const [openEditGuest, setOpenEditGuest] = useState(false);
   const [guest, setGuest] = useState<IGuest>();
+
+  const changeReceivedInvitation = async ({
+    _id,
+    receivedInvitation,
+  }: {
+    _id: string;
+    receivedInvitation: boolean;
+  }) => {
+    try {
+      const response = await guestsService.updateGuests({
+        _id,
+        receivedInvitation,
+      });
+    } catch (error) {
+      console.log("Error updating guest", error);
+    }
+  };
 
   return (
     <>
@@ -58,7 +76,17 @@ export default function GuestTable({
                 )}
               </TableCell>
               <TableCell>
-                <Checkbox checked={guest.receivedInvitation} />
+                {!guest.isAdmin && (
+                  <Checkbox
+                    defaultChecked={guest.receivedInvitation}
+                    onCheckedChange={(e) => {
+                      changeReceivedInvitation({
+                        _id: guest._id,
+                        receivedInvitation: e as boolean,
+                      });
+                    }}
+                  />
+                )}
               </TableCell>
               {!guest.isAdmin && isAdmin && (
                 <TableCell>
