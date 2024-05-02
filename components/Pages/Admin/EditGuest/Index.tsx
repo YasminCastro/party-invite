@@ -39,6 +39,7 @@ const formSchema = z.object({
   }),
   status: z.boolean(),
   receivedInvitation: z.boolean(),
+  isAdmin: z.boolean().optional(),
 });
 
 export default function EditGuest({
@@ -53,6 +54,7 @@ export default function EditGuest({
       name: guest.name,
       status: guest.status,
       receivedInvitation: guest.receivedInvitation,
+      isAdmin: guest.isAdmin,
     },
   });
 
@@ -60,6 +62,7 @@ export default function EditGuest({
     name,
     status,
     receivedInvitation,
+    isAdmin,
   }: z.infer<typeof formSchema>) {
     try {
       const response = await guestsService.updateGuests({
@@ -67,6 +70,7 @@ export default function EditGuest({
         name,
         status,
         receivedInvitation,
+        isAdmin,
       });
 
       if (response._id) {
@@ -117,25 +121,6 @@ export default function EditGuest({
             <div className="flex justify-evenly">
               <FormField
                 control={form.control}
-                name="status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="mr-2">Status</FormLabel>
-                    <FormControl>
-                      <Checkbox
-                        defaultChecked={field.value}
-                        onCheckedChange={field.onChange}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
                 name="receivedInvitation"
                 render={({ field }) => (
                   <FormItem>
@@ -153,6 +138,47 @@ export default function EditGuest({
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mr-2">Status</FormLabel>
+                    <FormControl>
+                      <Checkbox
+                        defaultChecked={field.value}
+                        onCheckedChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {guest.name !== "aniversariante" && (
+                <FormField
+                  control={form.control}
+                  name="isAdmin"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="mr-2">É Administrador?</FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          defaultChecked={field.value}
+                          onCheckedChange={field.onChange}
+                          onBlur={field.onBlur}
+                          name={field.name}
+                          ref={field.ref}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </div>
 
             <div className="flex flex-col space-y-3">

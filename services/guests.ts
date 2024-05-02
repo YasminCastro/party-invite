@@ -33,6 +33,9 @@ export async function updateGuests(guest: IUpdateGuest) {
   if ("receivedInvitation" in guest) {
     query.receivedInvitation = guest.receivedInvitation;
   }
+  if ("isAdmin" in guest) {
+    query.isAdmin = guest.isAdmin;
+  }
   if (guest.name) query.name = guest.name.trim().toLocaleLowerCase();
 
   const { data } = await axios.put("/api/guests/update", query);

@@ -59,7 +59,6 @@ export default function NewGuest({
 
   async function onSubmit(guest: z.infer<typeof formSchema>) {
     setSuccessMessage("");
-    console.log(guest);
     try {
       const response = await guestsService.createGuest(guest);
       if (response.acknowledged) {
