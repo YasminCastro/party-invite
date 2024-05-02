@@ -53,7 +53,7 @@ export default function LoginForm() {
   };
 
   return (
-    <Card className="w-96">
+    <Card className="w-96 max-sm:w-screen">
       <CardHeader></CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
