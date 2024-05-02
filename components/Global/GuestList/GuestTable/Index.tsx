@@ -100,7 +100,7 @@ export default function GuestTable({
                 })
               }
             >
-              <span className="flex items-center justify-center gap-1">
+              <span className="flex items-center gap-1">
                 Nome
                 {icon}
               </span>
@@ -113,12 +113,12 @@ export default function GuestTable({
                 })
               }
             >
-              <span className="flex items-center justify-center gap-1">
+              <span className="flex items-center gap-1">
                 Status
                 {icon}
               </span>
             </TableHead>
-            <TableHead>Recebeu convite?</TableHead>
+            {isAdmin && <TableHead>Recebeu convite?</TableHead>}
             {isAdmin && <TableHead>Editar</TableHead>}
             {isAdmin && <TableHead>Excluir</TableHead>}
           </TableRow>
@@ -135,18 +135,21 @@ export default function GuestTable({
                     <AiFillCloseCircle className="text-lg text-red-500" />
                   )}
                 </TableCell>
-                <TableCell>
-                  <Checkbox
-                    checked={guest.receivedInvitation}
-                    onCheckedChange={(e) => {
-                      changeReceivedInvitation({
-                        _id: guest._id,
-                        receivedInvitation: e as boolean,
-                      });
-                      setRefreshList(new Date().toString());
-                    }}
-                  />
-                </TableCell>
+                {isAdmin && (
+                  <TableCell>
+                    <Checkbox
+                      checked={guest.receivedInvitation}
+                      onCheckedChange={(e) => {
+                        changeReceivedInvitation({
+                          _id: guest._id,
+                          receivedInvitation: e as boolean,
+                        });
+                        setRefreshList(new Date().toString());
+                      }}
+                    />
+                  </TableCell>
+                )}
+
                 {isAdmin && (
                   <TableCell>
                     <AiOutlineEdit
