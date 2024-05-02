@@ -137,12 +137,13 @@ export default function GuestTable({
                 </TableCell>
                 <TableCell>
                   <Checkbox
-                    defaultChecked={guest.receivedInvitation}
+                    checked={guest.receivedInvitation}
                     onCheckedChange={(e) => {
                       changeReceivedInvitation({
                         _id: guest._id,
                         receivedInvitation: e as boolean,
                       });
+                      setRefreshList(new Date().toString());
                     }}
                   />
                 </TableCell>
