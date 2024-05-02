@@ -32,15 +32,15 @@ export default function NotAttendingModal({ openModal, setOpenModal }: IProps) {
           push("/");
         }}
       >
-        <DialogContent className="w-1/2 max-w-full">
+        <DialogContent className="w-1/2 max-w-full max-xl:w-screen">
           <DialogHeader>
             <DialogTitle className="text-3xl text-red-400">
               Muito triste que você não vai :/
             </DialogTitle>
           </DialogHeader>
           <DialogDescription>
-            <div className="font-text text-xl">
-              <p>Talvez na próxima você consiga</p>
+            <div className="font-text text-xl max-sm:text-base">
+              <p>Talvez na próxima você consiga.</p>
               <p>
                 ps. caso mude de ideia, confirme sua presença até o dia{" "}
                 <span className="font-bold text-red-400">

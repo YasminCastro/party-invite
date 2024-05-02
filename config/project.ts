@@ -17,7 +17,7 @@ const projectConfig: IProject = {
   partyName: "QUINTAL DO GÊ",
   seoName: "QUINTAL DO GÊ",
   data: "22/06/2024 às 11h30",
-  lastDateToConfirm: "19/12",
+  lastDateToConfirm: "19/06",
   whatsappNumber: "5562984016328",
   addressWritten: "Live Tower Lozandes - Park Lozandes",
   address:
