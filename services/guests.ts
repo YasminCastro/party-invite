@@ -2,9 +2,7 @@ import { INewGuest, IUpdateGuest } from "@/interface/guests";
 import axios from "axios";
 
 export async function getGuests() {
-  const timestamp = new Date().getTime();
-
-  const { data } = await axios.get(`/api/guests/get?_=${timestamp}`, {
+  const { data } = await axios.get(`/api/guests/get`, {
     headers: {
       "Cache-Control": "no-cache",
       Pragma: "no-cache",
