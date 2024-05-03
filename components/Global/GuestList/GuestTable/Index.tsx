@@ -1,3 +1,5 @@
+"use client";
+
 import { IGuest } from "@/interface/guests";
 
 import {

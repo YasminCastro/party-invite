@@ -1,3 +1,5 @@
+"use client";
+
 import { SetStateAction } from "react";
 
 import { z } from "zod";
