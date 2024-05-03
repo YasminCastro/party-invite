@@ -4,7 +4,6 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    console.log("GET ALL GUESTS");
     const database = await db;
     if (!database) throw new Error("Database is not connected");
 

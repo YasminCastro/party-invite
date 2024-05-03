@@ -24,7 +24,6 @@ export default function GuestList({
   const getGuests = async () => {
     try {
       const response = await guestsService.getGuests();
-      console.log(response);
       setGuests(response.guests);
       setTotalGuests(response.guestsCount);
       setTotalConfirmedGuestss(response.confirmedGuestsCount);
@@ -36,10 +35,6 @@ export default function GuestList({
   useEffect(() => {
     getGuests();
   }, [refreshList]);
-
-  useEffect(() => {
-    console.log(guests);
-  }, [guests]);
 
   return (
     <div className="my-4 flex flex-col items-center space-y-4">
