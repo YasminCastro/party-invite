@@ -120,7 +120,7 @@ export default function EditGuest({
               )}
             />
 
-            <div className="flex justify-evenly">
+            <div className="flex justify-evenly max-sm:flex-col max-sm:items-center">
               <FormField
                 control={form.control}
                 name="receivedInvitation"
