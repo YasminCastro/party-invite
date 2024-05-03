@@ -10,14 +10,16 @@ export async function getGuests() {
     },
   });
 
-  const confirmedGuests = data.reduce(
+  const response = data.result;
+
+  const confirmedGuests = response.reduce(
     (count: number, guest: any) => count + (guest.status ? 1 : 0),
     0,
   );
 
   return {
-    guests: data,
-    guestsCount: data.length,
+    guests: response,
+    guestsCount: response.length,
     confirmedGuestsCount: confirmedGuests,
   };
 }

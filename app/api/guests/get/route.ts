@@ -1,5 +1,6 @@
 import db from "@/lib/client";
-import { NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
@@ -10,15 +11,8 @@ export async function GET() {
     const collection = db.collection("guests");
     const result = await collection.find().toArray();
 
-    const response = NextResponse.json(result, { status: 200 });
-    response.headers.append(
-      "Cache-Control",
-      "no-cache, no-store, must-revalidate",
-    );
-    response.headers.append("Pragma", "no-cache");
-    response.headers.append("Expires", "0");
-    return response;
+    return Response.json({ result });
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return Response.json({ message: error.message }, { status: 500 });
   }
 }
