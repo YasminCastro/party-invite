@@ -99,6 +99,7 @@ export default function GuestTable({
                   direction,
                 })
               }
+              className="max-sm:text-xs"
             >
               <span className="flex items-center gap-1">
                 Nome
@@ -112,15 +113,22 @@ export default function GuestTable({
                   direction,
                 })
               }
+              className="max-sm:text-xs"
             >
               <span className="flex items-center gap-1">
                 Status
                 {icon}
               </span>
             </TableHead>
-            {isAdmin && <TableHead>Recebeu convite?</TableHead>}
-            {isAdmin && <TableHead>Editar</TableHead>}
-            {isAdmin && <TableHead>Excluir</TableHead>}
+            {isAdmin && (
+              <TableHead className="max-sm:text-xs">Recebeu convite?</TableHead>
+            )}
+            {isAdmin && (
+              <TableHead className="max-sm:text-xs">Editar</TableHead>
+            )}
+            {isAdmin && (
+              <TableHead className="max-sm:text-xs">Excluir</TableHead>
+            )}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -130,9 +138,9 @@ export default function GuestTable({
                 <TableCell>{guest.name}</TableCell>
                 <TableCell>
                   {guest.status ? (
-                    <AiFillCheckCircle className="text-lg text-green-500" />
+                    <AiFillCheckCircle className="text-lg text-green-500 max-sm:text-base" />
                   ) : (
-                    <AiFillCloseCircle className="text-lg text-red-500" />
+                    <AiFillCloseCircle className="text-lg text-red-500 max-sm:text-base" />
                   )}
                 </TableCell>
                 {isAdmin && (
@@ -153,8 +161,7 @@ export default function GuestTable({
                 {isAdmin && (
                   <TableCell>
                     <AiOutlineEdit
-                      size={18}
-                      className="cursor-pointer hover:text-blue-400  active:text-blue-600"
+                      className="cursor-pointer text-lg hover:text-blue-400  active:text-blue-600 max-sm:text-base"
                       onClick={() => {
                         setOpenEditGuest(true);
                         setGuest(guest);
@@ -165,8 +172,7 @@ export default function GuestTable({
                 {!guest.isAdmin && isAdmin && (
                   <TableCell>
                     <AiOutlineDelete
-                      size={18}
-                      className="cursor-pointer hover:text-blue-400  active:text-blue-600"
+                      className="cursor-pointer text-lg hover:text-blue-400  active:text-blue-600 max-sm:text-base"
                       onClick={() => {
                         setOpenDeleteGuest(true);
                         setGuest(guest);

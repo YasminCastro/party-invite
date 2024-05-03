@@ -13,7 +13,7 @@ export default function Admin() {
   return (
     <>
       <GoBackButton title="Voltar" path="/" />
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex justify-center max-sm:ml-5 max-sm:mt-5 max-sm:justify-start">
         <Button
           size="lg"
           onClick={() => {

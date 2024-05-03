@@ -36,15 +36,17 @@ export default function GuestList({
 
   return (
     <div className="my-4 flex flex-col items-center space-y-4">
-      <div className="w-1/2 rounded-2xl bg-card p-6 shadow-lg">
+      <div className="w-1/2 rounded-2xl bg-card p-6 shadow-lg max-lg:w-3/4 max-md:w-screen ">
         <div className="flex justify-evenly">
-          <p className="text-xl"> Total de convidados: {totalGuests}</p>
-          <p className="text-xl">
+          <p className="text-xl max-md:text-lg max-sm:text-base">
+            Total de convidados: {totalGuests}
+          </p>
+          <p className="text-xl max-md:text-lg max-sm:text-base">
             Total de confirmados: {totalConfirmedGuests}
           </p>
         </div>
       </div>
-      <div className="h-[72vh] w-1/2 overflow-auto rounded-2xl bg-card p-4 shadow-lg">
+      <div className="h-[72vh] w-1/2 overflow-auto rounded-2xl bg-card p-4 shadow-lg max-lg:w-3/4 max-md:w-screen">
         <GuestTable
           isAdmin={isAdmin}
           guests={guests}
