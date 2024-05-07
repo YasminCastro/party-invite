@@ -8,6 +8,7 @@ import { useUser } from "@/providers/User";
 import GoBackButton from "@/components/Global/GoBackButton/Index";
 import * as guestsService from "@/services/guests";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import Footer from "@/components/Global/Footer/Index";
 
 interface IProps {
   setOpenModal: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -129,6 +130,7 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
 
         <GoBackButton path="/" title="Voltar" />
       </form>
+      <Footer />
     </div>
   );
 }

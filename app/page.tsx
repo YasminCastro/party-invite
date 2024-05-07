@@ -8,6 +8,7 @@ import projectConfig from "@/config/project";
 import { useUser } from "@/providers/User";
 import { useAuth } from "@/providers/useAuth";
 import { useState } from "react";
+import Footer from "@/components/Global/Footer/Index";
 
 export default function Home() {
   const { isAdmin } = useUser();
@@ -56,6 +57,7 @@ export default function Home() {
           <AddressMap />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

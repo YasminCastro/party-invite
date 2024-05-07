@@ -1,3 +1,4 @@
+import Footer from "@/components/Global/Footer/Index";
 import LoginForm from "@/components/Pages/Login/Form";
 import projectConfig from "@/config/project";
 
@@ -10,6 +11,7 @@ export default function Login() {
         </h1>
         <LoginForm />
       </div>
+      <Footer />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import { IGuest } from "@/interface/guests";
 import * as guestsService from "@/services/guests";
 import GuestTable from "./GuestTable/Index";
+import Footer from "../Footer/Index";
 
 interface IProps {
   isAdmin: boolean;
@@ -55,6 +56,7 @@ export default function GuestList({
           setRefreshList={setRefreshList}
         />
       </div>
+      <Footer isTable={true} />
     </div>
   );
 }
