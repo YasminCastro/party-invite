@@ -19,9 +19,9 @@ const projectConfig: IProject = {
   data: "22/06/2024 às 11h30",
   lastDateToConfirm: "15/06",
   whatsappNumber: "5562984016328",
-  addressWritten: "Live Tower Lozandes - Park Lozandes",
+  addressWritten: "Quintal da árvore - Jardim Planalto",
   address:
-    "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4544.630192546737!2d-49.224643498822296!3d-16.69872562096442!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef1b64b07dd33%3A0x89d093940492476a!2sLive%20Tower%20Lozandes!5e0!3m2!1spt-BR!2sbr!4v1713828697446!5m2!1spt-BR!2sbr",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23573.820360106623!2d-49.30941839019124!3d-16.705237530056333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef74366cd9a6d%3A0xb6b822483395a821!2sQuintal%20da%20%C3%81rvore!5e0!3m2!1spt-BR!2sbr!4v1717524798696!5m2!1spt-BR!2sbr",
   buttonColor: "light",
   chavePix: "62984016328",
   spotifyUrl:
