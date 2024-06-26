@@ -31,13 +31,13 @@ export default function Home() {
 
       <div className="flex w-full justify-evenly max-md:flex-col max-md:items-center ">
         <div className="w-1/3 max-xl:w-1/2 max-md:mb-4 max-md:w-3/4">
-          <h1 className="text-center font-title text-7xl text-primary max-lg:mt-24 max-lg:text-5xl">
+          <h1 className="text-center font-title text-8xl text-primary max-lg:mt-24 max-lg:text-7xl">
             {projectConfig.partyName}
           </h1>
         </div>
 
         <div className="flex w-1/3 flex-col items-center gap-2 max-md:w-2/3 max-sm:w-11/12">
-          <h3 className="text-3xl font-bold max-lg:text-2xl max-sm:text-xl">
+          <h3 className="font-title text-3xl font-bold">
             {projectConfig.data}
           </h3>
 

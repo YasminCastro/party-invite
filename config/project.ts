@@ -14,9 +14,9 @@ interface IProject {
 }
 
 const projectConfig: IProject = {
-  partyName: "YAS FAZ 24",
-  seoName: "YAS FAZ 24",
-  data: "a definir",
+  partyName: "24 da Yas",
+  seoName: "24 da Yas",
+  data: "19/07/2024 ás 20h",
   lastDateToConfirm: "15/07",
   whatsappNumber: "5562981695581",
   addressWritten: "Quintal da árvore - Jardim Planalto",

@@ -27,7 +27,7 @@ export default function AddressMap() {
           className="mt-4 w-full rounded-xl"
         ></iframe>
       )}
-      <h4 className="mt-2 w-fit text-xl font-bold max-lg:text-lg  max-md:backdrop-blur-3xl max-sm:text-base">
+      <h4 className="mt-2 w-fit text-xl font-bold max-md:backdrop-blur-3xl">
         {projectConfig.addressWritten}
       </h4>
     </div>

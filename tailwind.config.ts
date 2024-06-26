@@ -73,8 +73,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        title: "var(--font-lilita)",
-        text: "var(--font-roboto)",
+        title: "var(--font-squada-one)",
+        text: "var(--font-league-gothic)",
       },
       backgroundImage: {
         login: "url('/login-background.png')",

@@ -5,9 +5,9 @@ import projectConfig from "@/config/project";
 export default function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-login bg-cover bg-center">
-      <div className="flex flex-col items-center gap-20 py-16 max-sm:gap-10">
-        <h1 className="whitespace-nowrap font-title text-7xl text-primary max-md:text-6xl max-sm:text-4xl">
-          {projectConfig.partyName}
+      <div className="flex flex-col items-center gap-8 max-sm:gap-10">
+        <h1 className="font-alt whitespace-nowrap text-8xl text-primary max-sm:text-6xl ">
+          {projectConfig.partyName.toUpperCase()}
         </h1>
         <LoginForm />
       </div>
