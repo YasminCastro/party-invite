@@ -71,7 +71,7 @@ export default function AttendanceForm({ setOpenModal }: IProps) {
     <div className="flex min-h-screen flex-row items-center  justify-evenly bg-home bg-cover bg-center">
       <form
         onSubmit={handleConfirmation}
-        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-10 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-full"
+        className="flex w-1/2 flex-col items-center justify-center gap-2 rounded-lg bg-gray-950 bg-opacity-25 bg-clip-padding p-4 max-md:w-2/3 max-sm:w-full"
       >
         <div className="w-full">
           <div className="mb-2 block">

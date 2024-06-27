@@ -44,7 +44,6 @@ export default function Home() {
           <Link href="/confirm-presence">
             <Button
               className="w-full"
-              color={projectConfig.buttonColor}
               onClick={() => {
                 setLoading(true);
               }}
