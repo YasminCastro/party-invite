@@ -48,3 +48,19 @@
     --ring: 240 4.9% 83.9%;
   }
 }
+
+@font-face {
+  font-family: "Adumu";
+  src: url("/fonts/Adumu.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jingleberry";
+  src: url("/fonts/Jingleberry.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

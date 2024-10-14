@@ -73,8 +73,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        title: "var(--font-squada-one)",
-        text: "var(--font-league-gothic)",
+        title: ["Adumu", "sans-serif"],
+        text: ["Jingleberry", "sans-serif"],
+        roboto: ["var(--font-roboto)", "sans-serif"],
       },
       backgroundImage: {
         login: "url('/login-background.png')",
