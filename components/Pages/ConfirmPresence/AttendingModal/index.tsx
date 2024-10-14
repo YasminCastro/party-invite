@@ -46,8 +46,13 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
               <ul className="list-inside list-disc space-y-1 text-lg max-sm:text-base">
                 <li>Não se esqueça de levar sua bebida e caixa térmica!</li>
                 <li>
-                  Quer me ajudar nos comes e bebes (vai ter pinga e doses) manda
-                  10zao no pix (se quiser mandar mais, pode).
+                  Caso você tenha conjuge não esqueça de confimar a presença
+                  delu também!!
+                </li>
+                <li>caso seu conjugue não esteja na lista me avisa no zap</li>
+                <li>
+                  Quer levar alguem? me manda uma mensagem no zap ver se pode.
+                  <span className="text-sm"> sujeito a lotação do local.</span>
                 </li>
               </ul>
               <div className="mt-4 flex gap-2">
