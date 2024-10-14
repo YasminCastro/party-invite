@@ -41,7 +41,7 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
               Amei que você vai!!
             </DialogTitle>
           </DialogHeader>
-          <DialogDescription className="flex gap-2 font-text">
+          <DialogDescription className="flex gap-2 ">
             <div className="flex w-2/3 flex-col justify-between max-md:w-full">
               <ul className="list-inside list-disc space-y-1 text-lg max-sm:text-base">
                 <li>Não se esqueça de levar sua bebida e caixa térmica!</li>
