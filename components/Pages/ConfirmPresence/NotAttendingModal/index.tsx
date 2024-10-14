@@ -34,7 +34,7 @@ export default function NotAttendingModal({ openModal, setOpenModal }: IProps) {
       >
         <DialogContent className="w-1/2 max-w-full max-xl:w-screen">
           <DialogHeader>
-            <DialogTitle className="text-3xl text-red-400">
+            <DialogTitle className="font-text text-3xl text-red-400">
               Muito triste que você não vai :/
             </DialogTitle>
           </DialogHeader>
