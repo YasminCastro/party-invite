@@ -12,15 +12,15 @@ interface IProject {
 }
 
 const projectConfig: IProject = {
-  partyName: "Arraial do Rhary",
-  seoName: "Arraial do Rhary",
-  data: "15/11/2024 ás 13h",
+  partyName: "Genesi de repente 30",
+  seoName: "De repente 30",
+  data: "21/06/2025 as 19h",
   lastDateToConfirm: "12/11",
-  whatsappNumber: "5562981195060",
-  addressWritten: "Quintal da árvore - Jardim Planalto",
+  whatsappNumber: "5562982043566",
+  addressWritten: "Yolo Beer Garden - Setor Sul",
   address:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23573.820360106623!2d-49.30941839019124!3d-16.705237530056333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef74366cd9a6d%3A0xb6b822483395a821!2sQuintal%20da%20%C3%81rvore!5e0!3m2!1spt-BR!2sbr!4v1717524798696!5m2!1spt-BR!2sbr",
-  chavePix: "04190558192",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.740652342405!2d-49.25461632485061!3d-16.68985658408326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef1b3cc06e5e3%3A0xc6c311cd8f1c8de2!2sYolo%20Beer%20Garden!5e0!3m2!1spt-BR!2sbr!4v1748304109940!5m2!1spt-BR!2sbr",
+  chavePix: "",
   spotifyUrl: null,
 };
 
