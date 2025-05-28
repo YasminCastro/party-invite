@@ -42,16 +42,32 @@ export default function AttendingModal({ openModal, setOpenModal }: IProps) {
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="flex gap-2 ">
-            <div className="flex w-2/3 flex-col justify-between max-md:w-full">
+            <div className="flex w-full flex-col justify-between max-md:w-full">
               <ul className="list-inside list-disc space-y-1 text-lg max-sm:text-base">
-                <li>Não se esqueça de levar sua bebida e caixa térmica!</li>
                 <li>
                   Caso você tenha conjuge não esqueça de confimar a presença
                   delu também!!
                 </li>
-                <li>caso seu conjugue não esteja na lista me avisa no zap</li>
                 <li>
-                  Quer levar alguem? me manda uma mensagem no zap ver se pode.
+                  caso seu conjugue não esteja na lista me avisa no{" "}
+                  <a
+                    href="https://wa.me/5562982043566"
+                    className="underline"
+                    target="_blank"
+                  >
+                    zap
+                  </a>{" "}
+                </li>
+                <li>
+                  Quer levar alguem? me manda uma mensagem no{" "}
+                  <a
+                    href="https://wa.me/5562982043566"
+                    className="underline"
+                    target="_blank"
+                  >
+                    zap
+                  </a>{" "}
+                  ver se pode.
                   <span className="text-sm"> sujeito a lotação do local.</span>
                 </li>
               </ul>

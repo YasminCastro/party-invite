@@ -15,7 +15,7 @@ const projectConfig: IProject = {
   partyName: "Genesi de repente 30",
   seoName: "De repente 30",
   data: "21/06/2025 as 19h",
-  lastDateToConfirm: "12/11",
+  lastDateToConfirm: "18/06",
   whatsappNumber: "5562982043566",
   addressWritten: "Yolo Beer Garden - Setor Sul",
   address:

@@ -73,8 +73,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        title: ["Adumu", "sans-serif"],
-        text: ["Jingleberry", "sans-serif"],
+        title: ["var(--font-modak)", "sans-serif"],
+        text: ["var(--font-roboto)", "sans-serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
       },
       backgroundImage: {

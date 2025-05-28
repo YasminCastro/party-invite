@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-login bg-cover bg-center">
       <div className="flex flex-col items-center gap-8 max-sm:gap-10">
-        <h1 className="text-center font-title text-8xl text-[#693c23] max-sm:text-6xl">
+        <h1 className="text-center font-title text-8xl text-rose-950 max-sm:text-6xl">
           {projectConfig.partyName.toUpperCase()}
         </h1>
         <LoginForm />
